@@ -156,3 +156,15 @@ nav > ul > li > a:hover {
 .item3 {
     margin-top: 10px;
 }
+
+#about {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF4646;
+    background-image: url(/christmas-shop/img/bg-snow.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
