@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -342,7 +346,7 @@ nav > ul > li > a:hover {
     color: rgba(255, 255, 255, 0.4) !important;
 }
 
-#gifts{
+#best-gifts {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -448,6 +452,9 @@ nav > ul > li > a:hover {
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
+    padding: 60px 8px;
+    border-radius: 0px 0px 20px 20px;
+    box-sizing: border-box;
 }
 
 #cta_content {
@@ -456,7 +463,7 @@ nav > ul > li > a:hover {
     justify-content: center;
     align-items: center;
     padding: 60px 0px;
-    gap: 20px;
+    gap: 15px;
     width: 426px;
     height: 428px;
 }
@@ -508,3 +515,119 @@ nav > ul > li > a:hover {
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 1440px;
+    padding: 60px 8px;
+    box-sizing: border-box;
+}
+ #contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 60px;
+    width: 1276px;
+ }
+
+ #contacts-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+ }
+
+ #contacts-content > a{
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #ECF3F8;
+    width: 417px;
+    box-sizing: border-box;
+    color: #181C29;
+ }
+
+ #contacts-content > a:hover{
+    color: #FF4646;
+ }
+
+ #contacts-content > a > p {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 152%;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top:10px;
+    margin-bottom: 10px;
+ }
+
+ #contacts-content > a > h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 152%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top:10px;
+    margin-bottom: 10px;
+ }
+#contacts-content-else {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ #social_network {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    width: 196px;
+ }
+
+ #social_network > a:hover {
+    color:#FF4646;
+ }
+
+ .copyright {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 148%;
+    text-align: center;
+    text-transform: none;
+    margin-top: 15px;
+    margin-bottom: 10px;
+ }
+
+ .school {
+    font-family: 'Allura';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    margin: 0;
+    text-decoration: none;
+    color:#181C29;
+ }
+
+ .school:hover{
+    color:#FF4646;
+ }
