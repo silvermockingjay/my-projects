@@ -79,20 +79,21 @@ h1 {
 .menu{
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    width: 474px;
+    width: 485px;
     gap: 8px;
     padding: 0;
 }
 
 .menu > ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    gap: 55px;
+    gap: 10px;
 }
 
 .menu > ul > li > a {
@@ -100,14 +101,31 @@ h1 {
     color:#ffffff;
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 12px;
-    line-height: 130%;
+    line-height: 100%;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    border-radius: 12px;
+    padding: 12px 20px;
 
 }
 
+.menu > ul > li > a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+
+}
+.active {
+    pointer-events: none;
+    background-color: rgba(255, 70, 70, 0.1);
+    color: #FF4646;
+}
+
+.active2 {
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.2);
+}
 .container {
     display: flex;
     flex-direction: row;
@@ -352,7 +370,7 @@ footer {
  #social_network > a:hover {
     img {
         filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-        transition: all 0.3s ease;
+        transition: all 0.1s ease;
     }
  }
   

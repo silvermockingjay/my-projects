@@ -332,6 +332,7 @@ nav > ul > li > a:hover {
     text-decoration: none;
     color: #ffffff;
     background-color: transparent;
+    box-sizing: border-box;
 }
 
 #slider_buttons > a > img {
@@ -614,7 +615,7 @@ footer {
  #social_network > a:hover {
     img {
         filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-        transition: all 0.3s ease;
+        transition: all 0.1s ease;
     }
  }
   
