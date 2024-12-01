@@ -104,6 +104,7 @@ nav > ul > li > a:hover {
 }
 
 .content {
+    flex: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,6 +133,16 @@ nav > ul > li > a:hover {
     color:#ffffff;
 }
 
+.item4 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 152%;
+    letter-spacing: 0.16em;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
 .button {
     padding: 20px 32px;
     border-radius: 20px;
@@ -150,7 +161,7 @@ nav > ul > li > a:hover {
 
 }
 
-.item1, .item2, .item3 {
+.item1, .item2, .item3, item4 {
     margin: 0;
 }
 
@@ -165,7 +176,8 @@ nav > ul > li > a:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     padding: 60px 8px;
-    border-top: none;
+    width: 1440px;
+    box-sizing: border-box;
 }
 
 #about > div {
@@ -183,7 +195,7 @@ nav > ul > li > a:hover {
     justify-content: center;
     align-items: flex-start;
     padding-left: 40px;
-    padding-right: 130px;
+    padding-right: 160px;
     gap: 20px;
 }
 
@@ -234,7 +246,7 @@ nav > ul > li > a:hover {
     font-size: 16px;
     font-weight: 400;
     line-height: 145%;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.01em;
     color: #181C29;
     text-transform: normal;
 }
@@ -249,7 +261,43 @@ nav > ul > li > a:hover {
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-    border-top: none;
     padding: 60px 8px;
     width: 1440px;
+    box-sizing: border-box;
+}
+
+#slider_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 76px;
+    gap: 10px;
+}
+
+#slider_bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 700px;
+    gap: 20px;
+}
+
+.text {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 80px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff
+}
+
+#slider_bar > img {
+    width: 200px;
+    height: 200px;
+    flex: none;
+    border-radius: 20px;
 }
