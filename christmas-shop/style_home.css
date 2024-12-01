@@ -67,7 +67,7 @@ nav > ul > li > a, .logo > a {
 nav > ul > li > a:hover {
     background-color: rgba(255, 70, 70, 0.1);
     color: #FF4646;
-    
+    transition: all 0.3s ease;
 }
 
 .logo {
@@ -162,7 +162,7 @@ nav > ul > li > a:hover {
     color: #181C29;
     background-color: #ffffff;
     text-decoration: none;
-
+    transition: all 0.3s ease;
 }
 
 .item1, .item2, .item3, item4 {
@@ -336,7 +336,8 @@ nav > ul > li > a:hover {
     border: solid 1px #ffffff;
     text-decoration: none;
     background-color: #ffffff;
-    color: #FF4646
+    color: #FF4646;
+    transition: all 0.3s ease;
 }
 
 #inactive_link, #inactive_link:hover {
@@ -416,6 +417,7 @@ nav > ul > li > a:hover {
 .product > a:hover{
     .category > p{
         color:#FF4646;
+        transition: all 0.3s ease;
     }
 }
 
@@ -557,6 +559,7 @@ footer {
 
  #contacts-content > a:hover{
     color: #FF4646;
+    transition: all 0.3s ease;
  }
 
  #contacts-content > a > p {
@@ -601,6 +604,7 @@ footer {
 
  #social_network > a:hover {
     color:#FF4646;
+    transition: all 0.3s ease;
  }
 
  .copyright {
@@ -630,4 +634,5 @@ footer {
 
  .school:hover{
     color:#FF4646;
+    transition: all 0.3s ease;
  }
