@@ -3,14 +3,20 @@ html {
 }
 
 body {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     color: #181C29;
+    background-color: #ffffff;
 }
+
+header, main, footer {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 
 header {
     margin: 0 auto;
