@@ -324,6 +324,10 @@ nav > ul > li > a:hover {
     background-color: transparent;
 }
 
+#slider_buttons > a > img {
+    padding: 20px 20px;
+}
+
 #slider_buttons > a:hover {
     border: solid 1px #ffffff;
     text-decoration: none;
