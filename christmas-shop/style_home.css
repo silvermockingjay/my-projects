@@ -106,11 +106,12 @@ nav > ul > li > a:hover {
 .content {
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
+    justify-content: center;
     align-items: center;
     width: 500px;
     padding: 60px 0;
-    margin: auto;
+    margin-top: 60px;
+    gap: 12px;
 }
 
 .item1, .item3 {
@@ -140,7 +141,6 @@ nav > ul > li > a:hover {
     line-height: 130%;
     letter-spacing: 0.05em;
     font-size: 12px;
-    margin-top: 5px;
 }
 
 .button:hover {
@@ -150,18 +150,8 @@ nav > ul > li > a:hover {
 
 }
 
-.item2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.item1 {
-    margin-top: 20px;
-    margin-bottom:10px;
-}
-
-.item3 {
-    margin-top: 10px;
+.item1, .item2, .item3 {
+    margin: 0;
 }
 
 #about {
@@ -247,4 +237,19 @@ nav > ul > li > a:hover {
     letter-spacing: 0.05em;
     color: #181C29;
     text-transform: normal;
+}
+
+#slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF4646;
+    background-image: url(/christmas-shop/img/bg-snow.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-top: none;
+    padding: 60px 8px;
+    width: 1440px;
 }
