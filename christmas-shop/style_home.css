@@ -338,6 +338,9 @@ nav > ul > li > a:hover {
     background-color: #ffffff;
     color: #FF4646;
     transition: all 0.3s ease;
+    img {
+        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+    }
 }
 
 #inactive_link, #inactive_link:hover {
@@ -603,10 +606,12 @@ footer {
  }
 
  #social_network > a:hover {
-    color:#FF4646;
-    transition: all 0.3s ease;
+    img {
+        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+        transition: all 0.3s ease;
+    }
  }
-
+  
  .copyright {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
