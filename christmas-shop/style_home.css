@@ -509,6 +509,7 @@ nav > ul > li > a:hover {
 #card-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 89.7%;
