@@ -373,7 +373,7 @@ nav > ul > li > a:hover {
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
     width: 100%;
@@ -480,20 +480,38 @@ nav > ul > li > a:hover {
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
-    width: 1440px;
+    width: 100%;
     box-sizing: border-box;
-    gap: 15px;
+    
 }
+
+#best-gifts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+#best-gifts-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
 
 #card-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0 76px;
+    width: 89.7%;
     gap: 12px;
 }
 
@@ -502,10 +520,8 @@ nav > ul > li > a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
     width: 310px;
     height: 230px;
-    background-color:aliceblue;
 }
 
 .card > img {
@@ -532,7 +548,7 @@ nav > ul > li > a:hover {
     flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
-    background-color: aliceblue;
+    background-color: #ECF3F8;
 }
 
 .product > a {
@@ -546,6 +562,17 @@ nav > ul > li > a:hover {
     }
 }
 
+.category > h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
 .category > p {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -555,17 +582,6 @@ nav > ul > li > a:hover {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #181C29;
-    margin: 0;
-}
-
-.category > h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
     margin: 0;
 }
 
