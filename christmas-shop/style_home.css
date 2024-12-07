@@ -672,7 +672,6 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    width: 1440px;
     padding: 60px 8px;
     box-sizing: border-box;
 }
@@ -683,7 +682,7 @@ footer {
     align-items: center;
     padding: 0px;
     gap: 60px;
-    width: 1276px;
+    width: 89.7%;
  }
 
  #contacts-content {
@@ -692,17 +691,21 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    width: 100%;
  }
 
  #contacts-content > a{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     border-radius: 20px;
     padding: 20px;
     background-color: #ECF3F8;
-    width: 417px;
-    box-sizing: border-box;
+    width: 30%;
     color: #181C29;
+    gap: 12px;
  }
 
  #contacts-content > a:hover{
@@ -718,8 +721,7 @@ footer {
     line-height: 152%;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    margin-top:10px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 
  #contacts-content > a > h4 {
@@ -730,24 +732,34 @@ footer {
     line-height: 152%;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-top:10px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 #contacts-content-else {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    gap: 12px;
 }
 
  #social_network {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     gap: 12px;
-    padding: 0;
-    width: 196px;
+ }
+
+ #social_network a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    box-sizing: border-box;
  }
 
  #social_network > a:hover {
@@ -755,6 +767,11 @@ footer {
         filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
         transition: all 0.1s ease;
     }
+ }
+
+ #social_network a  img {
+    width: 24px;
+    height: 24px;
  }
   
  .copyright {
@@ -764,8 +781,7 @@ footer {
     line-height: 148%;
     text-align: center;
     text-transform: none;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 
  .school {
@@ -785,4 +801,17 @@ footer {
  .school:hover{
     color:#FF4646;
     transition: all 0.3s ease;
+ }
+
+ @media (max-width: 1170px){
+    #contacts {
+        width: 100%;
+    }
+    #contacts-content{
+        flex-direction: column;
+    }
+    #contacts-content a{
+        width: 100%;
+        box-sizing: border-box;
+    }
  }
