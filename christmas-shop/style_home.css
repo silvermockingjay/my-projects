@@ -136,7 +136,6 @@ nav > ul > li > a:hover {
         line-height: 152%;
         letter-spacing: 0.16em;
     }
-    
 }  
 
 .logo {
@@ -246,10 +245,10 @@ nav > ul > li > a:hover {
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
-    width: 1440px;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -260,6 +259,8 @@ nav > ul > li > a:hover {
     background-color: #ffffff;
     margin: 0 74px;
     border-radius: 20px;
+    width: 100%;
+    height: 528px;
 }
 
 #about > div > div {
@@ -267,9 +268,10 @@ nav > ul > li > a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 40px;
-    padding-right: 160px;
+    padding: 60px 60px;
     gap: 20px;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 #about > div > figure {
@@ -278,15 +280,17 @@ nav > ul > li > a:hover {
     justify-content: flex-end;
     align-items: center;
     margin: 0;
-}
-
-#about > div > figure > img {
+    width: 50%;
+    background-image: url(../christmas-shop/img/santa.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 20px;
 }
 
+
 #about_content {
     text-align: left;
-    margin-left: 20px;
 }
 
 #about_content > p {
@@ -318,10 +322,47 @@ nav > ul > li > a:hover {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     font-weight: 400;
-    line-height: 145%;
+    line-height: 148%;
     letter-spacing: 0.01em;
     color: #181C29;
-    text-transform: normal;
+    text-transform: none;
+}
+
+@media (max-width: 920px) {
+    #about div {
+        margin: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    #hero {
+        height: 572px;
+    }
+    
+    #about, #about div{
+        flex-direction: column;
+    }
+
+    #about div, #about div div {
+        width: 100%;
+        height: auto;
+    }
+
+    #about div figure {
+        width: 100%;
+        height: 528px;
+    }
+
+    #about div div {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (min-width: 1440px){
+    #about_content p:not(:first-child){
+        padding-right: 100px;
+    }
 }
 
 #slider {
