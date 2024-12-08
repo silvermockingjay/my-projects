@@ -345,7 +345,7 @@ h1 {
     margin: 0;
 }
 
-@media (max-width: 380px) {
+@media (max-width: 550px) {
     .main-container{
         width: 100%;
     }
