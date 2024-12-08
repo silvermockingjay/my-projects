@@ -244,11 +244,14 @@ h1 {
 
 }
 
-.menu > ul > li > a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+@media (hover: hover) {
+    .menu > ul > li > a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
 
+    }
 }
+
 .active {
     pointer-events: none;
     background-color: rgba(255, 70, 70, 0.1);
@@ -310,10 +313,12 @@ h1 {
     text-decoration: none;
 }
 
-.product > a:hover{
-    .category > p{
-        color:#FF4646;
-        transition: all 0.3s ease;
+@media (hover: hover){
+    .product > a:hover{
+        .category > p{
+            color:#FF4646;
+            transition: all 0.3s ease;
+        }
     }
 }
 
@@ -374,7 +379,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 60px;
-    width: 98.7%;
+    width: 89.7%;
  }
 
  #contacts-content {
@@ -454,7 +459,7 @@ footer {
     width: 24px;
     height: 24px;
  }
- 
+
  .copyright {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
