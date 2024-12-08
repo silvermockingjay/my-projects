@@ -400,11 +400,6 @@ footer {
     gap: 12px;
  }
 
- #contacts-content > a:hover{
-    color: #FF4646;
-    transition: all 0.3s ease;
- }
-
  #contacts-content > a > p {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -454,14 +449,12 @@ footer {
     padding: 8px;
     box-sizing: border-box;
  }
-
- #social_network > a:hover {
-    img {
-        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-        transition: all 0.1s ease;
-    }
- }
   
+ #social_network a  img {
+    width: 24px;
+    height: 24px;
+ }
+ 
  .copyright {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
@@ -486,8 +479,35 @@ footer {
     color:#181C29;
  }
 
- .school:hover{
-    color:#FF4646;
-    transition: all 0.3s ease;
+ @media (max-width: 1170px){
+    #contacts {
+        width: 100%;
+    }
+    #contacts-content{
+        flex-direction: column;
+    }
+    #contacts-content a{
+        width: 100%;
+        box-sizing: border-box;
+    }
  }
+
+ @media (hover: hover){
+    #contacts-content > a:hover{
+        color: #FF4646;
+        transition: all 0.3s ease;
+     }
+
+    #social_network > a:hover {
+        img {
+            filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+            transition: all 0.1s ease;
+        }
+     }
+
+    .school:hover{
+        color:#FF4646;
+        transition: all 0.3s ease;
+ }
+}
 
