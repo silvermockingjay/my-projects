@@ -16,16 +16,14 @@ body {
 header, main, footer {
     max-width: 1440px;
     margin: 0 auto;
-    box-sizing: border-box;
+    width: 100%;
   }
 
 header {
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 1440px;
     height: 64px;
     padding: 0 8px;
     box-sizing: border-box;
@@ -34,104 +32,12 @@ header {
     letter-spacing: 0.05em;
 }
 
-main {
-    background-image: url(../christmas-shop/img/bg-garland.png);
-    background-position: top;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 1394px;
-}
-
-.main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 1276px;
-    height: 1274px;
-    gap: 30px;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
-.item1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 426px;
-    text-align: center;
-}
-
-h1 {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 150%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    margin: 0;
-}
-
-.menu{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 485px;
-    gap: 8px;
-    padding: 0;
-}
-
-.menu > ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    gap: 10px;
-}
-
-.menu > ul > li > a {
-    text-decoration: none;
-    color:#ffffff;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border-radius: 12px;
-    padding: 12px 20px;
-
-}
-
-.menu > ul > li > a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-
-}
-.active {
-    pointer-events: none;
-    background-color: rgba(255, 70, 70, 0.1);
-    color: #FF4646;
-}
-
-.active2 {
-    pointer-events: none;
-    background: rgba(255, 255, 255, 0.2);
-}
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 1276px;
+    width: 89.7%;
     height: 64px;
 }
 
@@ -142,7 +48,7 @@ nav {
     justify-content: flex-end;
     align-items: center;
     background-color: #ffffff;
-    width: 1123px;
+    width: auto;
 }
 
 nav > ul {
@@ -163,19 +69,83 @@ nav > ul > li > a, .logo > a{
     color: #181C29;
 }
 
-
-nav > ul > li > a:hover {
-    background-color: rgba(255, 70, 70, 0.1);
-    color: #FF4646;
-    transition: all 0.3s ease;
+@media (hover: hover){
+    nav > ul > li > a:hover {
+        background-color: rgba(255, 70, 70, 0.1);
+        color: #FF4646;
+        transition: all 0.3s ease;
+    }
 }
+
+.toggle {
+    display: none;
+}
+
+.bar1, .bar2 {
+    display: flex;
+    width: 20px;
+    height: 0;
+    border: 1px solid #181C29;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        gap: 8px;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+    .cross {
+        .bar1 {
+            transform: translate(0, 5px) rotate(-45deg); 
+        }
+        .bar2 {
+            transform: translate(0, -5px) rotate(45deg);
+        }
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    nav ul.show {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 64px);
+        background-color: #ffffff;
+        margin: 0;
+    }
+
+    nav ul.show li {
+        padding: 12px 20px;
+        font-size: 24px;
+        line-height: 152%;
+        letter-spacing: 0.16em;
+    }
+}  
 
 .logo {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    width: 141px;
+    width: auto;
     height: 40px;
     padding: 8px 20px;
 }
@@ -192,22 +162,114 @@ nav > ul > li > a:hover {
     height: 24px;
     order: 0;
 }
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #FF4646;
     border-radius: 20px;
+    padding: 60px 8px;
+    background-image: url(../christmas-shop/img/bg-garland.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #FF4646;
+    box-sizing: border-box;
+    gap: 20px;
 }
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 89.7%;
+    gap: 30px;
+    box-sizing: border-box;
+}
+
+.item1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    width: auto;
+    gap: 12px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 150%;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
+.menu > ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.menu > ul > li > a {
+    text-decoration: none;
+    color:#ffffff;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 12px;
+    padding: 12px 20px;
+
+}
+
+@media (hover: hover) {
+    .menu > ul > li > a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+
+    }
+}
+
+.active {
+    pointer-events: none;
+    background-color: rgba(255, 70, 70, 0.1);
+    color: #FF4646;
+}
+
+.active2 {
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.2);
+}
+
 #card-container {
-    align-self: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    padding: 0;
+    width: 100%;
     gap: 12px;
 }
 
@@ -216,10 +278,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
     width: 310px;
     height: 230px;
-    background-color:aliceblue;
 }
 
 .card > img {
@@ -246,18 +306,31 @@ main {
     flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
-    background-color: aliceblue;
+    background-color: #ECF3F8;
 }
 
 .product > a {
     text-decoration: none;
 }
 
-.product > a:hover{
-    .category > p{
-        color:#FF4646;
-        transition: all 0.3s ease;
+@media (hover: hover){
+    .product > a:hover{
+        .category > p{
+            color:#FF4646;
+            transition: all 0.3s ease;
+        }
     }
+}
+
+.category > h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
 }
 
 .category > p {
@@ -272,15 +345,23 @@ main {
     margin: 0;
 }
 
-.category > h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 0;
+@media (max-width: 550px) {
+    .main-container{
+        width: 100%;
+    }
+    .item1, .menu{
+        width: 100%;
+    }
+
+    .menu ul{
+        gap: 0;
+    }
+
+    .menu ul li a {
+        padding: 12px 8px;
+    }
+
+
 }
 
 footer {
@@ -289,7 +370,6 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    width: 1440px;
     padding: 60px 8px;
     box-sizing: border-box;
 }
@@ -298,9 +378,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
     gap: 60px;
-    width: 1276px;
+    width: 89.7%;
  }
 
  #contacts-content {
@@ -309,22 +388,21 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    width: 100%;
  }
 
  #contacts-content > a{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     border-radius: 20px;
     padding: 20px;
     background-color: #ECF3F8;
-    width: 417px;
-    box-sizing: border-box;
+    width: 30%;
     color: #181C29;
- }
-
- #contacts-content > a:hover{
-    color: #FF4646;
-    transition: all 0.3s ease;
+    gap: 12px;
  }
 
  #contacts-content > a > p {
@@ -335,8 +413,7 @@ footer {
     line-height: 152%;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    margin-top:10px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 
  #contacts-content > a > h4 {
@@ -347,33 +424,42 @@ footer {
     line-height: 152%;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-top:10px;
-    margin-bottom: 10px;
+    margin: 0;
  }
+
 #contacts-content-else {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    gap: 12px;
 }
 
  #social_network {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     gap: 12px;
-    padding: 0;
-    width: 196px;
  }
 
- #social_network > a:hover {
-    img {
-        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-        transition: all 0.1s ease;
-    }
+ #social_network a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    box-sizing: border-box;
  }
   
+ #social_network a  img {
+    width: 24px;
+    height: 24px;
+ }
+
  .copyright {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
@@ -381,8 +467,7 @@ footer {
     line-height: 148%;
     text-align: center;
     text-transform: none;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 
  .school {
@@ -399,8 +484,35 @@ footer {
     color:#181C29;
  }
 
- .school:hover{
-    color:#FF4646;
-    transition: all 0.3s ease;
+ @media (max-width: 1170px){
+    #contacts {
+        width: 100%;
+    }
+    #contacts-content{
+        flex-direction: column;
+    }
+    #contacts-content a{
+        width: 100%;
+        box-sizing: border-box;
+    }
  }
+
+ @media (hover: hover){
+    #contacts-content > a:hover{
+        color: #FF4646;
+        transition: all 0.3s ease;
+     }
+
+    #social_network > a:hover {
+        img {
+            filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+            transition: all 0.1s ease;
+        }
+     }
+
+    .school:hover{
+        color:#FF4646;
+        transition: all 0.3s ease;
+ }
+}
 

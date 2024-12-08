@@ -16,15 +16,14 @@ body {
 header, main, footer {
     max-width: 1440px;
     margin: 0 auto;
+    width: 100%;
   }
 
 header {
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 1440px;
     height: 64px;
     padding: 0 8px;
     box-sizing: border-box;
@@ -36,9 +35,9 @@ header {
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 1276px;
+    width: 89.7%;
     height: 64px;
 }
 
@@ -49,7 +48,7 @@ nav {
     justify-content: flex-end;
     align-items: center;
     background-color: #ffffff;
-    width: 1123px;
+    width: auto;
 }
 
 nav > ul {
@@ -70,18 +69,83 @@ nav > ul > li > a, .logo > a {
     color: #181C29;
 }
 
-nav > ul > li > a:hover {
-    background-color: rgba(255, 70, 70, 0.1);
-    color: #FF4646;
-    transition: all 0.3s ease;
+@media (hover: hover){
+    nav > ul > li > a:hover {
+        background-color: rgba(255, 70, 70, 0.1);
+        color: #FF4646;
+        transition: all 0.3s ease;
 }
+}
+
+.toggle {
+    display: none;
+}
+
+.bar1, .bar2 {
+    display: flex;
+    width: 20px;
+    height: 0;
+    border: 1px solid #181C29;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        gap: 8px;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+    .cross {
+        .bar1 {
+            transform: translate(0, 5px) rotate(-45deg); 
+        }
+        .bar2 {
+            transform: translate(0, -5px) rotate(45deg);
+        }
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    nav ul.show {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 64px);
+        background-color: #ffffff;
+        margin: 0;
+    }
+
+    nav ul.show li {
+        padding: 12px 20px;
+        font-size: 24px;
+        line-height: 152%;
+        letter-spacing: 0.16em;
+    }
+}  
 
 .logo {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    width: 141px;
+    width: auto;
     height: 40px;
     padding: 8px 20px;
 }
@@ -103,13 +167,13 @@ nav > ul > li > a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1440px;
+    width: 100%;
     height: 524px;
     border-radius: 20px 20px 0px 0px;
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png), url(../christmas-shop/img/bg-ball.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -119,7 +183,7 @@ nav > ul > li > a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: auto;
     padding: 60px 0;
     margin-top: 60px;
     gap: 12px;
@@ -164,11 +228,13 @@ nav > ul > li > a:hover {
     font-size: 12px;
 }
 
-.button:hover {
-    color: #181C29;
-    background-color: #ffffff;
-    text-decoration: none;
-    transition: all 0.3s ease;
+@media (hover: hover){
+    .button:hover {
+        color: #181C29;
+        background-color: #ffffff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
 }
 
 .item1, .item2, .item3, item4 {
@@ -183,10 +249,10 @@ nav > ul > li > a:hover {
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
-    width: 1440px;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -197,6 +263,8 @@ nav > ul > li > a:hover {
     background-color: #ffffff;
     margin: 0 74px;
     border-radius: 20px;
+    width: 100%;
+    height: 528px;
 }
 
 #about > div > div {
@@ -204,9 +272,10 @@ nav > ul > li > a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 40px;
-    padding-right: 160px;
+    padding: 60px 60px;
     gap: 20px;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 #about > div > figure {
@@ -215,15 +284,17 @@ nav > ul > li > a:hover {
     justify-content: flex-end;
     align-items: center;
     margin: 0;
-}
-
-#about > div > figure > img {
+    width: 50%;
+    background-image: url(../christmas-shop/img/santa.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 20px;
 }
 
+
 #about_content {
     text-align: left;
-    margin-left: 20px;
 }
 
 #about_content > p {
@@ -255,10 +326,47 @@ nav > ul > li > a:hover {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     font-weight: 400;
-    line-height: 145%;
+    line-height: 148%;
     letter-spacing: 0.01em;
     color: #181C29;
-    text-transform: normal;
+    text-transform: none;
+}
+
+@media (max-width: 920px) {
+    #about div {
+        margin: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    #hero {
+        height: 572px;
+    }
+    
+    #about, #about div{
+        flex-direction: column;
+    }
+
+    #about div, #about div div {
+        width: 100%;
+        height: auto;
+    }
+
+    #about div figure {
+        width: 100%;
+        height: 528px;
+    }
+
+    #about div div {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (min-width: 1440px){
+    #about_content p:not(:first-child){
+        padding-right: 100px;
+    }
 }
 
 #slider {
@@ -269,11 +377,21 @@ nav > ul > li > a:hover {
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
-    width: 1440px;
+    width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
+}
+
+#slider-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 89.7%;
+    gap: 20px;
 }
 
 #slider_content {
@@ -281,18 +399,16 @@ nav > ul > li > a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 76px;
-    gap: 10px;
+    gap: 12px;
 }
 
 #slider_bar {
+    align-self: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
-    padding-left: 700px;
     gap: 20px;
 }
 
@@ -318,13 +434,10 @@ nav > ul > li > a:hover {
     justify-content: flex-end;
     align-items: stretch;
     gap: 20px;
-    padding: 0;
-    width: 1276px;
+    width: 100%;
 }
 
 #slider_buttons > a {
-    margin-top: 20px;
-    gap: 20px;
     border-radius: 20px;
     border: solid 1px #ffffff;
     width: 56px;
@@ -339,22 +452,30 @@ nav > ul > li > a:hover {
     padding: 20px 20px;
 }
 
-#slider_buttons > a:hover {
-    border: solid 1px #ffffff;
-    text-decoration: none;
-    background-color: #ffffff;
-    color: #FF4646;
-    transition: all 0.3s ease;
-    img {
-        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+@media (hover: hover){
+    #slider_buttons > a:hover {
+        border: solid 1px #ffffff;
+        text-decoration: none;
+        background-color: #ffffff;
+        color: #FF4646;
+        transition: all 0.3s ease;
+        img {
+            filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+        }
+    }
+
+    #inactive_link, #inactive_link:hover {
+        border: solid 1px rgba(255, 255, 255, 0.4) !important;
+        text-decoration: none !important;
+        background-color: transparent !important;
+        color: rgba(255, 255, 255, 0.4) !important;
     }
 }
 
-#inactive_link, #inactive_link:hover {
-    border: solid 1px rgba(255, 255, 255, 0.4) !important;
-    text-decoration: none !important;
-    background-color: transparent !important;
-    color: rgba(255, 255, 255, 0.4) !important;
+@media (max-width: 768px) {
+    #slider-container {
+        width: 100%;
+    }
 }
 
 #best-gifts {
@@ -365,20 +486,39 @@ nav > ul > li > a:hover {
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
-    width: 1440px;
+    width: 100%;
     box-sizing: border-box;
-    gap: 15px;
+    
 }
+
+#best-gifts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+#best-gifts-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
 
 #card-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 0 76px;
+    width: 89.7%;
     gap: 12px;
 }
 
@@ -387,10 +527,8 @@ nav > ul > li > a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
     width: 310px;
     height: 230px;
-    background-color:aliceblue;
 }
 
 .card > img {
@@ -417,18 +555,31 @@ nav > ul > li > a:hover {
     flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
-    background-color: aliceblue;
+    background-color: #ECF3F8;
 }
 
 .product > a {
     text-decoration: none;
 }
 
-.product > a:hover{
-    .category > p{
-        color:#FF4646;
-        transition: all 0.3s ease;
+@media (hover: hover){
+    .product > a:hover{
+        .category > p{
+            color:#FF4646;
+            transition: all 0.3s ease;
+        }
     }
+}
+
+.category > h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
 }
 
 .category > p {
@@ -443,43 +594,37 @@ nav > ul > li > a:hover {
     margin: 0;
 }
 
-.category > h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 0;
-}
-
 #cta {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1440px;
+    width: 100%;
     background-color: #FF4646;
     background-image: url(../christmas-shop/img/bg-snow.png), url(../christmas-shop/img/bg-forest.png);
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 8px;
     border-radius: 0px 0px 20px 20px;
     box-sizing: border-box;
 }
 
+
 #cta_content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px 0px;
-    gap: 15px;
-    width: 426px;
-    height: 428px;
+    padding: 120px 0px;
+    gap: 20px;
 }
-
+#cta-content2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
 .item4 {
     text-align:center;
 }
@@ -493,6 +638,7 @@ nav > ul > li > a:hover {
     background-color: rgba(255, 255, 255, 0.4);
     padding: 8px 12px 12px;
     width: 344px;
+    box-sizing: border-box;
 }
 
 .timer-content {
@@ -534,7 +680,6 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    width: 1440px;
     padding: 60px 8px;
     box-sizing: border-box;
 }
@@ -543,9 +688,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
     gap: 60px;
-    width: 1276px;
+    width: 89.7%;
  }
 
  #contacts-content {
@@ -554,22 +698,21 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    width: 100%;
  }
 
  #contacts-content > a{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     border-radius: 20px;
     padding: 20px;
     background-color: #ECF3F8;
-    width: 417px;
-    box-sizing: border-box;
+    width: 30%;
     color: #181C29;
- }
-
- #contacts-content > a:hover{
-    color: #FF4646;
-    transition: all 0.3s ease;
+    gap: 12px;
  }
 
  #contacts-content > a > p {
@@ -580,8 +723,7 @@ footer {
     line-height: 152%;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    margin-top:10px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 
  #contacts-content > a > h4 {
@@ -592,31 +734,34 @@ footer {
     line-height: 152%;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-top:10px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 #contacts-content-else {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    gap: 12px;
 }
 
  #social_network {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     gap: 12px;
-    padding: 0;
-    width: 196px;
  }
 
- #social_network > a:hover {
-    img {
-        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-        transition: all 0.1s ease;
-    }
+ #social_network a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    box-sizing: border-box;
  }
   
  .copyright {
@@ -626,8 +771,7 @@ footer {
     line-height: 148%;
     text-align: center;
     text-transform: none;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin: 0;
  }
 
  .school {
@@ -644,7 +788,40 @@ footer {
     color:#181C29;
  }
 
- .school:hover{
-    color:#FF4646;
-    transition: all 0.3s ease;
+ @media (max-width: 1170px){
+    #contacts {
+        width: 100%;
+    }
+    #contacts-content{
+        flex-direction: column;
+    }
+    #contacts-content a{
+        width: 100%;
+        box-sizing: border-box;
+    }
+ }
+
+ @media (hover: hover){
+
+    #contacts-content > a:hover {
+        color: #FF4646;
+        transition: all 0.3s ease;
+    }
+
+    #social_network > a:hover {
+        img {
+            filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+            transition: all 0.1s ease;
+        }
+    }
+
+    .school:hover{
+        color:#FF4646;
+        transition: all 0.3s ease;
+    }
+}
+
+ #social_network a  img {
+    width: 24px;
+    height: 24px;
  }
