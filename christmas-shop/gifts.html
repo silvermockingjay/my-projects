@@ -27,6 +27,10 @@
                         <li><a href="#our_contacts">Contacts</a></li>
                     </ul>
                 </nav>
+                <div class="toggle">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                </div>
             </div>
         </header>
         <main>
@@ -213,4 +217,12 @@
                 </div>
             </div>
         </footer>
+        <script>
+            // Show navbar when clicking on icon
+            let toggle = document.querySelector('.toggle');
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('cross');
+                document.querySelector('nav ul').classList.toggle('show');
+            })
+        </script>
     </body>
