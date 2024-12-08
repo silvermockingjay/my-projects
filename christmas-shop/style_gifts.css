@@ -164,11 +164,19 @@ nav > ul > li > a, .logo > a{
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 60px 8px;
     background-image: url(../christmas-shop/img/bg-garland.png);
     background-position: top;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    height: 1394px;
+    background-color: #FF4646;
+    box-sizing: border-box;
+    gap: 20px;
 }
 
 .main-container {
@@ -176,11 +184,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1276px;
-    height: 1274px;
+    width: 89.7%;
     gap: 30px;
     box-sizing: border-box;
-    margin: 0 auto;
 }
 
 .item1 {
@@ -188,8 +194,9 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 426px;
     text-align: center;
+    width: auto;
+    gap: 12px;
 }
 
 h1 {
@@ -208,12 +215,9 @@ h1 {
 .menu{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    width: 485px;
-    gap: 8px;
-    padding: 0;
+    width: auto;
 }
 
 .menu > ul {
@@ -222,7 +226,7 @@ h1 {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    gap: 10px;
+    gap: 8px;
 }
 
 .menu > ul > li > a {
@@ -230,9 +234,9 @@ h1 {
     color:#ffffff;
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 12px;
-    line-height: 100%;
+    line-height: 130%;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     border-radius: 12px;
@@ -256,14 +260,6 @@ h1 {
     background: rgba(255, 255, 255, 0.2);
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #FF4646;
-    border-radius: 20px;
-}
 #card-container {
     align-self: flex-start;
     display: flex;
@@ -271,7 +267,6 @@ main {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 0;
     gap: 12px;
 }
 
@@ -283,7 +278,7 @@ main {
     padding: 0px;
     width: 310px;
     height: 230px;
-    background-color:aliceblue;
+    background-color:#ECF3F8;
 }
 
 .card > img {
@@ -310,7 +305,7 @@ main {
     flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
-    background-color: aliceblue;
+    background-color: #ECF3F8;
 }
 
 .product > a {
