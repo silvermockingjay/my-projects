@@ -106,14 +106,15 @@ nav > ul > li > a, .logo > a {
         box-sizing: border-box;
     }
 
-    .cross {
-        .bar1 {
-            transform: translate(0, 5px) rotate(-45deg); 
-        }
-        .bar2 {
-            transform: translate(0, -5px) rotate(45deg);
-        }
+    .cross .bar1 {
+        transform: translate(0, 5px) rotate(-45deg);
+  
     }
+
+    .cross .bar2 {
+        transform: translate(0, -5px) rotate(45deg);
+    }
+    
 
     nav ul {
         display: none;
@@ -459,9 +460,10 @@ nav > ul > li > a, .logo > a {
         background-color: #ffffff;
         color: #FF4646;
         transition: all 0.3s ease;
-        img {
-            filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-        }
+    }
+
+    #slider_buttons > a:hover img {
+        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
     }
 
     #inactive_link, #inactive_link:hover {
@@ -563,11 +565,9 @@ nav > ul > li > a, .logo > a {
 }
 
 @media (hover: hover){
-    .product > a:hover{
-        .category > p{
-            color:#FF4646;
-            transition: all 0.3s ease;
-        }
+    .product > a:hover .category > p{
+        color:#FF4646;
+        transition: all 0.3s ease;
     }
 }
 
@@ -808,11 +808,9 @@ footer {
         transition: all 0.3s ease;
     }
 
-    #social_network > a:hover {
-        img {
-            filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
-            transition: all 0.1s ease;
-        }
+    #social_network > a:hover img{ 
+        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+        transition: all 0.1s ease;
     }
 
     .school:hover{
