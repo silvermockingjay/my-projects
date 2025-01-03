@@ -31,6 +31,14 @@
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                 </div>
+                <div class="burger">
+                    <ul>
+                        <li><a href="../christmas-shop/gifts.html">Gifts</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#best-gifts">Best</a></li>
+                        <li><a href="#our_contacts">Contacts</a></li>
+                    </ul>
+                </div>
             </div>
         </header>
         <main>
@@ -204,7 +212,7 @@
             let toggle = document.querySelector('.toggle');
             toggle.addEventListener('click', function() {
                 toggle.classList.toggle('cross');
-                document.querySelector('nav ul').classList.toggle('show');
+                document.querySelector('.burger').classList.toggle('show');
             })
         </script>
     </body>
