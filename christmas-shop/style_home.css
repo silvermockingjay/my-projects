@@ -87,6 +87,7 @@ nav > ul > li > a, .logo > a {
     height: 0;
     border: 1px solid #181C29;
     box-sizing: border-box;
+    transition: 0.5s;
 }
 
 @media (max-width: 768px) {
@@ -108,7 +109,6 @@ nav > ul > li > a, .logo > a {
 
     .cross .bar1 {
         transform: translate(0, 5px) rotate(-45deg);
-  
     }
 
     .cross .bar2 {
@@ -117,7 +117,9 @@ nav > ul > li > a, .logo > a {
     
 
     nav ul {
-        display: none;
+        position: absolute;
+        left: 100vw;
+        transition: left 0.5s;
     }
 
     nav ul.show {
@@ -131,6 +133,7 @@ nav > ul > li > a, .logo > a {
         height: calc(100vh - 64px);
         background-color: #ffffff;
         margin: 0;
+        transition: left 0.5s;
     }
 
     nav ul.show li {
