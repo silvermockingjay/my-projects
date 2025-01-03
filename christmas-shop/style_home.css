@@ -134,7 +134,6 @@ nav > ul > li > a, .logo > a {
         margin: 0;
         transition: 0.5s;
         overflow-x: hidden;
-        z-index: 1000;
     }
     
     .show {

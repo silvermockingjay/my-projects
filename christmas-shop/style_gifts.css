@@ -77,7 +77,7 @@ nav > ul > li > a, .logo > a{
     }
 }
 
-.toggle {
+.toggle, .burger {
     display: none;
 }
 
@@ -87,6 +87,7 @@ nav > ul > li > a, .logo > a{
     height: 0;
     border: 1px solid #181C29;
     box-sizing: border-box;
+    transition: 0.5s;
 }
 
 @media (max-width: 768px) {
@@ -118,24 +119,59 @@ nav > ul > li > a, .logo > a{
         display: none;
     }
 
-    nav ul.show {
+    .burger {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         position: absolute;
         top: 64px;
-        left: 0;
-        width: 100vw;
+        right: 0;
+        width: 0;
         height: calc(100vh - 64px);
         background-color: #ffffff;
         margin: 0;
+        transition: 0.5s;
+        overflow-x: hidden;
+    }
+    
+    .show {
+        width: 100vw;
     }
 
-    nav ul.show li {
+    .hide-content {
+        overflow: hidden;
+    }
+
+    .burger ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        gap: 8px;
+    }
+
+    .burger ul li {
         padding: 12px 20px;
         font-size: 24px;
         line-height: 152%;
         letter-spacing: 0.16em;
+    }
+
+    .burger ul li a {
+        padding: 12px 20px;
+        text-decoration-line: none;
+        border-radius: 12px;
+        color: #181C29;
+    }
+
+    .burger ul li a:hover {
+        background-color: rgba(255, 70, 70, 0.1);
+        color: #FF4646;
+        transition: all 0.3s ease;
     }
 }  
 
