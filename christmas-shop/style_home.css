@@ -129,7 +129,7 @@ nav > ul > li > a, .logo > a {
         top: 64px;
         right: 0;
         width: 0;
-        height: 100vh;
+        height: calc(100vh - 64px);
         background-color: #ffffff;
         margin: 0;
         transition: 0.5s;
