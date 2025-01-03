@@ -34,9 +34,9 @@
                 <div class="burger">
                     <ul>
                         <li><a href="../christmas-shop/gifts.html">Gifts</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#best-gifts">Best</a></li>
-                        <li><a href="#our_contacts">Contacts</a></li>
+                        <li class="samepage"><a href="#about">About</a></li>
+                        <li class="samepage"><a href="#best-gifts">Best</a></li>
+                        <li class="samepage"><a href="#our_contacts">Contacts</a></li>
                     </ul>
                 </div>
             </div>
@@ -208,12 +208,23 @@
             </div>
         </footer>
         <script>
-            // Show navbar when clicking on icon
+            // Show and close navbar when clicking on icon
             let toggle = document.querySelector('.toggle');
             toggle.addEventListener('click', function() {
                 toggle.classList.toggle('cross');
                 document.querySelector('.burger').classList.toggle('show');
+                document.querySelector('body').classList.toggle('hide-content');
             })
+
+            //Show and close navbar when clicking on any link in burger menu
+            let li = document.querySelectorAll('.samepage');
+            li.forEach(function(list) {
+                list.addEventListener('click', function() {
+                    toggle.classList.toggle('cross');
+                    document.querySelector('.burger').classList.toggle('show');
+                    document.querySelector('body').classList.toggle('hide-content');
+                });
+            });
         </script>
     </body>
 </html>
