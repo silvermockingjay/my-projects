@@ -247,7 +247,7 @@
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== maxClicks) {
                         pos -= step;
-                        slider.style.transform = 'translateX(' + pos + 'px)';
+                        slider.style.transform = `translateX(${pos}px)`;
                         clicks += 1;
                         if (leftArrow.classList.contains('inactive')) leftArrow.classList.remove('inactive');
                     }
@@ -259,7 +259,7 @@
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== maxClicks) {
                         pos -= step;
-                        slider.style.transform = 'translateX(' + pos + 'px)';
+                        slider.style.transform = `translateX(${pos}px)`;
                         clicks += 1;
                         if (leftArrow.classList.contains('inactive')) leftArrow.classList.remove('inactive');
                     }
@@ -278,7 +278,7 @@
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== minClicks) {
                         pos += step;
-                        slider.style.transform = 'translateX(' + pos + 'px)';
+                        slider.style.transform = `translateX(${pos}px)`;
                         clicks -= 1;
                         if (rightArrow.classList.contains('inactive')) rightArrow.classList.remove('inactive');
                     }
@@ -290,7 +290,7 @@
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== minClicks) {
                         pos += step;
-                        slider.style.transform = 'translateX(' + pos + 'px)';
+                        slider.style.transform = `translateX(${pos}px)`;
                         clicks -= 1;
                         if (rightArrow.classList.contains('inactive')) rightArrow.classList.remove('inactive');
                     }
@@ -299,6 +299,15 @@
                     }
                 }
             }
+
+            //Reset slider on window 
+            window.addEventListener('resize', function() {
+                clicks = 0;
+                pos = 0;
+                leftArrow.classList.add('inactive');
+                rightArrow.classList.remove('inactive');
+                slider.style.transform = `translateX(${pos}px)`;
+            });
         </script>
     </body>
 </html>
