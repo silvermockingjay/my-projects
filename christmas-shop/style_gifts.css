@@ -168,10 +168,12 @@ nav > ul > li > a, .logo > a{
         color: #181C29;
     }
 
-    .burger ul li a:hover {
-        background-color: rgba(255, 70, 70, 0.1);
-        color: #FF4646;
-        transition: all 0.3s ease;
+    @media (hover: hover) {
+        .burger ul li a:hover {
+            background-color: rgba(255, 70, 70, 0.1);
+            color: #FF4646;
+            transition: all 0.3s ease;
+        }
     }
 }  
 

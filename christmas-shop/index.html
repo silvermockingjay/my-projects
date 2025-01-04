@@ -84,7 +84,7 @@
                         <img src="../christmas-shop/img/fairytale-house.png" alt="Fairytale house">
                     </div>
                     <div id="slider_buttons">
-                        <a href="#" id="inactive_link"><img src="../christmas-shop/img/Vector.svg" alt="slide left arrow"></a><a href="#"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide right arrow"></a>
+                        <a href="" id="left"><img src="../christmas-shop/img/Vector.svg" alt="slide left arrow"></a><a href="" id="right"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide right arrow"></a>
                     </div>
                 </div>    
             </section>
@@ -209,7 +209,7 @@
         </footer>
         <script>
             // Show and close navbar when clicking on icon
-            let toggle = document.querySelector('.toggle');
+            const toggle = document.querySelector('.toggle');
             toggle.addEventListener('click', function() {
                 toggle.classList.toggle('cross');
                 document.querySelector('.burger').classList.toggle('show');
@@ -217,7 +217,7 @@
             })
 
             //Show and close navbar when clicking on any link in burger menu
-            let li = document.querySelectorAll('.samepage');
+            const li = document.querySelectorAll('.samepage');
             li.forEach(function(list) {
                 list.addEventListener('click', function() {
                     toggle.classList.toggle('cross');
@@ -225,6 +225,84 @@
                     document.querySelector('body').classList.toggle('hide-content');
                 });
             });
+
+            //Implement slider animation
+            const container = document.querySelector('#slider_container');
+            const slider = document.querySelector('#slider_bar');
+            const leftArrow = document.querySelector('#left');
+            const rightArrow = document.querySelector('#right');
+            const mediaQueryMedium = window.matchMedia('(min-width: 768px)');
+            const mediaQuerySmall = window.matchMedia('(max-width: 767px)');
+            let clicks = 0;
+            let pos = 0;
+
+            leftArrow.addEventListener('click', moveSliderLeft);
+            rightArrow.addEventListener('click', moveSliderRight);
+
+            function moveSliderRight() {
+                const visibleArea = container.offsetWidth;
+                const sliderSize = slider.offsetWidth;
+                if (mediaQueryMedium.matches) {
+                    const maxClicks = 3;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== maxClicks) {
+                        pos += step;
+                        slider.style.right = pos + 'px';
+                        clicks += 1;
+                    }
+                    if (clicks === maxClicks) {
+                        rightArrow.classList.add('inactive-link');
+                    } else {
+                        rightArrow.classList.remove('inactive-link');
+                    }
+                } else if (mediaQuerySmall.matches) {
+                    const maxClicks = 6;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== maxClicks) {
+                        pos += step;
+                        slider.style.right = pos + 'px';
+                        clicks += 1;
+                    }
+                    if (clicks === maxClicks) {
+                        rightArrow.classList.add('inactive-link');
+                    } else {
+                        rightArrow.classList.remove('inactive-link');
+                    }
+                }
+            }
+
+            function moveSliderLeft() {
+                const visibleArea = container.offsetWidth;
+                const sliderSize = slider.offsetWidth;
+                const minClicks = 0;
+                if (mediaQueryMedium.matches) {
+                    const maxClicks = 3;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== minClicks) {
+                        pos -= step;
+                        slider.style.left = pos + 'px';
+                        clicks -= 1;
+                    }
+                    if (clicks === minClicks) {
+                        leftArrow.classList.add('inactive-link');
+                    } else {
+                        leftArrow.classList.remove('inactive-link');
+                    }
+                } else if (mediaQuerySmall.matches) {
+                    const maxClicks = 6;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== minClicks) {
+                        pos -= step;
+                        slider.style.left = pos + 'px';
+                        clicks -= 1;
+                    }
+                    if (clicks === minClicks) {
+                        leftArrow.classList.add('inactive-link');
+                    } else {
+                        leftArrow.classList.remove('inactive-link');
+                    }
+                }
+            }
         </script>
     </body>
 </html>

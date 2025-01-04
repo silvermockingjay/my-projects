@@ -169,10 +169,12 @@ nav > ul > li > a, .logo > a {
         color: #181C29;
     }
 
-    .burger ul li a:hover {
-        background-color: rgba(255, 70, 70, 0.1);
-        color: #FF4646;
-        transition: all 0.3s ease;
+    @media (hover: hover) {
+        .burger ul li a:hover {
+            background-color: rgba(255, 70, 70, 0.1);
+            color: #FF4646;
+            transition: all 0.3s ease;
+        }
     }
 }  
 
@@ -446,6 +448,7 @@ nav > ul > li > a, .logo > a {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    transition: 0.5s;
 }
 
 .text {
@@ -501,7 +504,7 @@ nav > ul > li > a, .logo > a {
         filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
     }
 
-    #inactive_link, #inactive_link:hover {
+    .inactive_link, .inactive_link:hover {
         border: solid 1px rgba(255, 255, 255, 0.4) !important;
         text-decoration: none !important;
         background-color: transparent !important;
