@@ -84,7 +84,7 @@
                         <img src="../christmas-shop/img/fairytale-house.png" alt="Fairytale house">
                     </div>
                     <div id="slider_buttons">
-                        <a href="" id="left"><img src="../christmas-shop/img/Vector.svg" alt="slide left arrow"></a><a href="" id="right"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide right arrow"></a>
+                        <button id="left" class="inactive"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide left arrow"></button><button id="right"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide right arrow"></button>
                     </div>
                 </div>    
             </section>
@@ -227,7 +227,7 @@
             });
 
             //Implement slider animation
-            const container = document.querySelector('#slider_container');
+            const container = document.querySelector('#slider-container');
             const slider = document.querySelector('#slider_bar');
             const leftArrow = document.querySelector('#left');
             const rightArrow = document.querySelector('#right');
@@ -246,27 +246,25 @@
                     const maxClicks = 3;
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== maxClicks) {
-                        pos += step;
-                        slider.style.right = pos + 'px';
+                        pos -= step;
+                        slider.style.transform = 'translateX(' + pos + 'px)';
                         clicks += 1;
+                        if (leftArrow.classList.contains('inactive')) leftArrow.classList.remove('inactive');
                     }
                     if (clicks === maxClicks) {
-                        rightArrow.classList.add('inactive-link');
-                    } else {
-                        rightArrow.classList.remove('inactive-link');
+                        rightArrow.classList.add('inactive');
                     }
                 } else if (mediaQuerySmall.matches) {
                     const maxClicks = 6;
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== maxClicks) {
-                        pos += step;
-                        slider.style.right = pos + 'px';
+                        pos -= step;
+                        slider.style.transform = 'translateX(' + pos + 'px)';
                         clicks += 1;
+                        if (leftArrow.classList.contains('inactive')) leftArrow.classList.remove('inactive');
                     }
                     if (clicks === maxClicks) {
-                        rightArrow.classList.add('inactive-link');
-                    } else {
-                        rightArrow.classList.remove('inactive-link');
+                        rightArrow.classList.add('inactive');
                     }
                 }
             }
@@ -279,27 +277,25 @@
                     const maxClicks = 3;
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== minClicks) {
-                        pos -= step;
-                        slider.style.left = pos + 'px';
+                        pos += step;
+                        slider.style.transform = 'translateX(' + pos + 'px)';
                         clicks -= 1;
+                        if (rightArrow.classList.contains('inactive')) rightArrow.classList.remove('inactive');
                     }
                     if (clicks === minClicks) {
-                        leftArrow.classList.add('inactive-link');
-                    } else {
-                        leftArrow.classList.remove('inactive-link');
+                        leftArrow.classList.add('inactive');
                     }
                 } else if (mediaQuerySmall.matches) {
                     const maxClicks = 6;
                     const step = (sliderSize - visibleArea) / maxClicks;
                     if (clicks !== minClicks) {
-                        pos -= step;
-                        slider.style.left = pos + 'px';
+                        pos += step;
+                        slider.style.transform = 'translateX(' + pos + 'px)';
                         clicks -= 1;
+                        if (rightArrow.classList.contains('inactive')) rightArrow.classList.remove('inactive');
                     }
                     if (clicks === minClicks) {
-                        leftArrow.classList.add('inactive-link');
-                    } else {
-                        leftArrow.classList.remove('inactive-link');
+                        leftArrow.classList.add('inactive');
                     }
                 }
             }

@@ -476,23 +476,36 @@ nav > ul > li > a, .logo > a {
     width: 100%;
 }
 
-#slider_buttons > a {
+#slider_buttons > button {
     border-radius: 20px;
     border: solid 1px #ffffff;
     width: 56px;
     height: 56px;
-    text-decoration: none;
     color: #ffffff;
     background-color: transparent;
     box-sizing: border-box;
 }
 
-#slider_buttons > a > img {
-    padding: 20px 20px;
+#slider_buttons > button > img {
+    padding: 20px 15px;
+}
+
+#left img {
+    transform: rotate(180deg); 
+}
+
+#left.inactive, #right.inactive {
+    border: solid 1px rgba(255, 255, 255, 0.4);
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#left.inactive img, #right.inactive img{
+    filter: opacity(0.4); 
 }
 
 @media (hover: hover){
-    #slider_buttons > a:hover {
+    #slider_buttons > button:hover {
         border: solid 1px #ffffff;
         text-decoration: none;
         background-color: #ffffff;
@@ -500,15 +513,19 @@ nav > ul > li > a, .logo > a {
         transition: all 0.3s ease;
     }
 
-    #slider_buttons > a:hover img {
+    #slider_buttons > button:hover img {
         filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
     }
 
-    .inactive_link, .inactive_link:hover {
-        border: solid 1px rgba(255, 255, 255, 0.4) !important;
-        text-decoration: none !important;
-        background-color: transparent !important;
-        color: rgba(255, 255, 255, 0.4) !important;
+    #left.inactive:hover, #right.inactive:hover {
+        border: solid 1px rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    #left.inactive img:hover, #right.inactive img:hover{
+        filter: opacity(0.4); 
     }
 }
 
