@@ -153,22 +153,22 @@
                         <p class="item1">The New Year Is Coming Soon...</p>
                         <div id="timer">
                             <div class="timer-content">
-                                <div class="num">47</div>
+                                <div id="days" class="num"></div>
                                 <div class="time">Days</div>
                             </div>
                             <img src="../christmas-shop/img/Separator.svg" alt="Separator">
                             <div class="timer-content">
-                                <div class="num">5</div>
+                                <div id="hours" class="num"></div>
                                 <div class="time">Hours</div>
                             </div>
                             <img src="../christmas-shop/img/Separator.svg" alt="Separator">
                             <div class="timer-content">
-                                <div class="num">34</div>
+                                <div id="minutes" class="num"></div>
                                 <div class="time">Minutes</div>
                             </div>
                             <img src="../christmas-shop/img/Separator.svg" alt="Separator">
                             <div class="timer-content">
-                                <div class="num">12</div>
+                                <div id="seconds" class="num"></div>
                                 <div class="time">Seconds</div>
                             </div>
                         </div>
@@ -308,6 +308,40 @@
                 rightArrow.classList.remove('inactive');
                 slider.style.transform = `translateX(${pos}px)`;
             });
+
+            //Implement timer 
+            const divDays = document.querySelector("#days");
+            const divHours = document.querySelector("#hours");
+            const divMinutes = document.querySelector("#minutes");
+            const divSeconds = document.querySelector("#seconds");
+            const newYear = new Date(Date.UTC(2026, 0, 1, 0, 0, 0));
+            let id = setTimeout(function countdownTimer() {
+                const now = Date.now();
+                const delta = newYear.getTime() - now;
+                let days = Math.floor(delta / (24 * 60 * 60 * 1000));
+                let hours = Math.floor((delta % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                let minutes = Math.floor((delta % (60 * 60 * 1000)) / (60 * 1000));
+                let seconds = Math.floor((delta % (60 * 1000)) / 1000);
+
+                function removeLeadingZero(num) {
+                    num = String(num);
+                    if (num.startsWith('0') && num.length > 1) return num.slice(1);
+                    return num;
+                }
+
+                days = removeLeadingZero(days);
+                hours = removeLeadingZero(hours);
+                minutes = removeLeadingZero(minutes);
+                seconds = removeLeadingZero(seconds);
+
+                divDays.textContent = days;
+                divHours.textContent = hours;
+                divMinutes.textContent = minutes;
+                divSeconds.textContent = seconds;
+
+                id = setTimeout(countdownTimer, 1000);
+            }, 1000);
+
         </script>
     </body>
 </html>
