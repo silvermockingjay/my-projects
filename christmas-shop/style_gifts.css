@@ -175,6 +175,28 @@ nav > ul > li > a, .logo > a{
             transition: all 0.3s ease;
         }
     }
+
+    #scroll {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px #FF4646;
+        border-radius: 100px;
+        width: 56px;
+        height: 56px;
+        background-color: #FFFFFF;
+        position: fixed;
+        bottom: 8px;
+        right: 8px;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    #scrollArrow {
+        transform: rotate(270deg);
+        filter: invert(42%) sepia(86%) saturate(4172%) hue-rotate(338deg) brightness(115%) contrast(105%);
+    }
 }  
 
 .logo {
