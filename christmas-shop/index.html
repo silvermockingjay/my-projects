@@ -98,44 +98,44 @@
                         <div class="product">
                             <a href="#">
                                 <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
+                                    <img class="cardImage" src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
                                 </div>
                                 <div class="category">
-                                    <h4 style="color: #4361FF;">For work</h4>
-                                    <p>Console.log Guru</p>
+                                    <h4 class="cardHeader" style="color: #4361FF;">For work</h4>
+                                    <p class="cardText">Console.log Guru</p>
                                 </div>
                             </a>    
                         </div>    
                         <div class="product">
                             <a href="#">
                                 <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
+                                    <img class="cardImage" src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
                                 </div>
                                 <div class="category">
-                                    <h4 style="color:#06A44F;">For health</h4>
-                                    <p>Hydration Bot</p>
+                                    <h4 class="cardHeader" style="color:#06A44F;">For health</h4>
+                                    <p class="cardText">Hydration Bot</p>
                                 </div>
                             </a>
                         </div>
                         <div class="product">    
                             <a href="#">
                                 <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
+                                    <img class="cardImage" src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
                                 </div>
                                 <div class="category">
-                                    <h4 style="color: #4361FF;">For work</h4>
-                                    <p>Merge Master</p>
+                                    <h4 class="cardHeader" style="color: #4361FF;">For work</h4>
+                                    <p class="cardText">Merge Master</p>
                                 </div>
                             </a>
                         </div>
                         <div class="product">   
                             <a href="#">
                                 <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
+                                    <img class="cardImage" src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
                                 </div>
                                 <div class="category">
-                                    <h4 style="color: #FF43F7;">For harmony</h4>
-                                    <p>Spontaneous coding philosopher</p>
+                                    <h4 class="cardHeader" style="color: #FF43F7;">For harmony</h4>
+                                    <p class="cardText">Spontaneous coding philosopher</p>
                                 </div>
                             </a>
                         </div>    
@@ -341,6 +341,39 @@
 
                 id = setTimeout(countdownTimer, 1000);
             }, 1000);
+
+            //Show random cards in Best gifts section
+            fetch('../christmas-shop/gifts.json')
+            .then (response => response.json())
+            .then (data => {
+                //Choose random cards
+                let products = [];
+                for (let i = 0; i < 4; i += 1) {
+                    let index = Math.floor(Math.random() * data.length);
+                    products.push(data[index]);
+                }
+                //Assign data to html elements
+                cardImage = document.querySelectorAll('.cardImage');
+                cardHeader = document.querySelectorAll('.cardHeader');
+                cardText = document.querySelectorAll('.cardText');
+                products.forEach((item, index) => {
+                    if (item.category === "For Work") {
+                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                        cardImage[index].setAttribute('alt', 'Gift for work');
+                        cardHeader[index].setAttribute('style', 'color: #4361FF;');
+                    } else if (item.category === "For Health") {
+                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                        cardImage[index].setAttribute('alt', 'Gift for health');
+                        cardHeader[index].setAttribute('style', 'color: #06A44F;');
+                    } else if (item.category === "For Harmony") {
+                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                        cardImage[index].setAttribute('alt', 'Gift for harmony');
+                        cardHeader[index].setAttribute('style', 'color: #FF43F7;');
+                    }
+                    cardHeader[index].textContent = item.category;
+                    cardText[index].textContent = item.name;
+                });
+            })
 
         </script>
     </body>
