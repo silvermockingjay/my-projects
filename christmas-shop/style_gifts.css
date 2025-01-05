@@ -90,6 +90,10 @@ nav > ul > li > a, .logo > a{
     transition: 0.5s;
 }
 
+.hide-body {
+    overflow: hidden;
+    position: fixed;
+}
 
 @media (max-width: 768px) {
     .container {
@@ -401,6 +405,218 @@ h1 {
     text-transform: uppercase;
     color: #181C29;
     margin: 0;
+}
+
+/* Modal CSS */
+.modalOverlay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: rgba(24, 28, 41, 0.8);
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #ECF3F8;
+    max-width: 400px;
+}
+
+.modal > a {
+    text-decoration: none;
+}
+
+.modalCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 230px;
+}
+
+.modalCard > img {
+    width: 100%; 
+    height: 230px;
+    object-fit: cover;
+}
+
+.closeModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    gap: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+}
+
+.bar3 {
+    display: flex;
+    width: 35px;
+    height: 0;
+    border: 2px solid #181C29;
+    box-sizing: border-box;
+    transform: rotate(-45deg); 
+    position: absolute;
+}
+
+.bar4 {
+    display: flex;
+    width: 35px;
+    height: 0;
+    border: 2px solid #181C29;
+    box-sizing: border-box;
+    transform: rotate(45deg); 
+    position: absolute;
+}
+.modalCategory {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.part {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    width: 100%;
+}
+
+.part h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.modalName {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 152%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #181C29;
+    margin: 0;
+}
+
+.modalDesc {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 148%;
+    color: #181C29;
+    text-transform: none;
+    margin: 0;
+}
+.partBHeader {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #181C29;
+    margin: 0;
+}
+
+.superPow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    width: 100%;
+}
+
+.superPowItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: stretch;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+    height: 24px;
+}
+
+.superPowItem p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 148%;
+    color:#181C29;
+    text-transform: none;
+    margin: 0;
+    padding: 0;
+}
+
+.superPowItem p::first-letter {
+    text-transform: capitalize;
+}
+.superPowNameDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 50%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 148%;
+    color: #181C29;
+}
+.superPowDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+}
+
+.redStars {
+    width: 16px;
+    height: 16px;
+}
+
+.fadeStars {
+    width: 16px;
+    height: 16px;
+    filter: opacity(0.1);
 }
 
 @media (max-width: 550px) {
