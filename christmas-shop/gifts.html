@@ -62,132 +62,132 @@
                     <div class="product">
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #4361FF;">For work</h4>
-                                <p>Console.log Guru</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>    
                     </div>    
                     <div class="product">
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color:#06A44F;">For health</h4>
-                                <p>Step Master</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">    
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #4361FF;">For work</h4>
-                                <p>Bug Magnet</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">    
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #4361FF;">For work</h4>
-                                <p>Shortcut Cheater</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color:#06A44F;">For health</h4>
-                                <p>Posture Levitation</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">   
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #FF43F7;">For harmony</h4>
-                                <p>Bug acceptance guru</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color:#06A44F;">For health</h4>
-                                <p>Snack resister</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">   
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #FF43F7;">For harmony</h4>
-                                <p>Error Laugher</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color:#06A44F;">For health</h4>
-                                <p>Hydration Bot</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">    
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #4361FF;">For work</h4>
-                                <p>Merge Master</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div> 
                     <div class="product">   
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #FF43F7;">For harmony</h4>
-                                <p>Joy Charger</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>
                     <div class="product">   
                         <a href="#">
                             <div class="card">
-                                <img src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
+                                <img class="cardImage">
                             </div>
                             <div class="category">
-                                <h4 style="color: #FF43F7;">For harmony</h4>
-                                <p>Spontaneous coding philosopher</p>
+                                <h4 class="cardHeader"></h4>
+                                <p class="cardText"></p>
                             </div>
                         </a>
                     </div>       
@@ -243,5 +243,53 @@
                     document.querySelector('body').classList.toggle('hide-content');
                 });
             });
+
+            //Generate random product cards from json
+            fetch('../christmas-shop/gifts.json')
+            .then (response => response.json())
+            .then (data => {
+                //Choose random cards
+                let products = [];
+                let harmony = 0;
+                let work = 0;
+                let health = 0;
+                while (harmony < 4 || work < 4 || health < 4) {
+                    let index = Math.floor(Math.random() * data.length);
+                    if (data[index].category === "For Harmony" && harmony < 4) {
+                        products.push(data[index]);
+                        harmony += 1;
+                    }
+                    if (data[index].category === "For Work" && work < 4) {
+                        products.push(data[index]);
+                        work += 1;
+                    }
+                    if (data[index].category === "For Health" && health < 4) {
+                        products.push(data[index]);
+                        health += 1;
+                    }
+                }
+                //Assign data to html elements
+                cardImage = document.querySelectorAll('.cardImage');
+                cardHeader = document.querySelectorAll('.cardHeader');
+                cardText = document.querySelectorAll('.cardText');
+                products.forEach((item, index) => {
+                    if (item.category === "For Work") {
+                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                        cardImage[index].setAttribute('alt', 'Gift for work');
+                        cardHeader[index].setAttribute('style', 'color: #4361FF;');
+                    } else if (item.category === "For Health") {
+                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                        cardImage[index].setAttribute('alt', 'Gift for health');
+                        cardHeader[index].setAttribute('style', 'color: #06A44F;');
+                    } else if (item.category === "For Harmony") {
+                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                        cardImage[index].setAttribute('alt', 'Gift for harmony');
+                        cardHeader[index].setAttribute('style', 'color: #FF43F7;');
+                    }
+                    cardHeader[index].textContent = item.category;
+                    cardText[index].textContent = item.name;
+                });
+            })
+
         </script>
     </body>
