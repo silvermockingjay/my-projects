@@ -330,21 +330,137 @@
                     category.appendChild(header);
                     category.appendChild(text);
 
+                    //Generate modal elements
+                    const modalOverlay = document.createElement('div');
+                    modalOverlay.classList.add('modalOverlay');
+                    modalOverlay.classList.add('hide');
+                    parent.appendChild(modalOverlay);
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal');
+                    modalOverlay.appendChild(modal);
+                    const modalCard = document.createElement('div');
+                    modalCard.classList.add('modalCard');
+                    modal.appendChild(modalCard);
+                    const closeModal = document.createElement('div');
+                    closeModal.classList.add('closeModal');
+                    modalCard.appendChild(closeModal);
+                    const bar3 = document.createElement('div');
+                    bar3.classList.add('bar3');
+                    closeModal.appendChild(bar3);
+                    const bar4 = document.createElement('div');
+                    bar4.classList.add('bar4');
+                    closeModal.appendChild(bar4);
+                    const modalCardImg = document.createElement('img');
+                    modalCard.appendChild(modalCardImg);
+                    const modalCategory = document.createElement('div');
+                    modalCategory.classList.add('modalCategory');
+                    modal.appendChild(modalCategory);
+                    const partA = document.createElement('div');
+                    partA.classList.add('part');
+                    modalCategory.appendChild(partA);
+                    const partB = document.createElement('div');
+                    partB.classList.add('part');
+                    modalCategory.appendChild(partB);
+
+                    const categoryHeader = document.createElement('h4');
+                    partA.appendChild(categoryHeader);
+                    const modalName = document.createElement('p');
+                    modalName.classList.add('modalName');
+                    partA.appendChild(modalName);
+                    const modalDesc = document.createElement('p');
+                    modalDesc.classList.add('modalDesc');
+                    partA.appendChild(modalDesc);
+
+                    const partBHeader = document.createElement('p');
+                    partBHeader.classList.add('partBHeader');
+                    partBHeader.textContent = 'Adds superpowers to:';
+                    partB.appendChild(partBHeader);
+                    const superPow = document.createElement('div');
+                    superPow.classList.add('superPow');
+                    partB.appendChild(superPow);
+
                     if (item.category === "For Work") {
                         image.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
                         image.setAttribute('alt', 'Gift for work');
+                        modalCardImg.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                        modalCardImg.setAttribute('alt', 'Gift for work');
                         header.setAttribute('style', 'color: #4361FF;');
+                        categoryHeader.setAttribute('style', 'color: #4361FF;');
                     } else if (item.category === "For Health") {
                         image.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
                         image.setAttribute('alt', 'Gift for health');
+                        modalCardImg.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                        modalCardImg.setAttribute('alt', 'Gift for health');
                         header.setAttribute('style', 'color: #06A44F;');
+                        categoryHeader.setAttribute('style', 'color: #06A44F;');
                     } else if (item.category === "For Harmony") {
                         image.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
                         image.setAttribute('alt', 'Gift for harmony');
+                        modalCardImg.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                        modalCardImg.setAttribute('alt', 'Gift for harmony');
                         header.setAttribute('style', 'color: #FF43F7;');
+                        categoryHeader.setAttribute('style', 'color: #FF43F7;');
                     }
                     header.textContent = item.category;
+                    categoryHeader.textContent = item.category;
                     text.textContent = item.name;
+                    modalName.textContent = item.name;
+                    modalDesc.textContent = item.description;
+
+                    for (let key in item.superpowers) {
+                        const superPowItem = document.createElement('div');
+                        superPowItem.classList.add('superPowItem');
+                        superPow.appendChild(superPowItem);
+                        const superPowNameDiv = document.createElement('div');
+                        superPowNameDiv.classList.add('superPowNameDiv');
+                        superPowItem.appendChild(superPowNameDiv);
+                        const superPowName = document.createElement('p');
+                        superPowName.textContent = key;
+                        superPowNameDiv.appendChild(superPowName);
+                        const superPowPoint = document.createElement('p');
+                        superPowPoint.textContent = item.superpowers[key];
+                        superPowItem.appendChild(superPowPoint);
+                        const superPowDiv = document.createElement('div');
+                        superPowDiv.classList.add('superPowDiv');
+                        superPowItem.appendChild(superPowDiv);
+
+                        const redStars = +item.superpowers[key] / 100;
+                        const fadeStars = 5 - redStars; 
+
+                        for (let i = 0; i < redStars; i += 1) {
+                            const rating = document.createElement('img');
+                            rating.classList.add('redStars');
+                            rating.setAttribute('src', '../christmas-shop/img/snowflake.svg');
+                            rating.setAttribute('alt', 'Red star');
+                            superPowDiv.appendChild(rating);
+                        }
+
+                        if (fadeStars) {
+                            for (let i = 0; i < fadeStars; i += 1) {
+                                const rating = document.createElement('img');
+                                rating.classList.add('fadeStars');
+                                rating.setAttribute('src', '../christmas-shop/img/snowflake.svg');
+                                rating.setAttribute('alt', 'Fading star');
+                                superPowDiv.appendChild(rating);
+                            }
+                        }
+                    }
+
+                    //Open and close modals
+                    aTag.addEventListener('click', function() {
+                        modalOverlay.classList.remove('hide');
+                        document.querySelector('body').classList.add('hide-body');
+                    })
+                    closeModal.addEventListener('click', function() {
+                        modalOverlay.classList.add('hide');
+                        document.querySelector('body').classList.remove('hide-body');
+                    })
+                    window.addEventListener('click', (event) => {
+                        if (event.target === modalOverlay) {
+                            modalOverlay.classList.add('hide');
+                            document.querySelector('body').classList.remove('hide-body');
+                        }
+                    })
                 });
             })
 
