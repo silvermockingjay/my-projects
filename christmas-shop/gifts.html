@@ -52,10 +52,10 @@
                 </div>
                 <div class="menu">
                     <ul>
-                        <li><a href="#" class="active2">All</a></li>
-                        <li><a href="#">For work</a></li>
-                        <li><a href="#">For health</a></li>
-                        <li><a href="#">For harmony</a></li>
+                        <li id="all"><a href="#" class="active2">All</a></li>
+                        <li id="work"><a href="#">For work</a></li>
+                        <li id="health"><a href="#">For health</a></li>
+                        <li id="harmony"><a href="#">For harmony</a></li>
                     </ul>
                 </div>
                 <div id="card-container">
@@ -112,7 +112,7 @@
                 });
             });
 
-            //Generate random product cards from json
+            //Generate product cards from json
             const parent = document.querySelector('#card-container');
             fetch('../christmas-shop/gifts.json')
             .then (response => response.json())
@@ -154,6 +154,48 @@
                     text.textContent = item.name;
                 });
             })
+            
+            //Filter product cards
+            window.addEventListener('load', (event) => {
+                const allCards = document.getElementsByClassName('product');
+                const cardsArray = Array.from(allCards);
+                const allFilter = document.querySelector('#all');
+                const workFilter = document.querySelector('#work');
+                const healthFilter = document.querySelector('#health');
+                const harmonyFilter = document.querySelector('#harmony');
 
+                function filterCategory(category) {
+                    console.log(cardsArray.length);
+                    cardsArray.map((item) => {
+                        const descendants = item.querySelectorAll('*');
+                        if (descendants[4].textContent !== category) {
+                            item.classList.add('hide');
+                        } else if (descendants[4].textContent === category) {
+                            item.classList.remove('hide');
+                        }
+                    });
+                }
+
+                allFilter.addEventListener('click', function() {
+                    cardsArray.map((item) => {
+                        if (item.classList.contains('hide')) {
+                            item.classList.remove('hide');
+                        }
+                    });
+                })
+
+                workFilter.addEventListener('click', function () {
+                    filterCategory('For Work');
+                });
+
+                healthFilter.addEventListener('click', function() {
+                    filterCategory('For Health');
+                })
+
+                harmonyFilter.addEventListener('click', function() {
+                    filterCategory('For Harmony');
+                })
+            })
+            
         </script>
     </body>
