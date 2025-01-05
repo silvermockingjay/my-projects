@@ -95,50 +95,6 @@
                         <h2 class="item4">Especially for you</h2>
                     </div>
                     <div id="card-container">
-                        <div class="product">
-                            <a href="#">
-                                <div class="card">
-                                    <img class="cardImage">
-                                </div>
-                                <div class="category">
-                                    <h4 class="cardHeader"></h4>
-                                    <p class="cardText"></p>
-                                </div>
-                            </a>    
-                        </div>    
-                        <div class="product">
-                            <a href="#">
-                                <div class="card">
-                                    <img class="cardImage">
-                                </div>
-                                <div class="category">
-                                    <h4 class="cardHeader"></h4>
-                                    <p class="cardText"></p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="product">    
-                            <a href="#">
-                                <div class="card">
-                                    <img class="cardImage">
-                                </div>
-                                <div class="category">
-                                    <h4 class="cardHeader"></h4>
-                                    <p class="cardText"></p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="product">   
-                            <a href="#">
-                                <div class="card">
-                                    <img class="cardImage">
-                                </div>
-                                <div class="category">
-                                    <h4 class="cardHeader"></h4>
-                                    <p class="cardText"></p>
-                                </div>
-                            </a>
-                        </div>    
                     </div>
                 </div>    
             </section>
@@ -343,6 +299,7 @@
             }, 1000);
 
             //Show random cards in Best gifts section
+            const parent = document.querySelector('#card-container');
             fetch('../christmas-shop/gifts.json')
             .then (response => response.json())
             .then (data => {
@@ -352,26 +309,42 @@
                     let index = Math.floor(Math.random() * data.length);
                     products.push(data[index]);
                 }
-                //Assign data to html elements
-                cardImage = document.querySelectorAll('.cardImage');
-                cardHeader = document.querySelectorAll('.cardHeader');
-                cardText = document.querySelectorAll('.cardText');
+                //Generate cards
                 products.forEach((item, index) => {
+                    const product = document.createElement('div');
+                    product.classList.add('product');
+                    parent.appendChild(product);
+                    const aTag = document.createElement('a');
+                    aTag.setAttribute('href', '#');
+                    product.appendChild(aTag);
+                    const card = document.createElement('div');
+                    const category = document.createElement('div');
+                    card.classList.add('card');
+                    category.classList.add('category');
+                    aTag.appendChild(card);
+                    aTag.appendChild(category);
+                    const image = document.createElement('img');
+                    const header = document.createElement('h4');
+                    const text = document.createElement('p');
+                    card.appendChild(image);
+                    category.appendChild(header);
+                    category.appendChild(text);
+
                     if (item.category === "For Work") {
-                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-work.png');
-                        cardImage[index].setAttribute('alt', 'Gift for work');
-                        cardHeader[index].setAttribute('style', 'color: #4361FF;');
+                        image.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                        image.setAttribute('alt', 'Gift for work');
+                        header.setAttribute('style', 'color: #4361FF;');
                     } else if (item.category === "For Health") {
-                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-health.png');
-                        cardImage[index].setAttribute('alt', 'Gift for health');
-                        cardHeader[index].setAttribute('style', 'color: #06A44F;');
+                        image.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                        image.setAttribute('alt', 'Gift for health');
+                        header.setAttribute('style', 'color: #06A44F;');
                     } else if (item.category === "For Harmony") {
-                        cardImage[index].setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
-                        cardImage[index].setAttribute('alt', 'Gift for harmony');
-                        cardHeader[index].setAttribute('style', 'color: #FF43F7;');
+                        image.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                        image.setAttribute('alt', 'Gift for harmony');
+                        header.setAttribute('style', 'color: #FF43F7;');
                     }
-                    cardHeader[index].textContent = item.category;
-                    cardText[index].textContent = item.name;
+                    header.textContent = item.category;
+                    text.textContent = item.name;
                 });
             })
 
