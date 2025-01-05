@@ -31,6 +31,14 @@
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                 </div>
+                <div class="burger">
+                    <ul>
+                        <li><a href="../christmas-shop/gifts.html">Gifts</a></li>
+                        <li class="samepage"><a href="#about">About</a></li>
+                        <li class="samepage"><a href="#best-gifts">Best</a></li>
+                        <li class="samepage"><a href="#our_contacts">Contacts</a></li>
+                    </ul>
+                </div>
             </div>
         </header>
         <main>
@@ -76,7 +84,7 @@
                         <img src="../christmas-shop/img/fairytale-house.png" alt="Fairytale house">
                     </div>
                     <div id="slider_buttons">
-                        <a href="#" id="inactive_link"><img src="../christmas-shop/img/Vector.svg" alt="slide left arrow"></a><a href="#"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide right arrow"></a>
+                        <button id="left" class="inactive"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide left arrow"></button><button id="right"><img src="../christmas-shop/img/Vectorпр.svg" alt="slide right arrow"></button>
                     </div>
                 </div>    
             </section>
@@ -87,50 +95,6 @@
                         <h2 class="item4">Especially for you</h2>
                     </div>
                     <div id="card-container">
-                        <div class="product">
-                            <a href="#">
-                                <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
-                                </div>
-                                <div class="category">
-                                    <h4 style="color: #4361FF;">For work</h4>
-                                    <p>Console.log Guru</p>
-                                </div>
-                            </a>    
-                        </div>    
-                        <div class="product">
-                            <a href="#">
-                                <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-health.png" alt="Gift for health">
-                                </div>
-                                <div class="category">
-                                    <h4 style="color:#06A44F;">For health</h4>
-                                    <p>Hydration Bot</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="product">    
-                            <a href="#">
-                                <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-work.png" alt="Gift for work">
-                                </div>
-                                <div class="category">
-                                    <h4 style="color: #4361FF;">For work</h4>
-                                    <p>Merge Master</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="product">   
-                            <a href="#">
-                                <div class="card">
-                                    <img src="../christmas-shop/img/gift-for-harmony.png" alt="Gift for harmony">
-                                </div>
-                                <div class="category">
-                                    <h4 style="color: #FF43F7;">For harmony</h4>
-                                    <p>Spontaneous coding philosopher</p>
-                                </div>
-                            </a>
-                        </div>    
                     </div>
                 </div>    
             </section>
@@ -145,22 +109,22 @@
                         <p class="item1">The New Year Is Coming Soon...</p>
                         <div id="timer">
                             <div class="timer-content">
-                                <div class="num">47</div>
+                                <div id="days" class="num"></div>
                                 <div class="time">Days</div>
                             </div>
                             <img src="../christmas-shop/img/Separator.svg" alt="Separator">
                             <div class="timer-content">
-                                <div class="num">5</div>
+                                <div id="hours" class="num"></div>
                                 <div class="time">Hours</div>
                             </div>
                             <img src="../christmas-shop/img/Separator.svg" alt="Separator">
                             <div class="timer-content">
-                                <div class="num">34</div>
+                                <div id="minutes" class="num"></div>
                                 <div class="time">Minutes</div>
                             </div>
                             <img src="../christmas-shop/img/Separator.svg" alt="Separator">
                             <div class="timer-content">
-                                <div class="num">12</div>
+                                <div id="seconds" class="num"></div>
                                 <div class="time">Seconds</div>
                             </div>
                         </div>
@@ -200,12 +164,190 @@
             </div>
         </footer>
         <script>
-            // Show navbar when clicking on icon
-            let toggle = document.querySelector('.toggle');
+            // Show and close navbar when clicking on icon
+            const toggle = document.querySelector('.toggle');
             toggle.addEventListener('click', function() {
                 toggle.classList.toggle('cross');
-                document.querySelector('nav ul').classList.toggle('show');
+                document.querySelector('.burger').classList.toggle('show');
+                document.querySelector('body').classList.toggle('hide-content');
             })
+
+            //Show and close navbar when clicking on any link in burger menu
+            const li = document.querySelectorAll('.samepage');
+            li.forEach(function(list) {
+                list.addEventListener('click', function() {
+                    toggle.classList.toggle('cross');
+                    document.querySelector('.burger').classList.toggle('show');
+                    document.querySelector('body').classList.toggle('hide-content');
+                });
+            });
+
+            //Implement slider animation
+            const container = document.querySelector('#slider-container');
+            const slider = document.querySelector('#slider_bar');
+            const leftArrow = document.querySelector('#left');
+            const rightArrow = document.querySelector('#right');
+            const mediaQueryMedium = window.matchMedia('(min-width: 768px)');
+            const mediaQuerySmall = window.matchMedia('(max-width: 767px)');
+            let clicks = 0;
+            let pos = 0;
+
+            leftArrow.addEventListener('click', moveSliderLeft);
+            rightArrow.addEventListener('click', moveSliderRight);
+
+            function moveSliderRight() {
+                const visibleArea = container.offsetWidth;
+                const sliderSize = slider.offsetWidth;
+                if (mediaQueryMedium.matches) {
+                    const maxClicks = 3;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== maxClicks) {
+                        pos -= step;
+                        slider.style.transform = `translateX(${pos}px)`;
+                        clicks += 1;
+                        if (leftArrow.classList.contains('inactive')) leftArrow.classList.remove('inactive');
+                    }
+                    if (clicks === maxClicks) {
+                        rightArrow.classList.add('inactive');
+                    }
+                } else if (mediaQuerySmall.matches) {
+                    const maxClicks = 6;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== maxClicks) {
+                        pos -= step;
+                        slider.style.transform = `translateX(${pos}px)`;
+                        clicks += 1;
+                        if (leftArrow.classList.contains('inactive')) leftArrow.classList.remove('inactive');
+                    }
+                    if (clicks === maxClicks) {
+                        rightArrow.classList.add('inactive');
+                    }
+                }
+            }
+
+            function moveSliderLeft() {
+                const visibleArea = container.offsetWidth;
+                const sliderSize = slider.offsetWidth;
+                const minClicks = 0;
+                if (mediaQueryMedium.matches) {
+                    const maxClicks = 3;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== minClicks) {
+                        pos += step;
+                        slider.style.transform = `translateX(${pos}px)`;
+                        clicks -= 1;
+                        if (rightArrow.classList.contains('inactive')) rightArrow.classList.remove('inactive');
+                    }
+                    if (clicks === minClicks) {
+                        leftArrow.classList.add('inactive');
+                    }
+                } else if (mediaQuerySmall.matches) {
+                    const maxClicks = 6;
+                    const step = (sliderSize - visibleArea) / maxClicks;
+                    if (clicks !== minClicks) {
+                        pos += step;
+                        slider.style.transform = `translateX(${pos}px)`;
+                        clicks -= 1;
+                        if (rightArrow.classList.contains('inactive')) rightArrow.classList.remove('inactive');
+                    }
+                    if (clicks === minClicks) {
+                        leftArrow.classList.add('inactive');
+                    }
+                }
+            }
+
+            //Reset slider on window 
+            window.addEventListener('resize', function() {
+                clicks = 0;
+                pos = 0;
+                leftArrow.classList.add('inactive');
+                rightArrow.classList.remove('inactive');
+                slider.style.transform = `translateX(${pos}px)`;
+            });
+
+            //Implement timer 
+            const divDays = document.querySelector("#days");
+            const divHours = document.querySelector("#hours");
+            const divMinutes = document.querySelector("#minutes");
+            const divSeconds = document.querySelector("#seconds");
+            const newYear = new Date(Date.UTC(2026, 0, 1, 0, 0, 0));
+            let id = setTimeout(function countdownTimer() {
+                const now = Date.now();
+                const delta = newYear.getTime() - now;
+                let days = Math.floor(delta / (24 * 60 * 60 * 1000));
+                let hours = Math.floor((delta % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                let minutes = Math.floor((delta % (60 * 60 * 1000)) / (60 * 1000));
+                let seconds = Math.floor((delta % (60 * 1000)) / 1000);
+
+                function removeLeadingZero(num) {
+                    num = String(num);
+                    if (num.startsWith('0') && num.length > 1) return num.slice(1);
+                    return num;
+                }
+
+                days = removeLeadingZero(days);
+                hours = removeLeadingZero(hours);
+                minutes = removeLeadingZero(minutes);
+                seconds = removeLeadingZero(seconds);
+
+                divDays.textContent = days;
+                divHours.textContent = hours;
+                divMinutes.textContent = minutes;
+                divSeconds.textContent = seconds;
+
+                id = setTimeout(countdownTimer, 1000);
+            }, 1000);
+
+            //Show random cards in Best gifts section
+            const parent = document.querySelector('#card-container');
+            fetch('../christmas-shop/gifts.json')
+            .then (response => response.json())
+            .then (data => {
+                //Choose random cards
+                let products = [];
+                for (let i = 0; i < 4; i += 1) {
+                    let index = Math.floor(Math.random() * data.length);
+                    products.push(data[index]);
+                }
+                //Generate cards
+                products.forEach((item, index) => {
+                    const product = document.createElement('div');
+                    product.classList.add('product');
+                    parent.appendChild(product);
+                    const aTag = document.createElement('a');
+                    aTag.setAttribute('href', '#');
+                    product.appendChild(aTag);
+                    const card = document.createElement('div');
+                    const category = document.createElement('div');
+                    card.classList.add('card');
+                    category.classList.add('category');
+                    aTag.appendChild(card);
+                    aTag.appendChild(category);
+                    const image = document.createElement('img');
+                    const header = document.createElement('h4');
+                    const text = document.createElement('p');
+                    card.appendChild(image);
+                    category.appendChild(header);
+                    category.appendChild(text);
+
+                    if (item.category === "For Work") {
+                        image.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                        image.setAttribute('alt', 'Gift for work');
+                        header.setAttribute('style', 'color: #4361FF;');
+                    } else if (item.category === "For Health") {
+                        image.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                        image.setAttribute('alt', 'Gift for health');
+                        header.setAttribute('style', 'color: #06A44F;');
+                    } else if (item.category === "For Harmony") {
+                        image.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                        image.setAttribute('alt', 'Gift for harmony');
+                        header.setAttribute('style', 'color: #FF43F7;');
+                    }
+                    header.textContent = item.category;
+                    text.textContent = item.name;
+                });
+            })
+
         </script>
     </body>
 </html>
