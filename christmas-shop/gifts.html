@@ -113,76 +113,171 @@
                 });
             });
 
-            //Generate product cards from json
-            const parent = document.querySelector('#card-container');
-            fetch('../christmas-shop/gifts.json')
-            .then (response => response.json())
-            .then (data => {
-                data.forEach((item, index) => {
-                    const product = document.createElement('div');
-                    product.classList.add('product');
-                    parent.appendChild(product);
-                    const aTag = document.createElement('a');
-                    aTag.setAttribute('href', '#');
-                    product.appendChild(aTag);
-                    const card = document.createElement('div');
-                    const category = document.createElement('div');
-                    card.classList.add('card');
-                    category.classList.add('category');
-                    aTag.appendChild(card);
-                    aTag.appendChild(category);
-                    const image = document.createElement('img');
-                    const header = document.createElement('h4');
-                    const text = document.createElement('p');
-                    card.appendChild(image);
-                    category.appendChild(header);
-                    category.appendChild(text);
+            //Generate product cards and modals from json
+            window.addEventListener('DOMContentLoaded', function() {
+                const parent = document.querySelector('#card-container');
+                const products = [];
+                const modals = [];
 
-                    if (item.category === "For Work") {
-                        image.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
-                        image.setAttribute('alt', 'Gift for work');
-                        header.setAttribute('style', 'color: #4361FF;');
-                    } else if (item.category === "For Health") {
-                        image.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
-                        image.setAttribute('alt', 'Gift for health');
-                        header.setAttribute('style', 'color: #06A44F;');
-                    } else if (item.category === "For Harmony") {
-                        image.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
-                        image.setAttribute('alt', 'Gift for harmony');
-                        header.setAttribute('style', 'color: #FF43F7;');
-                    }
-                    header.textContent = item.category;
-                    text.textContent = item.name;
-                });
-            })
-            
-            //Filter product cards
-            window.addEventListener('load', (event) => {
-                const allCards = document.getElementsByClassName('product');
-                const cardsArray = Array.from(allCards);
+                fetch('../christmas-shop/gifts.json')
+                .then (response => response.json())
+                .then (data => {
+                    data.forEach((item, index) => {
+                        // Generate cards elements
+                        const product = document.createElement('div');
+                        product.classList.add('product');
+                        product.setAttribute('data-category', item.category);
+                        parent.appendChild(product);
+                        const aTag = document.createElement('a');
+                        aTag.setAttribute('href', '#');
+                        product.appendChild(aTag);
+                        const card = document.createElement('div');
+                        const category = document.createElement('div');
+                        card.classList.add('card');
+                        category.classList.add('category');
+                        aTag.appendChild(card);
+                        aTag.appendChild(category);
+                        const image = document.createElement('img');
+                        const header = document.createElement('h4');
+                        const text = document.createElement('p');
+                        card.appendChild(image);
+                        category.appendChild(header);
+                        category.appendChild(text);
+
+                        //Generate modal elements
+                        const modalOverlay = document.createElement('div');
+                        modalOverlay.classList.add('hide');
+                        parent.appendChild(modalOverlay);
+                        const modal = document.createElement('div');
+                        modal.classList.add('modal');
+                        modalOverlay.appendChild(modal);
+                        const closeModal = document.createElement('span');
+                        closeModal.classList.add('closeModal');
+                        modal.appendChild(closeModal);
+                        const modalCard = document.createElement('div');
+                        modalCard.classList.add('modalCard');
+                        modal.appendChild(modalCard);
+                        const modalCardImg = document.createElement('img');
+                        modalCard.appendChild(modalCardImg);
+                        const modalCategory = document.createElement('div');
+                        modalCategory.classList.add('modalCategory');
+                        modal.appendChild(modalCategory);
+                        const partA = document.createElement('div');
+                        partA.classList.add('part');
+                        modalCategory.appendChild(partA);
+                        const partB = document.createElement('div');
+                        partA.classList.add('part');
+                        modalCategory.appendChild(partA);
+
+                        const categoryHeader = document.createElement('h4');
+                        partA.appendChild(categoryHeader);
+                        const modalName = document.createElement('p');
+                        modalName.classList.add('modalName');
+                        partA.appendChild(modalName);
+                        const modalDesc = document.createElement('p');
+                        modalDesc.classList.add('modalDesc');
+                        partA.appendChild(modalDesc);
+
+                        const partBHeader = document.createElement('p');
+                        partB.appendChild(partBHeader);
+                        const superPow = document.createElement('div');
+                        superPow.classList.add('superPow');
+                        partB.appendChild(superPow);
+                        
+                        if (item.category === "For Work") {
+                            image.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                            image.setAttribute('alt', 'Gift for work');
+                            modalCardImg.setAttribute('src', '../christmas-shop/img/gift-for-work.png');
+                            modalCardImg.setAttribute('alt', 'Gift for work');
+                            header.setAttribute('style', 'color: #4361FF;');
+                            categoryHeader.setAttribute('style', 'color: #4361FF;');
+                        } else if (item.category === "For Health") {
+                            image.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                            image.setAttribute('alt', 'Gift for health');
+                            modalCardImg.setAttribute('src', '../christmas-shop/img/gift-for-health.png');
+                            modalCardImg.setAttribute('alt', 'Gift for health');
+                            header.setAttribute('style', 'color: #06A44F;');
+                            categoryHeader.setAttribute('style', 'color: #06A44F;');
+                        } else if (item.category === "For Harmony") {
+                            image.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                            image.setAttribute('alt', 'Gift for harmony');
+                            modalCardImg.setAttribute('src', '../christmas-shop/img/gift-for-harmony.png');
+                            modalCardImg.setAttribute('alt', 'Gift for harmony');
+                            header.setAttribute('style', 'color: #FF43F7;');
+                            categoryHeader.setAttribute('style', 'color: #FF43F7;');
+                        }
+                        header.textContent = item.category;
+                        categoryHeader.textContent = item.category;
+                        text.textContent = item.name;
+                        modalName.textContent = item.name;
+                        modalDesc.textContent = item.description;
+
+                        for (let key in item.superpowers) {
+                            const superPowItem = document.createElement('div');
+                            superPow.appendChild(superPowItem);
+                            const superPowName = document.createElement('p');
+                            superPowName.textContent = key;
+                            superPowItem.appendChild(superPowName);
+                            const superPowPoint = document.createElement('p');
+                            superPowPoint.textContent = item.superpowers[key];
+                            superPowItem.appendChild(superPowPoint);
+
+                            const redStars = +item.superpowers[key] / 100;
+                            const fadeStars = 5 - redStars; 
+
+                            for (let i = 0; i < redStars; i += 1) {
+                                const rating = document.createElement('img');
+                                rating.classList.add('redStars');
+                                rating.setAttribute('src', '../christmas-shop/img/snowflake.svg');
+                                rating.setAttribute('alt', 'Red star');
+                                superPowItem.appendChild(rating);
+                            }
+
+                            if (fadeStars) {
+                                for (let i = 0; i < fadeStars; i += 1) {
+                                    const rating = document.createElement('img');
+                                    rating.classList.add('fadeStars');
+                                    rating.setAttribute('src', '../christmas-shop/img/snowflake.svg');
+                                    rating.setAttribute('alt', 'Fading star');
+                                    superPowItem.appendChild(rating);
+                                }
+                            }
+                        }
+
+                        //Store products and modals
+                        products.push({card: product, modal: modalOverlay});
+                        modals.push(modalOverlay);
+
+                        //Open and close modals
+                        aTag.addEventListener('click', function() {
+                            modalOverlay.classList.remove('hide');
+                        })
+                        closeModal.addEventListener('click', function() {
+                            modalOverlay.classList.add('hide');
+                        })
+                    });
+                })
+
+                //Filter product cards
                 const allFilter = document.querySelector('#all');
                 const workFilter = document.querySelector('#work');
                 const healthFilter = document.querySelector('#health');
                 const harmonyFilter = document.querySelector('#harmony');
 
                 function filterCategory(category) {
-                    console.log(cardsArray.length);
-                    cardsArray.map((item) => {
-                        const descendants = item.querySelectorAll('*');
-                        if (descendants[4].textContent !== category) {
-                            item.classList.add('hide');
-                        } else if (descendants[4].textContent === category) {
-                            item.classList.remove('hide');
+                    products.forEach(({card, modal}) => {
+                        if (card.getAttribute('data-category') == category) {
+                            card.classList.remove('hide');
+                        } else {
+                            card.classList.add('hide');
                         }
-                    });
+                    })
                 }
 
                 allFilter.addEventListener('click', function() {
-                    cardsArray.map((item) => {
-                        if (item.classList.contains('hide')) {
-                            item.classList.remove('hide');
-                        }
-                    });
+                    products.forEach(({card, modal}) => {
+                        card.classList.remove('hide');
+                    })
                     allFilter.firstElementChild.classList.add('active2');
                     workFilter.firstElementChild.classList.remove('active2');
                     harmonyFilter.firstElementChild.classList.remove('active2');
@@ -202,8 +297,7 @@
                     healthFilter.firstElementChild.classList.add('active2');
                     workFilter.firstElementChild.classList.remove('active2');
                     allFilter.firstElementChild.classList.remove('active2');
-                    harmonyFilter.firstElementChild.classList.remove('active2');
-                    
+                    harmonyFilter.firstElementChild.classList.remove('active2');    
                 })
 
                 harmonyFilter.addEventListener('click', function() {
@@ -213,6 +307,7 @@
                     allFilter.firstElementChild.classList.remove('active2');
                     healthFilter.firstElementChild.classList.remove('active2');
                 })
+
             })
 
             //Show scroll button only if user scrolled 300px from top for 768px layouts and less
@@ -245,9 +340,5 @@
                     document.documentElement.scrollTop = 0; 
                 })
             }
-
-
-            
-            
         </script>
     </body>
