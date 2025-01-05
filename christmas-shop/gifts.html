@@ -182,18 +182,35 @@
                             item.classList.remove('hide');
                         }
                     });
+                    allFilter.firstElementChild.classList.add('active2');
+                    workFilter.firstElementChild.classList.remove('active2');
+                    harmonyFilter.firstElementChild.classList.remove('active2');
+                    healthFilter.firstElementChild.classList.remove('active2');
                 })
 
                 workFilter.addEventListener('click', function () {
                     filterCategory('For Work');
+                    workFilter.firstElementChild.classList.add('active2');
+                    allFilter.firstElementChild.classList.remove('active2');
+                    harmonyFilter.firstElementChild.classList.remove('active2');
+                    healthFilter.firstElementChild.classList.remove('active2');
                 });
 
                 healthFilter.addEventListener('click', function() {
                     filterCategory('For Health');
+                    healthFilter.firstElementChild.classList.add('active2');
+                    workFilter.firstElementChild.classList.remove('active2');
+                    allFilter.firstElementChild.classList.remove('active2');
+                    harmonyFilter.firstElementChild.classList.remove('active2');
+                    
                 })
 
                 harmonyFilter.addEventListener('click', function() {
                     filterCategory('For Harmony');
+                    harmonyFilter.firstElementChild.classList.add('active2');
+                    workFilter.firstElementChild.classList.remove('active2');
+                    allFilter.firstElementChild.classList.remove('active2');
+                    healthFilter.firstElementChild.classList.remove('active2');
                 })
             })
             
