@@ -92,7 +92,6 @@ nav > ul > li > a, .logo > a{
 
 .hide-body {
     overflow: hidden;
-    position: fixed;
 }
 
 @media (max-width: 768px) {
