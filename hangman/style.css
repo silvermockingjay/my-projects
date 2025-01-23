@@ -13,7 +13,11 @@ main {
     width: 50%;
 }
 
-.gallows img {
+.gallows div {
+    position: relative;
+}
+
+.gallows div img {
     width: auto;
     height: auto;
 }
@@ -69,4 +73,40 @@ main {
 .chosen {
     background-color: rgba(142, 68, 173, 0.4);
     pointer-events: none;
+}
+
+.head {
+    position: absolute;
+    top: 149px;
+    right: 1px;
+}
+
+.body {
+    position: absolute;
+    top: 250px;
+    right: 50px;
+}
+
+.hand-one {
+    position: absolute;
+    top: 250px;
+    right: 51px;
+}
+
+.hand-two {
+    position: absolute;
+    top: 250px;
+    right: -14px;
+}
+
+.leg-one {
+    position: absolute;
+    top: 378px;
+    right: 51px;
+}
+
+.leg-two {
+    position: absolute;
+    top: 378px;
+    right: -14px;
 }

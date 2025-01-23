@@ -11,10 +11,12 @@ window.addEventListener('load', function() {
     main.appendChild(quiz);
 
     //Set gallows part
+    const container = document.createElement('div');
+    gallows.appendChild(container);
     const gallowsImage = document.createElement('img');
     gallowsImage.setAttribute('src', '../hangman/gallows.png');
     gallowsImage.setAttribute('alt', 'Gallows image');
-    gallows.appendChild(gallowsImage);
+    container.appendChild(gallowsImage);
 
     //Set quiz part
     const text = document.createElement('div');
@@ -133,12 +135,13 @@ window.addEventListener('load', function() {
             score.textContent = `${errors}/6`;
 
             //Implement part of a body
-            if (errors !== 6) {
+            if (errors < 7) {
                 const part = document.createElement('img');
-                part.setAttribute('src', '../hangman/' + bodyParts[errors - 1]);
+                const link = '../hangman/' + bodyParts[errors - 1] + '.png';
+                part.setAttribute('src', link);
                 part.setAttribute('alt', bodyParts[errors - 1]);
                 part.classList.add(bodyParts[errors - 1]);
-                gallows.appendChild(part);
+                container.appendChild(part);
             }
         }
     }
