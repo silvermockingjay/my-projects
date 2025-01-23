@@ -41,10 +41,14 @@ window.addEventListener('load', function() {
         button.classList.add('btn');
         button.textContent = alphabet[char];
         keyboard.appendChild(button);
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(event) {
             button.classList.add('chosen');
+            checkLetter(event);
         });
     }
+
+    //Implement modal window
+
     
     //Implement quiz
     const questions = [
@@ -92,8 +96,39 @@ window.addEventListener('load', function() {
         18: 'rhythm',
         19: 'queue'
     };
-
+    
+    const bodyParts = ['head', 'body', 'hand-one', 'hand-two', 'leg-one', 'leg-two'];
     const index = Math.floor(Math.random() * questions.length);
     hint.textContent = questions[index];
-    word.textContent = '_ '.repeat(pairs[String(index)].length);
+    const value = pairs[String(index)];
+    const wordLength = value.length;
+    word.textContent = '_ '.repeat(wordLength);
+    let errors = 0;
+    let openLetters = 0;
+    let guess = word.textContent.split(' ');
+
+    function checkLetter(event) {
+        let rightGuess = false;
+        for (let i = 0; i < wordLength; i += 1) {
+            if (value[i].toUpperCase() === event.target.textContent) {
+                guess[i] = event.target.textContent;
+                rightGuess = true;
+                openLetters += 1;
+            }
+        }
+        if (rightGuess) word.textContent = guess.join(' ');
+        else {
+            errors += 1;
+            score.textContent = `${errors}/6`;
+
+            //Implement part of a body
+            if (errors !== 6) {
+                const part = document.createElement('img');
+                part.setAttribute('src', '../hangman/' + bodyParts[errors - 1]);
+                part.setAttribute('alt', bodyParts[errors - 1]);
+                part.classList.add(bodyParts[errors - 1]);
+                gallows.appendChild(part);
+            }
+        }
+    }
 })
