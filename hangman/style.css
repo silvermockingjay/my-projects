@@ -110,3 +110,7 @@ main {
     top: 378px;
     right: -14px;
 }
+
+.hidden {
+    display: none;
+}

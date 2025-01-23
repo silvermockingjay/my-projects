@@ -61,6 +61,18 @@ window.addEventListener('load', function() {
     })
 
     //Implement modal window
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.classList.add('hidden');
+    parent.appendChild(modal);
+    const modalWindow = document.createElement('div');
+    modal.classList.add('modalWindow');
+    const message = document.createElement('p');
+    modalWindow.appendChild(message);
+    const answer = document.createElement('p');
+    modalWindow.appendChild(answer);
+    const play = document.createElement('button');
+    modalWindow.appendChild(play);
 
     
     //Implement quiz
