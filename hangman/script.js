@@ -29,11 +29,10 @@ window.addEventListener('load', function() {
     text.appendChild(hint);
     const guesses = document.createElement('p');
     text.appendChild(guesses);
-    const score = document.createElement('span');
-    guesses.appendChild(score);
-
     guesses.textContent = 'Incorrect guesses: ';
+    const score = document.createElement('span');
     score.textContent = '0/6';
+    guesses.appendChild(score);
 
     //Implement keyboard
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
