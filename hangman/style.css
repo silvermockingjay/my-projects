@@ -1,0 +1,72 @@
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallows, .quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.gallows img {
+    width: auto;
+    height: auto;
+}
+
+.quiz {
+    gap: 40px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #000000;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.text p {
+    margin: 0;
+    padding: 0;
+}
+
+.text span {
+    color: #e74c3c;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.btn {
+    background-color:#8e44ad;
+    color: #FFFFFF;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    padding: 12px 20px;
+    border: none;
+    width: 50px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.chosen {
+    background-color: rgba(142, 68, 173, 0.4);
+    pointer-events: none;
+}
