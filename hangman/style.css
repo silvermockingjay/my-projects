@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -109,6 +113,46 @@ main {
     position: absolute;
     top: 378px;
     right: -14px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(142, 68, 173, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalWindow {
+    width: 50%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.modalWindow p {
+    margin: 0;
+    padding: 0;
+}
+
+.modalWindow button {
+    background-color: #FFC300;
+    color:#FFFFFF;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
 }
 
 .hidden {

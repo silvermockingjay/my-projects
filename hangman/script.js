@@ -73,7 +73,7 @@ window.addEventListener('load', function() {
     modalWindow.appendChild(answer);
     const play = document.createElement('button');
     modalWindow.appendChild(play);
-
+    button.textContent = 'Play again!';
     
     //Implement quiz
     const questions = [
