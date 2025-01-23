@@ -36,16 +36,27 @@ window.addEventListener('load', function() {
 
     //Implement keyboard
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    const allButtons = [];
     for (let char in alphabet) {
         const button = document.createElement('button');
         button.classList.add('btn');
         button.textContent = alphabet[char];
         keyboard.appendChild(button);
+        allButtons.push(button);
         button.addEventListener('click', function(event) {
             button.classList.add('chosen');
             checkLetter(event);
         });
     }
+
+    document.addEventListener('keyup', function(event) {
+        checkLetter(event);
+        allButtons.forEach((element) => {
+            if ('Key' + element.textContent === event.code) {
+                element.classList.add('chosen');
+            }
+        })
+    })
 
     //Implement modal window
 
@@ -110,8 +121,8 @@ window.addEventListener('load', function() {
     function checkLetter(event) {
         let rightGuess = false;
         for (let i = 0; i < wordLength; i += 1) {
-            if (value[i].toUpperCase() === event.target.textContent) {
-                guess[i] = event.target.textContent;
+            if (value[i].toUpperCase() === event.target.textContent || 'Key' + value[i].toUpperCase() === event.code) {
+                guess[i] = value[i].toUpperCase();
                 rightGuess = true;
                 openLetters += 1;
             }
