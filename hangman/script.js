@@ -66,14 +66,15 @@ window.addEventListener('load', function() {
     modal.classList.add('hidden');
     parent.appendChild(modal);
     const modalWindow = document.createElement('div');
-    modal.classList.add('modalWindow');
+    modalWindow.classList.add('modalWindow');
+    modal.appendChild(modalWindow);
     const message = document.createElement('p');
     modalWindow.appendChild(message);
     const answer = document.createElement('p');
     modalWindow.appendChild(answer);
     const play = document.createElement('button');
     modalWindow.appendChild(play);
-    button.textContent = 'Play again!';
+    play.textContent = 'Play again!';
     
     //Implement quiz
     const questions = [
@@ -141,7 +142,17 @@ window.addEventListener('load', function() {
                 openLetters += 1;
             }
         }
-        if (rightGuess) word.textContent = guess.join(' ');
+        if (rightGuess) {
+            word.textContent = guess.join(' ');
+            if (openLetters === wordLength) {
+                message.textContent = 'Congratulations! You win!';
+                answer.textContent = `Secret word: ${value}`;
+                setTimeout(() => {
+                    modal.classList.remove('hidden');
+                }, 500);
+                
+            }
+        }
         else {
             errors += 1;
             score.textContent = `${errors}/6`;
@@ -154,6 +165,15 @@ window.addEventListener('load', function() {
                 part.setAttribute('alt', bodyParts[errors - 1]);
                 part.classList.add(bodyParts[errors - 1]);
                 container.appendChild(part);
+            }
+
+            if (errors === 6) {
+                message.textContent = 'game over. sorry, try one more time!';
+                answer.textContent = `Secret word: ${value}`;
+                setTimeout(() => {
+                    modal.classList.remove('hidden');
+                }, 500);
+                
             }
         }
     }

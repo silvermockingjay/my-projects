@@ -116,10 +116,12 @@ main {
 }
 
 .modal {
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(142, 68, 173, 0.4);
+    background-color: rgba(142, 68, 173, 0.7);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,7 +150,7 @@ main {
 }
 
 .modalWindow button {
-    background-color: #FFC300;
+    background-color: #2ecc71;
     color:#FFFFFF;
     padding: 12px 20px;
     border-radius: 12px;
