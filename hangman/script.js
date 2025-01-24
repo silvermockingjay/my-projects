@@ -18,6 +18,20 @@ window.addEventListener('load', function() {
     gallowsImage.setAttribute('alt', 'Gallows image');
     container.appendChild(gallowsImage);
 
+    //Implement parts of a hangman's body
+    const bodyPartsName = ['head', 'body', 'hand-one', 'hand-two', 'leg-one', 'leg-two'];
+    const bodyPartsElements = [];
+    for (let i = 0; i < bodyPartsName.length; i += 1) {
+        const part = document.createElement('img');
+        const link = '../hangman/' + bodyPartsName[i] + '.png';
+        part.setAttribute('src', link);
+        part.setAttribute('alt', bodyPartsName[i]);
+        part.classList.add(bodyPartsName[i]);
+        part.classList.add('hidden');
+        container.appendChild(part);
+        bodyPartsElements.push(part);
+    }
+
     //Set quiz part
     const text = document.createElement('div');
     text.classList.add('text');
@@ -123,16 +137,17 @@ window.addEventListener('load', function() {
         19: 'queue'
     };
     
-    const bodyParts = ['head', 'body', 'hand-one', 'hand-two', 'leg-one', 'leg-two'];
-    const index = Math.floor(Math.random() * questions.length);
+    let index = Math.floor(Math.random() * questions.length);
     hint.textContent = questions[index];
-    const value = pairs[String(index)];
-    const wordLength = value.length;
+    let value = pairs[String(index)];
+    let wordLength = value.length;
     word.textContent = '_ '.repeat(wordLength);
     let errors = 0;
     let openLetters = 0;
     let guess = word.textContent.split(' ');
+    let indexesUsed = index;
 
+    //Implement checkLetter 
     function checkLetter(event) {
         let rightGuess = false;
         for (let i = 0; i < wordLength; i += 1) {
@@ -157,17 +172,13 @@ window.addEventListener('load', function() {
             errors += 1;
             score.textContent = `${errors}/6`;
 
-            //Implement part of a body
+            //Show part of a body
             if (errors < 7) {
-                const part = document.createElement('img');
-                const link = '../hangman/' + bodyParts[errors - 1] + '.png';
-                part.setAttribute('src', link);
-                part.setAttribute('alt', bodyParts[errors - 1]);
-                part.classList.add(bodyParts[errors - 1]);
-                container.appendChild(part);
+                bodyPartsElements[errors - 1].classList.remove('hidden');
             }
 
-            if (errors === 6) {
+            //Show modal window
+            if (errors >= 6) {
                 message.textContent = 'game over. sorry, try one more time!';
                 answer.textContent = `Secret word: ${value}`;
                 setTimeout(() => {
@@ -177,4 +188,27 @@ window.addEventListener('load', function() {
             }
         }
     }
+
+    //Implement play again
+    play.addEventListener('click', function() {
+        while(index === indexesUsed) {
+            index = Math.floor(Math.random() * questions.length);
+        }
+        indexesUsed = index;
+        hint.textContent = questions[index];
+        value = pairs[String(index)];
+        wordLength = value.length;
+        word.textContent = '_ '.repeat(wordLength);
+        errors = 0;
+        openLetters = 0;
+        guess = word.textContent.split(' ');
+        score.textContent = `${errors}/6`;
+        bodyPartsElements.forEach((element) => {
+            element.classList.add('hidden');
+        })
+        allButtons.forEach((element) => {
+            element.classList.remove('chosen');
+        })
+        modal.classList.add('hidden');
+    })
 })
