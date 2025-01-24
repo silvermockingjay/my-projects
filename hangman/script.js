@@ -63,18 +63,25 @@ window.addEventListener('load', function() {
         allButtons.push(button);
         button.addEventListener('click', function(event) {
             button.classList.add('chosen');
-            if (!usedLetters.has(button.textContent)) usedLetters.add(button.textContent);
-            checkLetter(event);
+            if (!usedLetters.has(button.textContent)) {
+                usedLetters.add(button.textContent);
+                checkLetter(event);
+            }
         });
     }
 
     document.addEventListener('keyup', function(event) {
-        checkLetter(event);
-        allButtons.forEach((element) => {
-            if ('Key' + element.textContent === event.code) {
-                element.classList.add('chosen');
+        if (event.code.startsWith('Key')) {
+            if (!usedLetters.has(event.key.toUpperCase())) {
+                usedLetters.add(event.key.toUpperCase());
+                checkLetter(event);
+                allButtons.forEach((element) => {
+                    if ('Key' + element.textContent === event.code) {
+                        element.classList.add('chosen');
+                    }
+                })
             }
-        })
+        }
     })
 
     //Implement modal window
@@ -154,7 +161,12 @@ window.addEventListener('load', function() {
     function checkLetter(event) {
         let rightGuess = false;
         for (let i = 0; i < wordLength; i += 1) {
-            if (value[i] === event.target.textContent || 'Key' + value[i] === event.code) {
+            if (event.type === 'click' && value[i] === event.target.textContent) {
+                guess[i] = value[i];
+                rightGuess = true;
+                openLetters += 1;
+            }
+            if (event.type === 'keyup' && 'Key' + value[i] === event.code) {
                 guess[i] = value[i];
                 rightGuess = true;
                 openLetters += 1;
@@ -211,6 +223,7 @@ window.addEventListener('load', function() {
         allButtons.forEach((element) => {
             element.classList.remove('chosen');
         })
+        usedLetters.clear();
         modal.classList.add('hidden');
     })
 })
