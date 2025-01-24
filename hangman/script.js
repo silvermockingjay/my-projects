@@ -40,6 +40,7 @@ window.addEventListener('load', function() {
     keyboard.classList.add('keyboard');
     quiz.appendChild(keyboard);
     const word = document.createElement('div');
+    word.classList.add('word');
     text.appendChild(word);
     const hint = document.createElement('p');
     text.appendChild(hint);
@@ -51,6 +52,7 @@ window.addEventListener('load', function() {
     guesses.appendChild(score);
 
     //Implement keyboard
+    const usedLetters = new Set();
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     const allButtons = [];
     for (let char in alphabet) {
@@ -61,6 +63,7 @@ window.addEventListener('load', function() {
         allButtons.push(button);
         button.addEventListener('click', function(event) {
             button.classList.add('chosen');
+            if (!usedLetters.has(button.textContent)) usedLetters.add(button.textContent);
             checkLetter(event);
         });
     }
@@ -139,7 +142,7 @@ window.addEventListener('load', function() {
     
     let index = Math.floor(Math.random() * questions.length);
     hint.textContent = questions[index];
-    let value = pairs[String(index)];
+    let value = pairs[String(index)].toUpperCase();
     let wordLength = value.length;
     word.textContent = '_ '.repeat(wordLength);
     let errors = 0;
@@ -151,8 +154,8 @@ window.addEventListener('load', function() {
     function checkLetter(event) {
         let rightGuess = false;
         for (let i = 0; i < wordLength; i += 1) {
-            if (value[i].toUpperCase() === event.target.textContent || 'Key' + value[i].toUpperCase() === event.code) {
-                guess[i] = value[i].toUpperCase();
+            if (value[i] === event.target.textContent || 'Key' + value[i] === event.code) {
+                guess[i] = value[i];
                 rightGuess = true;
                 openLetters += 1;
             }
@@ -179,12 +182,11 @@ window.addEventListener('load', function() {
 
             //Show modal window
             if (errors >= 6) {
-                message.textContent = 'game over. sorry, try one more time!';
-                answer.textContent = `Secret word: ${value}`;
+                message.textContent = 'Game over. Sorry, try one more time!';
+                answer.innerHTML = `Secret word: <b>${value}</b>`;
                 setTimeout(() => {
                     modal.classList.remove('hidden');
                 }, 500);
-                
             }
         }
     }
@@ -196,7 +198,7 @@ window.addEventListener('load', function() {
         }
         indexesUsed = index;
         hint.textContent = questions[index];
-        value = pairs[String(index)];
+        value = pairs[String(index)].toUpperCase();
         wordLength = value.length;
         word.textContent = '_ '.repeat(wordLength);
         errors = 0;
