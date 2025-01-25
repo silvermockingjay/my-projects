@@ -12,23 +12,29 @@ window.addEventListener('load', function() {
 
     //Set gallows part
     const container = document.createElement('div');
+    container.classList.add('container');
     gallows.appendChild(container);
     const gallowsImage = document.createElement('img');
     gallowsImage.setAttribute('src', '../hangman/gallows.png');
     gallowsImage.setAttribute('alt', 'Gallows image');
+    gallowsImage.classList.add('gallowsImg');
     container.appendChild(gallowsImage);
 
     //Implement parts of a hangman's body
     const bodyPartsName = ['head', 'body', 'hand-one', 'hand-two', 'leg-one', 'leg-two'];
     const bodyPartsElements = [];
     for (let i = 0; i < bodyPartsName.length; i += 1) {
+        const div = document.createElement('div');
+        const classDiv = 'div' + bodyPartsName[i];
+        div.classList.add(classDiv);
         const part = document.createElement('img');
         const link = '../hangman/' + bodyPartsName[i] + '.png';
         part.setAttribute('src', link);
         part.setAttribute('alt', bodyPartsName[i]);
-        part.classList.add(bodyPartsName[i]);
+        part.classList.add('child');
         part.classList.add('hidden');
-        container.appendChild(part);
+        div.appendChild(part);
+        container.appendChild(div);
         bodyPartsElements.push(part);
     }
 

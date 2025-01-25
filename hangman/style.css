@@ -1,5 +1,10 @@
 body {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 main {
@@ -21,13 +26,19 @@ main {
     height: 100%;
 }
 
-.gallows div {
+.container {
     position: relative;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.gallows div img {
-    width: auto;
-    height: auto;
+.gallowsImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .quiz {
@@ -92,40 +103,78 @@ main {
     pointer-events: none;
 }
 
-.head {
+.divhead {
     position: absolute;
-    top: 149px;
-    right: 1px;
+    max-width: 29%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 25%;
+    right: 1%;
 }
 
-.body {
+
+.divbody {
     position: absolute;
-    top: 250px;
-    right: 50px;
+    max-width: 1.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 42%;
+    right: 14%;
 }
 
-.hand-one {
+.divhand-one {
     position: absolute;
-    top: 250px;
-    right: 51px;
+    max-width: 19%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 42%;
+    right: 14.5%;
 }
 
-.hand-two {
+.divhand-two {
     position: absolute;
-    top: 250px;
+    max-width: 19%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 42%;
+    right: -4%;
+}
+
+.divleg-one {
+    position: absolute;
+    max-width: 19%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 64%;
+    right: 14%;;
+}
+
+.divleg-two {
+    position: absolute;
+    max-width: 19%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 64%;
     right: -14px;
+    right: -4%;
 }
 
-.leg-one {
-    position: absolute;
-    top: 378px;
-    right: 51px;
-}
-
-.leg-two {
-    position: absolute;
-    top: 378px;
-    right: -14px;
+.child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .modal {
