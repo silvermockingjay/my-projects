@@ -3,12 +3,18 @@ window.addEventListener('load', function() {
     const parent = document.querySelector('body');
     const main = document.createElement('main');
     parent.appendChild(main);
+    const header = document.createElement('h1');
+    header.textContent = 'Hangman game';
+    main.appendChild(header);
+    const game = document.createElement('div');
+    game.classList.add('game');
+    main.appendChild(game);
     const gallows = document.createElement('section');
     gallows.classList.add('gallows');
-    main.appendChild(gallows);
+    game.appendChild(gallows);
     const quiz = document.createElement('section');
     quiz.classList.add('quiz');
-    main.appendChild(quiz);
+    game.appendChild(quiz);
 
     //Set gallows part
     const container = document.createElement('div');
@@ -25,8 +31,7 @@ window.addEventListener('load', function() {
     const bodyPartsElements = [];
     for (let i = 0; i < bodyPartsName.length; i += 1) {
         const div = document.createElement('div');
-        const classDiv = 'div' + bodyPartsName[i];
-        div.classList.add(classDiv);
+        div.classList.add(bodyPartsName[i]);
         const part = document.createElement('img');
         const link = '../hangman/' + bodyPartsName[i] + '.png';
         part.setAttribute('src', link);
