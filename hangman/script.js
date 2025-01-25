@@ -161,6 +161,7 @@ window.addEventListener('load', function() {
     let index = Math.floor(Math.random() * questions.length);
     hint.textContent = questions[index];
     let value = pairs[String(index)].toUpperCase();
+    console.log(value);
     let wordLength = value.length;
     word.textContent = '_ '.repeat(wordLength);
     let errors = 0;
@@ -222,6 +223,7 @@ window.addEventListener('load', function() {
         indexesUsed = index;
         hint.textContent = questions[index];
         value = pairs[String(index)].toUpperCase();
+        console.log(value);
         wordLength = value.length;
         word.textContent = '_ '.repeat(wordLength);
         errors = 0;
