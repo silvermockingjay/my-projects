@@ -206,7 +206,7 @@ window.addEventListener('load', function() {
 
             //Show modal window
             if (errors >= 6) {
-                message.textContent = 'Game over. Sorry, try one more time!';
+                message.textContent = 'Game over. Try one more time!';
                 answer.innerHTML = `Secret word: <b>${value}</b>`;
                 setTimeout(() => {
                     modal.classList.remove('hidden');
