@@ -188,7 +188,7 @@ window.addEventListener('load', function() {
             word.textContent = guess.join(' ');
             if (openLetters === wordLength) {
                 message.textContent = 'Congratulations! You win!';
-                answer.textContent = `Secret word: ${value}`;
+                answer.innerHTML = `Secret word: <b>${value}</b>`;
                 setTimeout(() => {
                     modal.classList.remove('hidden');
                 }, 500);
