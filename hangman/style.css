@@ -295,6 +295,10 @@ h1 {
 }
 
 @media (max-width: 440px) {
+    .game {
+        gap: 20px;
+    }
+    
     h1 {
         font-size: 2rem;
     }
