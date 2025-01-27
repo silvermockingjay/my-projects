@@ -196,8 +196,10 @@ window.addEventListener('load', function() {
             }
         }
         else {
-            errors += 1;
-            score.textContent = `${errors}/6`;
+            if (errors < 6) {
+                errors += 1;
+                score.textContent = `${errors}/6`;
+            }
 
             //Show part of a body
             if (errors < 7) {
