@@ -13,7 +13,7 @@ This course has challenged me a bit and I would like to share my thoughts on it 
  * Lessons are short and useful
  * A student can run tasks right in a browser, no need to run exercises locally
  * The course is free of charge
- * In case of successful completion a student get a certificate
+ * In case of successful completion a student gets a certificate
 
 ### Disadvantages of this course:
  * Chaotic structure of the course
