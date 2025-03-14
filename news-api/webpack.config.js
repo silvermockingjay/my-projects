@@ -24,6 +24,7 @@ const baseConfig = {
         extensions: ['.js'],
     },
     output: {
+        publicPath: 'dist',
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
     },
