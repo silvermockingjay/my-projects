@@ -18,10 +18,14 @@ const baseConfig = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.js$/i,
+                use: 'source-map-loader'
+            }
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js', '.webpack.js'],
     },
     output: {
         publicPath: 'dist',
