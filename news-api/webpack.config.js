@@ -20,8 +20,8 @@ const baseConfig = {
             },
             {
                 test: /\.js$/i,
-                use: 'source-map-loader'
-            }
+                use: 'source-map-loader',
+            },
         ],
     },
     resolve: {
