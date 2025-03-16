@@ -1,8 +1,8 @@
-import { Options } from '../interfaces/interfaces.js';
-import { Endpoints } from '../interfaces/interfaces.js';
-import { UserResponse } from '../interfaces/interfaces.js';
-import { CallBackFunction } from '../interfaces/interfaces.js';
-import { FetchResponse } from '../interfaces/interfaces.js';
+import { Options } from '../interfaces/interfaces';
+import { Endpoints } from '../interfaces/interfaces';
+import { UserResponse } from '../interfaces/interfaces';
+import { CallBackFunction } from '../interfaces/interfaces';
+import { FetchResponse } from '../interfaces/interfaces';
 
 class Loader {
     constructor(

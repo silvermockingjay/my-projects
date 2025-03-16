@@ -1,8 +1,8 @@
-import News from './news/news.js';
-import Sources from './sources/sources.js';
-import { UserResponse } from '../interfaces/interfaces.js';
-import { Articles } from '../interfaces/interfaces.js';
-import { Source } from '../interfaces/interfaces.js';
+import News from './news/news';
+import Sources from './sources/sources';
+import { UserResponse } from '../interfaces/interfaces';
+import { Articles } from '../interfaces/interfaces';
+import { Source } from '../interfaces/interfaces';
 
 export class AppView {
     public news: News;

@@ -1,5 +1,5 @@
-import AppLoader from './appLoader.js';
-import { CallBackFunction } from '../interfaces/interfaces.js';
+import AppLoader from './appLoader';
+import { CallBackFunction } from '../interfaces/interfaces';
 
 class AppController extends AppLoader {
     getSources(callback: CallBackFunction) {
