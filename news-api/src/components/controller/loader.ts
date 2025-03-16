@@ -2,6 +2,7 @@ import { Options } from '../interfaces/interfaces.js';
 import { Endpoints } from '../interfaces/interfaces.js';
 import { UserResponse } from '../interfaces/interfaces.js';
 import { CallBackFunction } from '../interfaces/interfaces.js';
+import { FetchResponse } from '../interfaces/interfaces.js';
 
 class Loader {
     constructor(
@@ -47,7 +48,10 @@ class Loader {
     load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBackFunction, options: Options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
-            .then((res) => res.json())
+            .then((res) => {
+                const myRes = res as FetchResponse<UserResponse>;
+                return myRes.json();
+            })
             .then((data: UserResponse) => callback(data))
             .catch((err) => {
                 if (err instanceof Error) console.error(err);
