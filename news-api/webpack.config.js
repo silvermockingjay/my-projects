@@ -25,10 +25,9 @@ const baseConfig = {
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js', '.webpack.js'],
+        extensions: ['.ts', '.js'],
     },
     output: {
-        publicPath: 'dist',
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
     },
