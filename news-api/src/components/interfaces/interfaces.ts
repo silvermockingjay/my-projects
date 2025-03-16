@@ -145,4 +145,4 @@ export interface Source {
 }
 export type Response = ResponseArticles | ResponseSources;
 
-export type CallBackFunction = (data?: Options | Response) => void;
+export type CallBackFunction = (data: Response) => void;
