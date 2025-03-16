@@ -1,6 +1,6 @@
 import News from './news/news.js';
 import Sources from './sources/sources.js';
-import { Response } from '../interfaces/interfaces.js';
+import { UserResponse } from '../interfaces/interfaces.js';
 import { Articles } from '../interfaces/interfaces.js';
 import { Source } from '../interfaces/interfaces.js';
 
@@ -12,7 +12,7 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: Response) {
+    drawNews(data: UserResponse) {
         let values: Articles[] = [];
         if ('articles' in data) {
             values = data.articles || [];
@@ -20,7 +20,7 @@ export class AppView {
         this.news.draw(values);
     }
 
-    drawSources(data: Response) {
+    drawSources(data: UserResponse) {
         let values: Source[] = [];
         if ('sources' in data) {
             values = data.sources || [];

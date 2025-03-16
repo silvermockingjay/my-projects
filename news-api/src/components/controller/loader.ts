@@ -1,6 +1,6 @@
 import { Options } from '../interfaces/interfaces.js';
 import { Endpoints } from '../interfaces/interfaces.js';
-import { Response } from '../interfaces/interfaces.js';
+import { UserResponse } from '../interfaces/interfaces.js';
 import { CallBackFunction } from '../interfaces/interfaces.js';
 
 class Loader {
@@ -22,10 +22,10 @@ class Loader {
     }
 
     errorHandler(res: Response) {
-        if (res.status !== 'ok') {
-            if (res.code === '401 - Unauthorized' || res.code === '404 - Not Found')
-                console.log(`Sorry, but there is ${res.code} error: ${res.message}`);
-            throw Error(res.message);
+        if (!res.ok) {
+            if (res.status === 401 || res.status === 404)
+                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+            throw Error(res.statusText);
         }
 
         return res;
@@ -48,7 +48,7 @@ class Loader {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data: Response) => callback(data))
+            .then((data: UserResponse) => callback(data))
             .catch((err) => {
                 if (err instanceof Error) console.error(err);
             });

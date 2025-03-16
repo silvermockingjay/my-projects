@@ -143,6 +143,6 @@ export interface Source {
     language: StringOrNull;
     country: StringOrNull;
 }
-export type Response = ResponseArticles | ResponseSources;
+export type UserResponse = ResponseArticles | ResponseSources;
 
-export type CallBackFunction = (data: Response) => void;
+export type CallBackFunction = (data: UserResponse) => void;
