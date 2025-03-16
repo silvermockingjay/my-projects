@@ -1,7 +1,8 @@
 import News from './news/news.js';
 import Sources from './sources/sources.js';
-import { ResponseArticles } from '../interfaces/interfaces.js';
-import { ResponseSources } from '../interfaces/interfaces.js';
+import { Response } from '../interfaces/interfaces.js';
+import { Articles } from '../interfaces/interfaces.js';
+import { Source } from '../interfaces/interfaces.js';
 
 export class AppView {
     public news: News;
@@ -11,15 +12,20 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: ResponseArticles) {
-        const values = data?.articles ? data?.articles : [];
+    drawNews(data: Response) {
+        let values: Articles[] = [];
+        if ('articles' in data) {
+            values = data.articles || [];
+        }
         this.news.draw(values);
     }
 
-    drawSources(data: ResponseSources) {
-        const values = data?.sources ? data?.sources : [];
+    drawSources(data: Response) {
+        let values: Source[] = [];
+        if ('sources' in data) {
+            values = data.sources || [];
+        }
         this.sources.draw(values);
     }
 }
-
 export default AppView;
