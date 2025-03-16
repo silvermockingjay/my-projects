@@ -1,11 +1,14 @@
 .sources {
     display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     width: 100%;
     height: 120px;
-    overflow: auto;
+    overflow-x: auto;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
+    box-sizing: border-box;
+    padding-top: 12px;
 }
 
 .source__item {
@@ -18,6 +21,7 @@
     color: #70d6ff;
     transition: 0.25s;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .source__item:hover,
@@ -31,4 +35,32 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+.logo {
+    background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .sources {
+        flex-direction: column;
+        align-items: center;
+        justify-items: start;
+        gap: 7px;
+        flex-wrap: nowrap;
+        font-size: 2rem;
+        height: 240px;
+        overflow-y: auto;
+    }
+    .source__item {
+        padding: 0.5em 1em;
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sources {
+        font-size: 1.2rem;
+    }
 }

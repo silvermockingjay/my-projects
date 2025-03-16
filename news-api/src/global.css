@@ -16,10 +16,15 @@ header h1 {
 footer {
     height: 100px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 5px;
 }
 footer .copyright {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
     font-size: 14px;
     color: #333;
     text-align: center;
