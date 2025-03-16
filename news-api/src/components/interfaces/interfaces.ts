@@ -104,13 +104,11 @@ interface ResponseBasic {
     status: string;
     code?: string;
     message?: string;
-    json: () => ResponseBasic;
 }
 
 export interface ResponseArticles extends ResponseBasic {
     totalResults?: number;
     articles?: Articles[];
-    json: () => ResponseArticles;
 }
 
 type StringOrNull = string | null;
@@ -131,7 +129,6 @@ export interface Articles {
 
 export interface ResponseSources extends ResponseBasic {
     sources?: Source[];
-    json: () => ResponseSources;
 }
 
 export interface Source {
@@ -143,6 +140,11 @@ export interface Source {
     language: StringOrNull;
     country: StringOrNull;
 }
+
+export interface FetchResponse<Type> extends Response {
+    json(): Promise<Type>;
+}
+
 export type UserResponse = ResponseArticles | ResponseSources;
 
 export type CallBackFunction = (data: UserResponse) => void;
