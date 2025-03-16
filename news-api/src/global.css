@@ -38,3 +38,11 @@ footer .copyright a:hover {
 footer .copyright:before {
     content: '©';
 }
+
+.logo div {
+    background-image: url('./rs-school-logo.svg');
+    width: 60px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
