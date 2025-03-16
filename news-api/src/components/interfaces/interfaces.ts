@@ -97,7 +97,7 @@ interface SourcesOptions
 
 export type Options = EverythingOptions | HeadlinesOptions | SourcesOptions;
 
-export type Endpoints = '/v2/everything' | '/v2/top-headlines' | '/v2/top-headlines/sources';
+export type Endpoints = 'everything' | 'top-headlines' | 'top-headlines/sources' | 'mocks/everything' | 'mocks/sources';
 
 //Types and interfaces for response
 interface ResponseBasic {

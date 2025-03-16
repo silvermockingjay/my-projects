@@ -5,7 +5,7 @@ class AppController extends AppLoader {
     getSources(callback: CallBackFunction) {
         super.getResp(
             {
-                endpoint: '/v2/top-headlines/sources',
+                endpoint: 'top-headlines/sources',
             },
             callback
         );
@@ -22,7 +22,7 @@ class AppController extends AppLoader {
                     newsContainer.setAttribute('data-source', sourceId || 'no-id');
                     super.getResp(
                         {
-                            endpoint: '/v2/everything',
+                            endpoint: 'everything',
                             options: {
                                 sources: sourceId || 'no-id',
                             },
