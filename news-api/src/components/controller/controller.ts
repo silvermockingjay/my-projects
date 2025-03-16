@@ -5,26 +5,26 @@ class AppController extends AppLoader {
     getSources(callback: CallBackFunction) {
         super.getResp(
             {
-                endpoint: 'sources',
+                endpoint: '/v2/top-headlines/sources',
             },
             callback
         );
     }
 
-    getNews(e, callback: CallBackFunction) {
-        let target = e.target;
-        const newsContainer = e.currentTarget;
+    getNews(e: Event, callback: CallBackFunction) {
+        let target = e.target as HTMLElement;
+        const newsContainer = e.currentTarget as HTMLElement;
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id');
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
-                    newsContainer.setAttribute('data-source', sourceId);
+                    newsContainer.setAttribute('data-source', sourceId || 'no-id');
                     super.getResp(
                         {
-                            endpoint: 'everything',
+                            endpoint: '/v2/everything',
                             options: {
-                                sources: sourceId,
+                                sources: sourceId || 'no-id',
                             },
                         },
                         callback
@@ -32,7 +32,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = target.parentNode;
+            target = target.parentNode as HTMLElement;
         }
     }
 }
