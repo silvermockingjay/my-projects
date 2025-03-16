@@ -1,9 +1,11 @@
-import Loader from './loader';
+import Loader from './loader.js';
 
 class AppLoader extends Loader {
     constructor() {
-        super(process.env.API_URL, {
-            apiKey: process.env.API_KEY,
+        const url = process.env.API_URL || 'https://newsapi.org';
+        const key = process.env.API_KEY || '';
+        super(url, {
+            apiKey: key,
         });
     }
 }
