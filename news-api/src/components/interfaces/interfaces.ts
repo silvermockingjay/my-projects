@@ -107,7 +107,7 @@ interface ResponseBasic {
     json: () => ResponseBasic;
 }
 
-interface ResponseArticles extends ResponseBasic {
+export interface ResponseArticles extends ResponseBasic {
     totalResults?: number;
     articles?: Articles[];
     json: () => ResponseArticles;
@@ -115,7 +115,7 @@ interface ResponseArticles extends ResponseBasic {
 
 type StringOrNull = string | null;
 
-interface Articles {
+export interface Articles {
     source: {
         id: StringOrNull;
         name: StringOrNull;
@@ -129,12 +129,12 @@ interface Articles {
     content: StringOrNull;
 }
 
-interface ResponseSources extends ResponseBasic {
-    sources?: Sources[];
+export interface ResponseSources extends ResponseBasic {
+    sources?: Source[];
     json: () => ResponseSources;
 }
 
-interface Sources {
+export interface Source {
     id: StringOrNull;
     name: StringOrNull;
     description: StringOrNull;
