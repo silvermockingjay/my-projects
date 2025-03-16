@@ -12,7 +12,7 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: UserResponse) {
+    drawNews(data: UserResponse): void {
         let values: Articles[] = [];
         if ('articles' in data) {
             values = data.articles || [];
@@ -20,7 +20,7 @@ export class AppView {
         this.news.draw(values);
     }
 
-    drawSources(data: UserResponse) {
+    drawSources(data: UserResponse): void {
         let values: Source[] = [];
         if ('sources' in data) {
             values = data.sources || [];

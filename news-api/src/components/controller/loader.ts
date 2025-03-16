@@ -18,7 +18,7 @@ class Loader {
         callback: CallBackFunction = () => {
             console.error('No callback for GET response');
         }
-    ) {
+    ): void {
         this.load('GET', endpoint, callback, options);
     }
 
@@ -32,9 +32,9 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: Options, endpoint: Endpoints) {
+    makeUrl(options: Options, endpoint: Endpoints): string {
         const urlOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
+        let url: string = `${this.baseLink}${endpoint}?`;
 
         if (Object.keys(urlOptions).length) {
             Object.keys(urlOptions).forEach((key) => {
@@ -45,15 +45,15 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBackFunction, options: Options = {}) {
+    load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBackFunction, options: Options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
-            .then((res) => {
+            .then((res: Response) => {
                 const myRes = res as FetchResponse<UserResponse>;
                 return myRes.json();
             })
             .then((data: UserResponse) => callback(data))
-            .catch((err) => {
+            .catch((err: unknown) => {
                 if (err instanceof Error) console.error(err);
             });
     }
