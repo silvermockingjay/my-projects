@@ -22,6 +22,10 @@ const baseConfig = {
                 test: /\.js$/i,
                 use: 'source-map-loader',
             },
+            {
+                test: /\.svg$/,
+                type: 'asset/resource',
+            },
         ],
     },
     resolve: {
