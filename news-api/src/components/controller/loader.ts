@@ -1,6 +1,7 @@
 import { Options } from '../interfaces/interfaces.js';
 import { Endpoints } from '../interfaces/interfaces.js';
 import { Response } from '../interfaces/interfaces.js';
+import { CallBackFunction } from '../interfaces/interfaces.js';
 
 class Loader {
     constructor(
@@ -13,7 +14,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: { endpoint: Endpoints; options?: Options },
-        callback = () => {
+        callback: CallBackFunction = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -43,7 +44,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: 'GET' | 'POST', endpoint: Endpoints, callback: (data?: Response) => void, options: Options = {}) {
+    load(method: 'GET' | 'POST', endpoint: Endpoints, callback: CallBackFunction, options: Options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

@@ -144,3 +144,5 @@ export interface Source {
     country: StringOrNull;
 }
 export type Response = ResponseArticles | ResponseSources;
+
+export type CallBackFunction = (data?: Options | Response) => void;
