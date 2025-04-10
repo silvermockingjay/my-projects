@@ -1,0 +1,36 @@
+{
+  "name": "async-race",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.{ts,js,json,css}\"",
+    "ci:format": "prettier --check \"src/**/*.{ts,js,json,css}\""
+  },
+  "author": "Anastasia Kudrevich",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "css-loader": "^7.1.2",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "^3.5.3",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1",
+    "webpack": "^5.99.5",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  }
+}
