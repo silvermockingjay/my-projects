@@ -5,9 +5,11 @@ export const Button = ({type = 'button', text = '', onClick, className = ''}: Bu
   btn.className = className;
   btn.type = type;
   btn.textContent = text;
-  btn.addEventListener('click', function(event) {
-    event.preventDefault();
-    onClick();
-  });
+  if (onClick) {
+    btn.addEventListener('click', function(event) {
+      event.preventDefault();
+      onClick();
+    });
+  }
   return btn;
 }
