@@ -16,9 +16,18 @@ export interface AppState {
   winners: Winner[],
   garagePage: number,
   winnersPage: number,
-  selectedId: string | null,
+  selectedId: number | null,
   sortingOrder: 'asc' | 'desc',
   sortBy: 'wins' | 'time',
+  getState: <K extends keyof Omit<AppState, 'getState'>>(prop: K) => AppState[K];
+  setView: (view: string) => void,
+  setCars: (car: Car | Car[]) => void,
+  setWinners: (winners: Winner | Winner[]) => void,
+  setGaragePage: (page: number) => void,
+  setWinnersPage: (page: number) => void,
+  setId: (id: number) => void,
+  setSortingOrder: (order: 'asc' | 'desc') => void,
+  setSortBy: (type: 'wins' | 'time') => void,
 }
 
 export interface ButtonProps {

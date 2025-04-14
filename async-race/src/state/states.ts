@@ -1,0 +1,57 @@
+import type { AppState } from "../components/interfaces";
+
+const state: AppState = {
+  view: 'garage',
+  cars: [],
+  winners: [],
+  garagePage: 1,
+  winnersPage: 1,
+  selectedId: null,
+  sortingOrder: 'asc',
+  sortBy: 'time',
+  getState(prop) {
+    return this[prop];
+  },
+  setView(view) {
+    this.view = view;
+  },
+  setCars(car) {
+    if (Array.isArray(car)) {
+      this.cars = car;
+    } else {
+      this.cars.push(car);
+    }
+  },
+  setWinners(winner) {
+    if (Array.isArray(winner)) {
+      this.winners = winner;
+    } else {
+      this.winners.push(winner);
+    }
+  },
+  setGaragePage(page) {
+    this.garagePage = page;
+  },
+  setWinnersPage(page) {
+    this.winnersPage = page;
+  },
+  setId(id) {
+    this.selectedId = id;
+  },
+  setSortingOrder(order) {
+    this.sortingOrder = order;
+  },
+  setSortBy(type) {
+    this.sortBy = type;
+  }
+}
+
+export const getState = state.getState.bind(state);
+export const setView = state.setView.bind(state);
+export const setCars = state.setCars.bind(state);
+export const setWinners = state.setWinners.bind(state);
+export const setGaragePage = state.setGaragePage.bind(state);
+export const setWinnersPage = state.setWinnersPage.bind(state);
+export const setId = state.setId.bind(state);
+export const setSortingOrder = state.setSortingOrder.bind(state);
+export const setSortBy = state.setSortBy.bind(state);
