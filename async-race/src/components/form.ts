@@ -1,5 +1,5 @@
 import type { FormProps, InputProps } from "./interfaces"
-import { Button } from "./button";
+import { button } from "./button";
 
 export const inputField = ({type, value, id, placeholder, disabled, className}: InputProps): HTMLInputElement => {
   const input: HTMLInputElement = document.createElement('input');
@@ -15,10 +15,10 @@ export const inputField = ({type, value, id, placeholder, disabled, className}: 
 export const form = ({formClass, formSubmitFun, inputFields, btnClass, btnText,}: FormProps): HTMLFormElement => {
   const formElem: HTMLFormElement = document.createElement('form');
   if (formClass) formElem.className = formClass;
-  
+
   inputFields.forEach((input) => formElem.append(input));
 
-  const btn = Button({type: 'submit', text: btnText});
+  const btn = button({type: 'submit', text: btnText});
   if (btnClass) btn.className = btnClass;
   formElem.append(btn);
 

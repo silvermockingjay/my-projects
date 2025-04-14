@@ -1,6 +1,6 @@
 import type { ButtonProps } from "./interfaces";
 
-export const Button = ({type = 'button', text = '', onClick, className = ''}: ButtonProps): HTMLButtonElement => {
+export const button = ({type = 'button', text = '', onClick, className = ''}: ButtonProps): HTMLButtonElement => {
   const btn: HTMLButtonElement = document.createElement('button');
   btn.className = className;
   btn.type = type;
