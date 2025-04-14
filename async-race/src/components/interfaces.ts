@@ -1,7 +1,7 @@
-export interface Car {
+interface Car {
   name: string,
   color: string,
-  id: string,
+  id: number,
 }
 
 export interface ButtonProps {
