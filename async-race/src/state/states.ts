@@ -1,4 +1,5 @@
 import type { AppState } from "../components/interfaces";
+import { removeCarFromList, updateCarList } from "../components/list";
 
 const state: AppState = {
   view: 'garage',
@@ -6,7 +7,8 @@ const state: AppState = {
   winners: [],
   garagePage: 1,
   winnersPage: 1,
-  selectedId: null,
+  selectId: null,
+  removeId: null,
   sortingOrder: 'asc',
   sortBy: 'time',
   getState(prop) {
@@ -20,6 +22,7 @@ const state: AppState = {
       this.cars = car;
     } else {
       this.cars.push(car);
+      updateCarList(car);
     }
   },
   setWinners(winner) {
@@ -35,8 +38,15 @@ const state: AppState = {
   setWinnersPage(page) {
     this.winnersPage = page;
   },
-  setId(id) {
-    this.selectedId = id;
+  setId(id, type) {
+    if (type === 'select') {
+      this.selectId = id;
+    } else {
+      this.removeId = id;
+      const index = this.cars.findIndex((car) => car.id === this.removeId);
+      this.cars.splice(index, 1);
+      removeCarFromList(this.removeId);
+    }
   },
   setSortingOrder(order) {
     this.sortingOrder = order;
