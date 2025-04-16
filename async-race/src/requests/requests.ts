@@ -21,7 +21,7 @@ export function createCar(name: string, color: string): void {
 } 
 
 export function removeCar(id: number): void {
-  const url = `http://127.0.0.1:3000/garage/:${id}`;
+  const url = `http://127.0.0.1:3000/garage/${id}`;
   fetch(url, {
     method: 'DELETE',
   })
@@ -43,4 +43,3 @@ export function selectCar(car: Car): void {
   name.value = car.name;
   color.value = car.color;
 }
-
