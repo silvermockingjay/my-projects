@@ -1,10 +1,10 @@
-interface Car {
+export interface Car {
   name: string,
   color: string,
   id: number,
 }
 
-interface Winner {
+export interface Winner {
   id: number,
   wins: number,
   time: number,
@@ -16,7 +16,8 @@ export interface AppState {
   winners: Winner[],
   garagePage: number,
   winnersPage: number,
-  selectedId: number | null,
+  selectId: number | null,
+  removeId: number | null,
   sortingOrder: 'asc' | 'desc',
   sortBy: 'wins' | 'time',
   getState: <K extends keyof Omit<AppState, 'getState'>>(prop: K) => AppState[K];
@@ -25,7 +26,7 @@ export interface AppState {
   setWinners: (winners: Winner | Winner[]) => void,
   setGaragePage: (page: number) => void,
   setWinnersPage: (page: number) => void,
-  setId: (id: number) => void,
+  setId: (id: number, type: 'select' | 'remove') => void,
   setSortingOrder: (order: 'asc' | 'desc') => void,
   setSortBy: (type: 'wins' | 'time') => void,
 }
@@ -47,7 +48,7 @@ export interface InputProps {
 }
 
 export interface FormProps {
-  formSubmitFun: (...args: string[]) => Promise<Car>,
+  formSubmitFun: (...args: string[]) => void,
   inputFields: HTMLInputElement[],
   formClass?: string,
   btnClass?: string,
