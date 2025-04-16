@@ -44,8 +44,10 @@ const state: AppState = {
     } else {
       this.removeId = id;
       const index = this.cars.findIndex((car) => car.id === this.removeId);
-      this.cars.splice(index, 1);
-      removeCarFromList(this.removeId);
+      if (index !== -1) {
+        this.cars.splice(index, 1);
+        removeCarFromList(this.removeId);
+      }
     }
   },
   setSortingOrder(order) {
