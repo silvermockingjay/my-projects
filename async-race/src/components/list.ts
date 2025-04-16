@@ -50,7 +50,7 @@ export const list = (listItems: HTMLLIElement[] | HTMLLIElement, className?: str
 }
 
 export const updateCarList = (car: Car): void => {
-  const carList = document.querySelector('carList') as HTMLUListElement;
+  const carList = document.querySelector('.carList') as HTMLUListElement;
   const carItem = listItem(car);
   carList.append(carItem);
 }
@@ -64,7 +64,7 @@ export const updateCarListItem = (car: Car): void => {
 }
 
 export const removeCarFromList = (id: number): void => {
-  const carList = document.querySelector('carList') as HTMLUListElement;
+  const carList = document.querySelector('.carList') as HTMLUListElement;
   const carItem = document.querySelector(`[data-id=${id}]`) as HTMLLIElement;
   carList.removeChild(carItem);
 }
