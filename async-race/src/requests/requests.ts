@@ -43,3 +43,40 @@ export function selectCar(car: Car): void {
   name.value = car.name;
   color.value = car.color;
 }
+
+export function startStopCarEngine(id: number, status: 'started' | 'stopped'): void {
+  const url = `http://127.0.0.1:3000/engine?id=${id}&status=${status}`;
+  fetch(url, { 
+    method: 'PATCH',
+  })
+  .then((response) => {
+    if (response.ok) {
+      response.json();
+      driveCar(id);
+    } else if (response.status === 400) {
+      throw new Error('Wrong parameters');
+    } else if (response.status === 404) {
+      throw new Error ('Car is not found');
+    }
+  })
+  .catch((error) => alert(`Failed to start/stop car's engine: ${error}`));
+}
+
+function driveCar(id: number): void {
+  const url = `http://127.0.0.1:3000/engine?id=${id}&status=drive`;
+  fetch(url, { 
+    method: 'PATCH',
+  })
+  .then((response) => {
+    if (response.status === 400) {
+      throw new Error('Wrong parameters');
+    } else if (response.status === 404) {
+      throw new Error('Engine params are not found');
+    } else if (response.status === 429) {
+      throw new Error ('Drive in progress');
+    } else if (response.status === 500) {
+      throw new Error ('Car has been stopped suddenly. It\'s engine was broken down.')
+    }
+  })
+  .catch((error) => alert(`Failed to start driving a car: ${error}`));
+}
