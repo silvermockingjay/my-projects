@@ -7,6 +7,8 @@ const state: AppState = {
   winners: [],
   garagePage: 1,
   winnersPage: 1,
+  totalCars: 0,
+  totalWinners: 0,
   selectId: null,
   removeId: null,
   sortingOrder: 'asc',
@@ -37,6 +39,13 @@ const state: AppState = {
       this.winners = winner;
     } else {
       this.winners.push(winner);
+    }
+  },
+  setTotal(total, prop) {
+    if (prop === 'cars') {
+      this.totalCars = total;
+    } else {
+      this.totalWinners = total;
     }
   },
   setGaragePage(page) {
@@ -70,6 +79,7 @@ export const setView = state.setView.bind(state);
 export const setCars = state.setCars.bind(state);
 export const setUpdatedCar = state.setUpdatedCar.bind(state);
 export const setWinners = state.setWinners.bind(state);
+export const setTotal = state.setTotal.bind(state);
 export const setGaragePage = state.setGaragePage.bind(state);
 export const setWinnersPage = state.setWinnersPage.bind(state);
 export const setId = state.setId.bind(state);
