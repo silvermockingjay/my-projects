@@ -23,6 +23,7 @@ export interface AppState {
   getState: <K extends keyof Omit<AppState, 'getState'>>(prop: K) => AppState[K];
   setView: (view: string) => void,
   setCars: (car: Car | Car[]) => void,
+  updateCar: (car: Car) => void,
   setWinners: (winners: Winner | Winner[]) => void,
   setGaragePage: (page: number) => void,
   setWinnersPage: (page: number) => void,

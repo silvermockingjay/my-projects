@@ -25,6 +25,12 @@ const state: AppState = {
       updateCarList(car);
     }
   },
+  updateCar(updatedCar) {
+    const index = this.cars.findIndex((car) => car.id === updatedCar.id);
+    if (index !== -1) {
+      this.cars[index] = updatedCar;
+    }
+  },
   setWinners(winner) {
     if (Array.isArray(winner)) {
       this.winners = winner;
@@ -61,6 +67,7 @@ const state: AppState = {
 export const getState = state.getState.bind(state);
 export const setView = state.setView.bind(state);
 export const setCars = state.setCars.bind(state);
+export const updateCar = state.updateCar.bind(state);
 export const setWinners = state.setWinners.bind(state);
 export const setGaragePage = state.setGaragePage.bind(state);
 export const setWinnersPage = state.setWinnersPage.bind(state);
