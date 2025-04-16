@@ -1,5 +1,5 @@
 import type { AppState } from "../components/interfaces";
-import { removeCarFromList, updateCarList } from "../components/list";
+import { removeCarFromList, updateCarList, updateCarListItem } from "../components/list";
 
 const state: AppState = {
   view: 'garage',
@@ -29,6 +29,7 @@ const state: AppState = {
     const index = this.cars.findIndex((car) => car.id === updatedCar.id);
     if (index !== -1) {
       this.cars[index] = updatedCar;
+      updateCarListItem(updatedCar);
     }
   },
   setWinners(winner) {
