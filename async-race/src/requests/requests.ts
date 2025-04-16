@@ -1,5 +1,5 @@
 import type { Car } from "../components/interfaces";
-import { setCars, setId } from "../state/states";
+import { setCars, setId, setUpdatedCar } from "../state/states";
 
 export function createCar(name: string, color: string): void {
   const data = {
@@ -19,6 +19,30 @@ export function createCar(name: string, color: string): void {
   })
   .catch((error) => alert(`Failed to create a car: ${error}`));
 } 
+
+export function updateCar(id: number, name: string, color: string): void {
+  const url = `http://127.0.0.1:3000/garage/${id}`;
+  const data = {
+    name: name,
+    color: color
+  };
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error(`Car is not found: ${response.status}`);
+    }
+  })
+  .then((data) => setUpdatedCar(data))
+  .catch((error) => alert(`Failed to update a car: ${error}`));
+}
 
 export function removeCar(id: number): void {
   const url = `http://127.0.0.1:3000/garage/${id}`;
