@@ -51,8 +51,13 @@ export const list = (listItems?: HTMLLIElement[] | HTMLLIElement, className?: st
 
 export const updateCarList = (car: Car | Car[]): void => {
   const carList = document.querySelector('.carList') as HTMLUListElement;
-  const carItem = listItem(car);
-  carList.append(carItem);
+  if (Array.isArray(car)) {
+    const carItems: HTMLLIElement[] = car.map((item) => listItem(item));
+    carList.append(...carItems);
+  } else {
+    const carItem = listItem(car);
+    carList.append(carItem);
+  }
 }
 
 export const updateCarListItem = (car: Car): void => {
