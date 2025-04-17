@@ -60,6 +60,7 @@ export function removeCar(id: number): void {
 }
 
 export function selectCar(car: Car): void {
+  setId(car.id, 'select');
   const id = document.querySelector('.updateId') as HTMLInputElement;
   const name = document.querySelector('.updateName') as HTMLInputElement;
   const color = document.querySelector('.updateColor') as HTMLInputElement;
