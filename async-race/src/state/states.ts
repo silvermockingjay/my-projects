@@ -26,6 +26,8 @@ const state: AppState = {
       this.cars = car;
     } else {
       this.cars.push(car);
+    }
+    if (this.cars.length <= this.limitCars) {
       updateCarList(car);
     }
   },
