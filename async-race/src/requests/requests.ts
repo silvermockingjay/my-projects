@@ -1,6 +1,14 @@
 import type { Car } from "../components/interfaces";
 import { setCars, setId, setUpdatedCar } from "../state/states";
 
+export function getCars(page: number, limit: number) {
+  let url = `http://127.0.0.1:3000/garage?_page=${page}&_limit=${limit}`;
+  fetch(url, {method: 'GET'})
+  .then((response) => response.json())
+  .then((data) => setCars(data))
+  .catch((error) => alert(`Failed to get cars: ${error}`))
+}
+
 export function createCar(name: string, color: string): void {
   const data = {
     name: name, 
