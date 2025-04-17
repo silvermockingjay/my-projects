@@ -9,6 +9,8 @@ const state: AppState = {
   winnersPage: 1,
   totalCars: 0,
   totalWinners: 0,
+  limitCars: 7,
+  limitWinners: 10,
   selectId: null,
   removeId: null,
   sortingOrder: 'asc',

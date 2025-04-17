@@ -18,6 +18,8 @@ export interface AppState {
   winnersPage: number,
   totalCars: number,
   totalWinners: number,
+  limitCars: number,
+  limitWinners: number,
   selectId: number | null,
   removeId: number | null,
   sortingOrder: 'asc' | 'desc',
