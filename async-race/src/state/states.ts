@@ -1,5 +1,6 @@
 import type { AppState } from "../components/interfaces";
 import { removeCarFromList, updateCarList, updateCarListItem } from "../components/list";
+import { getCars } from "../requests/requests";
 
 const state: AppState = {
   view: 'garage',
@@ -29,6 +30,9 @@ const state: AppState = {
     }
     if (this.cars.length <= this.limitCars) {
       updateCarList(car);
+    } else {
+      const nextPage = this.garagePage + 1;
+      this.setGaragePage(nextPage);
     }
   },
   setUpdatedCar(updatedCar) {
@@ -54,6 +58,7 @@ const state: AppState = {
   },
   setGaragePage(page) {
     this.garagePage = page;
+    getCars();
   },
   setWinnersPage(page) {
     this.winnersPage = page;
@@ -67,6 +72,10 @@ const state: AppState = {
       if (index !== -1) {
         this.cars.splice(index, 1);
         removeCarFromList(this.removeId);
+      }
+      if (this.cars.length === 0 && this.garagePage > 1) {
+        const prevPage = this.garagePage - 1;
+        this.setGaragePage(prevPage);
       }
     }
   },
