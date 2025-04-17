@@ -78,9 +78,9 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
       response.json();
       driveCar(id);
     } else if (response.status === 400) {
-      throw new Error('Wrong parameters');
+      throw new Error(`Wrong parameters: ${response.status}`);
     } else if (response.status === 404) {
-      throw new Error ('Car is not found');
+      throw new Error (`Car is not found: ${response.status}`);
     }
   })
   .catch((error) => alert(`Failed to start/stop car's engine: ${error}`));
@@ -93,13 +93,13 @@ function driveCar(id: number): void {
   })
   .then((response) => {
     if (response.status === 400) {
-      throw new Error('Wrong parameters');
+      throw new Error(`Wrong parameters: ${response.status}`);
     } else if (response.status === 404) {
-      throw new Error('Engine params are not found');
+      throw new Error(`Engine params are not found: ${response.status}`);
     } else if (response.status === 429) {
-      throw new Error ('Drive in progress');
+      throw new Error (`Drive in progress: ${response.status}`);
     } else if (response.status === 500) {
-      throw new Error ('Car has been stopped suddenly. It\'s engine was broken down.')
+      throw new Error (`Car has been stopped suddenly. It\'s engine was broken down: ${response.status}`);
     }
   })
   .catch((error) => alert(`Failed to start driving a car: ${error}`));
