@@ -38,18 +38,18 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
   return li;
 }
 
-export const list = (listItems: HTMLLIElement[] | HTMLLIElement, className?: string): HTMLUListElement => {
+export const list = (listItems?: HTMLLIElement[] | HTMLLIElement, className?: string): HTMLUListElement => {
   const list: HTMLUListElement = document.createElement('ul');
   if (className) list.className = className;
   if (Array.isArray(listItems)) {
     listItems.forEach((item) => list.append(item));
-  } else {
+  } else if (listItems) {
     list.append(listItems);
   }
   return list;
 }
 
-export const updateCarList = (car: Car): void => {
+export const updateCarList = (car: Car | Car[]): void => {
   const carList = document.querySelector('.carList') as HTMLUListElement;
   const carItem = listItem(car);
   carList.append(carItem);
