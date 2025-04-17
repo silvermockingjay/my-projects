@@ -1,12 +1,16 @@
 import type { Car } from "../components/interfaces";
-import { getState, setCars, setId, setUpdatedCar } from "../state/states";
+import { getState, setCars, setId, setTotal, setUpdatedCar } from "../state/states";
 
 export function getCars(): void {
   const page = getState('garagePage');
   const limit = getState('limitCars');
   let url = `http://127.0.0.1:3000/garage?_page=${page}&_limit=${limit}`;
   fetch(url, {method: 'GET'})
-  .then((response) => response.json())
+  .then((response) => {
+    const total = Number(response.headers.get('X-Total-Count'));
+    setTotal(total, 'cars');
+    return response.json();
+  })
   .then((data) => setCars(data))
   .catch((error) => alert(`Failed to get cars: ${error}`))
 }
