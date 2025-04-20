@@ -1,4 +1,4 @@
-import { getState, setGaragePage, setWinnersPage } from "../state/states";
+import { getState, setGaragePage, setView, setWinnersPage } from "../state/states";
 
 export function prevPage(): void {
   const nextPageBtn = document.querySelector('.nextButton') as HTMLButtonElement;
@@ -37,4 +37,12 @@ export function nextPage(): void {
     if (prevPageBtn?.classList.contains('inactive')) prevPageBtn.classList.remove('inactive');
     if (nextPage === totalPagesView) nextPageBtn.classList.add('inactive');
   }
+}
+
+export function goToGarage() {
+  setView('garage');
+}
+
+export function goToWinners() {
+  setView('winners');
 }
