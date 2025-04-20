@@ -70,6 +70,7 @@ const state: AppState = {
   },
   setWinnersPage(page) {
     this.winnersPage = page;
+    getCars();
   },
   setId(id, type) {
     if (type === 'select') {
