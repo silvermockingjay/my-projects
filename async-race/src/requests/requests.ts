@@ -4,7 +4,7 @@ import { getState, setCars, setId, setTotal, setUpdatedCar } from "../state/stat
 export function getCars(): void {
   const page = getState('garagePage');
   const limit = getState('limitCars');
-  let url = `http://127.0.0.1:3000/garage?_page=${page}&_limit=${limit}`;
+  let url = `http://localhost:3000/garage?_page=[${page}]&_limit=[${limit}]`;
   fetch(url, {method: 'GET'})
   .then((response) => {
     const total = Number(response.headers.get('X-Total-Count'));
@@ -154,7 +154,7 @@ export function generateCars(): void {
       name: name,
       color: randomColor,
     }
-    const promise = fetch('http://127.0.0.1:3000/garage', {
+    const promise = fetch('http://localhost:3000/garage', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -185,7 +185,7 @@ export function createCar(name: string, color: string): void {
     name: name, 
     color: color,
   };
-  fetch('http://127.0.0.1:3000/garage', {
+  fetch('http://localhost:3000/garage', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -203,7 +203,7 @@ export function createCar(name: string, color: string): void {
 } 
 
 export function updateCar(id: string, name: string, color: string): void {
-  const url = `http://127.0.0.1:3000/garage/${id}`;
+  const url = `http://localhost:3000/garage/${id}`;
   const data = {
     name: name,
     color: color
@@ -227,7 +227,7 @@ export function updateCar(id: string, name: string, color: string): void {
 }
 
 export function removeCar(id: number): void {
-  const url = `http://127.0.0.1:3000/garage/${id}`;
+  const url = `http://localhost:3000/garage/${id}`;
   fetch(url, {
     method: 'DELETE',
   })
@@ -255,7 +255,7 @@ export function selectCar(car: Car): void {
 }
 
 export function startStopCarEngine(id: number, status: 'started' | 'stopped'): void {
-  const url = `http://127.0.0.1:3000/engine?id=${id}&status=${status}`;
+  const url = `http://localhost:3000/engine?id=${id}&status=${status}`;
   fetch(url, { 
     method: 'PATCH',
   })
@@ -273,7 +273,7 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
 }
 
 function driveCar(id: number): void {
-  const url = `http://127.0.0.1:3000/engine?id=${id}&status=drive`;
+  const url = `http://localhost:3000/engine?id=${id}&status=drive`;
   fetch(url, { 
     method: 'PATCH',
   })
