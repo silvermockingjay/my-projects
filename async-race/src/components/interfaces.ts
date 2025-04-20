@@ -64,3 +64,9 @@ export interface FormProps {
   btnClass?: string,
   btnText: string,
 }
+
+export interface ListProps {
+  type: 'ul' | 'ol',
+  listItems?: HTMLLIElement[] | HTMLLIElement,
+  className?: string
+}

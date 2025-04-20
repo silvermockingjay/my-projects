@@ -1,6 +1,6 @@
 import { button } from "./button";
 import { selectCar, removeCar, startStopCarEngine } from "../requests/requests";
-import type { Car } from "./interfaces";
+import type { Car, ListProps } from "./interfaces";
 
 export const listItem = (car: Car, className?: string): HTMLLIElement => {
   const li: HTMLLIElement = document.createElement('li');
@@ -38,8 +38,8 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
   return li;
 }
 
-export const list = (listItems?: HTMLLIElement[] | HTMLLIElement, className?: string): HTMLUListElement => {
-  const list: HTMLUListElement = document.createElement('ul');
+export const list = ({type, listItems, className}: ListProps): HTMLUListElement => {
+  const list: HTMLUListElement = document.createElement(`${type}`);
   if (className) list.className = className;
   if (Array.isArray(listItems)) {
     listItems.forEach((item) => list.append(item));
