@@ -1,8 +1,8 @@
 import type { AppState } from "../components/interfaces";
 import { removeCarFromList, updateCarList, updateCarListItem } from "../components/list";
 import { getCars } from "../requests/requests";
-import { renderGarage } from "../views/garage";
-import { renderWinners } from "../views/winners";
+import { renderGarage, updateTotalCars } from "../views/garage";
+import { renderWinners, updateTotalWinners } from "../views/winners";
 
 const state: AppState = {
   view: 'garage',
@@ -62,9 +62,11 @@ const state: AppState = {
     if (prop === 'cars') {
       this.totalCars = total;
       this.setTotalPagesGarage();
+      updateTotalCars();
     } else {
       this.totalWinners = total;
       this.setTotalPagesWinners();
+      updateTotalWinners();
     }
   },
   setTotalPagesGarage() {
