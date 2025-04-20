@@ -1,7 +1,7 @@
 import { button } from '../components/button';
 import { inputField, form } from '../components/form';
 import { list } from '../components/list';
-import { createCar, generateCars, getCars, updateCar } from '../requests/requests';
+import { createCar, generateCars, getCars, resetCars, startRace, updateCar } from '../requests/requests';
 import { nextPage, prevPage } from '../routing/navigation';
 import { goToGarage, goToWinners } from '../routing/navigation';
 import { getState } from '../state/states';
@@ -30,7 +30,7 @@ export function renderGarage(): void {
   sectionWithForm.append(updateCarForm);
   // Create race, reset, generate cars button
   const raceBtn = button({ type: 'button', text: 'race', onClick: startRace, className: 'raceBtn' });
-  const resetBtn = button({ type: 'button', text: 'reset', onClick: startRace, className: 'resetBtn' });
+  const resetBtn = button({ type: 'button', text: 'reset', onClick: resetCars, className: 'resetBtn' });
   const generateCarsBtn = button({ type: 'button', text: 'generate', onClick: generateCars, className: 'generateBtn' });
   divWithRaceAndGenerator.append(raceBtn, resetBtn, generateCarsBtn);
   sectionWithForm.append(divWithRaceAndGenerator);
