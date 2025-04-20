@@ -202,7 +202,7 @@ export function createCar(name: string, color: string): void {
   .catch((error) => alert(`Failed to create a car: ${error}`));
 } 
 
-export function updateCar(id: number, name: string, color: string): void {
+export function updateCar(id: string, name: string, color: string): void {
   const url = `http://127.0.0.1:3000/garage/${id}`;
   const data = {
     name: name,
