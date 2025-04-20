@@ -65,7 +65,7 @@ export const updateCarList = (car: Car | Car[]): void => {
 };
 
 export const updateCarListItem = (car: Car): void => {
-  const carItem: HTMLLIElement | null = document.querySelector(`[data-id=${car.id}]`);
+  const carItem: HTMLLIElement | null = document.querySelector(`[data-id='${car.id}']`);
   if (carItem) {
     const name: HTMLDivElement | null = carItem.querySelector('.carName');
     if (name) name.textContent = car.name;
@@ -76,6 +76,6 @@ export const updateCarListItem = (car: Car): void => {
 
 export const removeCarFromList = (id: number): void => {
   const carList: HTMLUListElement | null = document.querySelector('.carList');
-  const carItem: HTMLLIElement | null = document.querySelector(`[data-id=${id}]`);
+  const carItem: HTMLLIElement | null = document.querySelector(`[data-id='${id}']`);
   if (carList && carItem) carList.removeChild(carItem);
 };
