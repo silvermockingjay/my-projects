@@ -56,6 +56,7 @@ export const updateCarList = (car: Car | Car[]): void => {
   if (carList) {
     if (Array.isArray(car)) {
       const carItems: HTMLLIElement[] = car.map((item) => listItem(item));
+      carList.innerHTML = '';
       carList.append(...carItems);
     } else {
       const carItem = listItem(car);
