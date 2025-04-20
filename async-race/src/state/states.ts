@@ -10,6 +10,8 @@ const state: AppState = {
   winnersPage: 1,
   totalCars: 0,
   totalWinners: 0,
+  totalPagesGarage: 0,
+  totalPagesWinners: 0,
   limitCars: 7,
   limitWinners: 10,
   selectId: null,
@@ -56,6 +58,12 @@ const state: AppState = {
       this.totalWinners = total;
     }
   },
+  setTotalPagesGarage() {
+    this.totalPagesGarage = Math.ceil(this.totalCars / this.limitCars);
+  },
+  setTotalPagesWinners() {
+    this.totalPagesWinners = Math.ceil(this.totalWinners / this.limitWinners);
+  },
   setGaragePage(page) {
     this.garagePage = page;
     getCars();
@@ -93,6 +101,8 @@ export const setCars = state.setCars.bind(state);
 export const setUpdatedCar = state.setUpdatedCar.bind(state);
 export const setWinners = state.setWinners.bind(state);
 export const setTotal = state.setTotal.bind(state);
+export const setTotalPagesGarage = state.setTotalPagesGarage.bind(state);
+export const setTotalPagesWinners = state.setTotalPagesWinners.bind(state);
 export const setGaragePage = state.setGaragePage.bind(state);
 export const setWinnersPage = state.setWinnersPage.bind(state);
 export const setId = state.setId.bind(state);
