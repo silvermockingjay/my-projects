@@ -54,8 +54,10 @@ const state: AppState = {
   setTotal(total, prop) {
     if (prop === 'cars') {
       this.totalCars = total;
+      this.setTotalPagesGarage();
     } else {
       this.totalWinners = total;
+      this.setTotalPagesWinners();
     }
   },
   setTotalPagesGarage() {
