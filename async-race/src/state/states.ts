@@ -1,6 +1,8 @@
 import type { AppState } from "../components/interfaces";
 import { removeCarFromList, updateCarList, updateCarListItem } from "../components/list";
 import { getCars } from "../requests/requests";
+import { renderGarage } from "../views/garage";
+import { renderWinners } from "../views/winners";
 
 const state: AppState = {
   view: 'garage',
@@ -23,6 +25,11 @@ const state: AppState = {
   },
   setView(view) {
     this.view = view;
+    if (this.view === 'garage') {
+      renderGarage();
+    } else {
+      renderWinners();
+    }
   },
   setCars(car) {
     if (Array.isArray(car)) {
