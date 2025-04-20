@@ -1,6 +1,6 @@
-import { button } from "./button";
-import { selectCar, removeCar, startStopCarEngine } from "../requests/requests";
-import type { Car, ListProps } from "./interfaces";
+import { button } from './button';
+import { selectCar, removeCar, startStopCarEngine } from '../requests/requests';
+import type { Car, ListProps } from './interfaces';
 
 export const listItem = (car: Car, className?: string): HTMLLIElement => {
   const li: HTMLLIElement = document.createElement('li');
@@ -10,14 +10,14 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
   div.className = 'liContainer';
   li.append(div);
   const upperPart: HTMLDivElement = document.createElement('div');
-  upperPart.className = 'upperPartContainer'
+  upperPart.className = 'upperPartContainer';
   const lowerPart: HTMLDivElement = document.createElement('div');
-  lowerPart.className = 'lowerPartContainer'
+  lowerPart.className = 'lowerPartContainer';
   div.append(upperPart, lowerPart);
-  const selectCarBtn = button({type: 'button', text: 'select', onClick: () => selectCar(car)});
-  const removeCarBtn = button({type: 'button', text: 'remove', onClick: () => removeCar(car.id)});
-  const startEngineBtn = button({type: 'button', text: 'A', onClick: () => startStopCarEngine(car.id, 'started')});
-  const stopEngineBtn = button({type: 'button', text: 'B', onClick: () => startStopCarEngine(car.id, 'stopped')});
+  const selectCarBtn = button({ type: 'button', text: 'select', onClick: () => selectCar(car)});
+  const removeCarBtn = button({ type: 'button', text: 'remove', onClick: () => removeCar(car.id) });
+  const startEngineBtn = button({ type: 'button', text: 'A', onClick: () => startStopCarEngine(car.id, 'started') });
+  const stopEngineBtn = button({ type: 'button', text: 'B', onClick: () => startStopCarEngine(car.id, 'stopped') });
   const carName: HTMLSpanElement = document.createElement('span');
   carName.className = 'carName';
   carName.textContent = car.name;
@@ -38,16 +38,18 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
   return li;
 }
 
-export const list = ({type, listItems, className}: ListProps): HTMLUListElement => {
+export const list = ({ type, listItems, className }: ListProps): HTMLUListElement => {
   const list: HTMLUListElement = document.createElement(`${type}`);
   if (className) list.className = className;
   if (Array.isArray(listItems)) {
-    listItems.forEach((item) => list.append(item));
+    listItems.forEach((item) => {
+      list.append(item);
+    });
   } else if (listItems) {
     list.append(listItems);
   }
   return list;
-}
+};
 
 export const updateCarList = (car: Car | Car[]): void => {
   const carList = document.querySelector('.carList') as HTMLUListElement;
@@ -58,18 +60,18 @@ export const updateCarList = (car: Car | Car[]): void => {
     const carItem = listItem(car);
     carList.append(carItem);
   }
-}
+};
 
 export const updateCarListItem = (car: Car): void => {
   const carItem = document.querySelector(`[data-id=${car.id}]`) as HTMLLIElement;
   const name = carItem.querySelector('.carName') as HTMLDivElement;
   name.textContent = car.name;
   const path = carItem.querySelector('.svgCar') as SVGPathElement;
-  path.setAttribute('fill', car.color); 
-}
+  path.setAttribute('fill', car.color);
+};
 
 export const removeCarFromList = (id: number): void => {
   const carList = document.querySelector('.carList') as HTMLUListElement;
   const carItem = document.querySelector(`[data-id=${id}]`) as HTMLLIElement;
   carList.removeChild(carItem);
-}
+};
