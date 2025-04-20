@@ -52,26 +52,30 @@ export const list = ({ type, listItems, className }: ListProps): HTMLUListElemen
 };
 
 export const updateCarList = (car: Car | Car[]): void => {
-  const carList = document.querySelector('.carList') as HTMLUListElement;
-  if (Array.isArray(car)) {
-    const carItems: HTMLLIElement[] = car.map((item) => listItem(item));
-    carList.append(...carItems);
-  } else {
-    const carItem = listItem(car);
-    carList.append(carItem);
+  const carList: HTMLUListElement | null = document.querySelector('.carList');
+  if (carList) {
+    if (Array.isArray(car)) {
+      const carItems: HTMLLIElement[] = car.map((item) => listItem(item));
+      carList.append(...carItems);
+    } else {
+      const carItem = listItem(car);
+      carList.append(carItem);
+    }
   }
 };
 
 export const updateCarListItem = (car: Car): void => {
-  const carItem = document.querySelector(`[data-id=${car.id}]`) as HTMLLIElement;
-  const name = carItem.querySelector('.carName') as HTMLDivElement;
-  name.textContent = car.name;
-  const path = carItem.querySelector('.svgCar') as SVGPathElement;
-  path.setAttribute('fill', car.color);
+  const carItem: HTMLLIElement | null = document.querySelector(`[data-id=${car.id}]`);
+  if (carItem) {
+    const name: HTMLDivElement | null = carItem.querySelector('.carName');
+    if (name) name.textContent = car.name;
+    const path: SVGPathElement | null = carItem.querySelector('.svgCar');
+    if (path) path.setAttribute('fill', car.color);
+  }
 };
 
 export const removeCarFromList = (id: number): void => {
-  const carList = document.querySelector('.carList') as HTMLUListElement;
-  const carItem = document.querySelector(`[data-id=${id}]`) as HTMLLIElement;
-  carList.removeChild(carItem);
+  const carList: HTMLUListElement | null = document.querySelector('.carList');
+  const carItem: HTMLLIElement | null = document.querySelector(`[data-id=${id}]`);
+  if (carList && carItem) carList.removeChild(carItem);
 };
