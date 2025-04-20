@@ -36,7 +36,7 @@ export default tseslint.config({
       'no-console': 'warn',
       '@typescript-eslint/no-explicit-any': 'error',
       'no-magic-numbers': 'off',
-      '@typescript-eslint/no-magic-numbers': ['error', { "ignoreTypeIndexes": true }],
+      '@typescript-eslint/no-magic-numbers': ['error', { "ignoreTypeIndexes": true, 'ignore': [1] }],
       'max-lines-per-function': ['error', { max: 40, skipBlankLines: true, skipComments: true }],
       'prettier/prettier': 'error',
     },
