@@ -4,7 +4,7 @@ import { getState, setCars, setId, setTotal, setUpdatedCar } from '../state/stat
 export function getCars(): void {
   const page = getState('garagePage');
   const limit = getState('limitCars');
-  const url = `http://localhost:3000/garage?_page=[${page}]&_limit=[${limit}]`;
+  const url = `http://localhost:3000/garage?_page=${page}&_limit=${limit}`;
   fetch(url, { method: 'GET' })
     .then((response): Promise<Car> => {
       const total = Number(response.headers.get('X-Total-Count'));
