@@ -28,3 +28,8 @@ export function renderWinners(): void {
   // Fill the table
 
 }
+
+export function updateTotalWinners(): void {
+    const totalWinners = document.querySelector('.totalWinners') as HTMLParagraphElement;
+    totalWinners.textContent = `Total winners: ${getState('totalWinners')}`;
+  }

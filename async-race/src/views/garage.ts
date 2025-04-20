@@ -49,3 +49,8 @@ export function renderGarage(): void {
   // Fill the car list
   getCars();
 }
+
+export function updateTotalCars(): void {
+  const totalCars = document.querySelector('.totalCars') as HTMLParagraphElement;
+  totalCars.textContent = `Total cars: ${getState('totalCars')}`;
+}
