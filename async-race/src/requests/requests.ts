@@ -144,6 +144,7 @@ export function generateCars(): void {
   const base: number = 16;
   const largestHexadecimal: number = 16777215;
   let promises: Promise<Response>[] = [];
+  let totalCreated = 0;
   for (let i = 0; i < total; i += 1) {
     const randomBrand: number = Math.floor(Math.random() * range);
     const randomModel: number = Math.floor(Math.random() * range);
@@ -164,12 +165,19 @@ export function generateCars(): void {
   }
   Promise.allSettled(promises).then((results) => results.forEach((result, index) => {
     if (result.status === 'fulfilled') {
-      result.value.json().then((data) => setCars(data))
+      result.value.json()
+      .then((data) => {
+        totalCreated += 1;
+        setCars(data)
+    })
       .catch((error) => console.error(`Error parsing car ${index + 1}`, error));
     } else {
       console.error(`Failed to create a car ${index + 1}:`, result.reason);
     }
   }));
+  let currentTotal = getState('totalCars');
+  currentTotal += totalCreated;
+  setTotal(currentTotal, 'cars');
 }
 
 export function createCar(name: string, color: string): void {
@@ -186,6 +194,9 @@ export function createCar(name: string, color: string): void {
   })
   .then((response) => response.json())
   .then((data: Car) => {
+    let total = getState('totalCars');
+    total += 1;
+    setTotal(total, 'cars');
     setCars(data);
   })
   .catch((error) => alert(`Failed to create a car: ${error}`));
@@ -224,6 +235,9 @@ export function removeCar(id: number): void {
     if (!response.ok) {
       throw new Error(`Failed to delete a car: ${response.status}`);
     } else {
+      let total = getState('totalCars');
+      total -= 1;
+      setTotal(total, 'cars');
       setId(id, 'remove');
     }
   })
