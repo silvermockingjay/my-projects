@@ -1,4 +1,4 @@
-import { getState, setGaragePage } from "../state/states";
+import { getState, setGaragePage, setWinnersPage } from "../state/states";
 
 export function prevPage(): void {
   const nextPageBtn = document.querySelector('.nextButton') as HTMLButtonElement;
@@ -12,7 +12,7 @@ export function prevPage(): void {
   let prevPage: number = 0;
   if (currPage > 1) {
     prevPage = currPage - 1;
-    setGaragePage(prevPage);
+    currView === 'garage' ? setGaragePage(prevPage): setWinnersPage(prevPage);
     if (nextPageBtn?.classList.contains('inactive')) nextPageBtn.classList.remove('inactive');
   }
 }
@@ -33,7 +33,7 @@ export function nextPage(): void {
   let nextPage: number = 0;
   if (currPage < totalPagesView) {
     nextPage = currPage + 1;
-    setGaragePage(nextPage);
+    currView === 'garage' ? setGaragePage(nextPage): setWinnersPage(nextPage);
     if (prevPageBtn?.classList.contains('inactive')) prevPageBtn.classList.remove('inactive');
     if (nextPage === totalPagesView) nextPageBtn.classList.add('inactive');
   }
