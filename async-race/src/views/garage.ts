@@ -28,9 +28,9 @@ export function renderGarage(): void {
   sectionWithForm.append(createCarForm);
   // Create form to update a car
   let inputFields2: HTMLInputElement[] = [];
-  const hiddenInput: HTMLInputElement = inputField({type: 'hidden'});
-  const textField2: HTMLInputElement = inputField({type: 'text'});
-  const colorField2: HTMLInputElement = inputField({type: 'color', value: '#ffffff'});
+  const hiddenInput: HTMLInputElement = inputField({type: 'hidden', className: 'updateId'});
+  const textField2: HTMLInputElement = inputField({type: 'text', className: 'updateName'});
+  const colorField2: HTMLInputElement = inputField({type: 'color', value: '#ffffff', className: 'updateColor'});
   inputFields1.push(hiddenInput, textField2, colorField2);
   const updateCarForm = form({formSubmitFun: updateCar, inputFields: inputFields2, btnText: 'update'});
   sectionWithForm.append(updateCarForm);
