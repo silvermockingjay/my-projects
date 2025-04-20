@@ -31,7 +31,7 @@ export function renderGarage(): void {
   const hiddenInput: HTMLInputElement = inputField({type: 'hidden', className: 'updateId'});
   const textField2: HTMLInputElement = inputField({type: 'text', className: 'updateName'});
   const colorField2: HTMLInputElement = inputField({type: 'color', value: '#ffffff', className: 'updateColor'});
-  inputFields1.push(hiddenInput, textField2, colorField2);
+  inputFields2.push(hiddenInput, textField2, colorField2);
   const updateCarForm = form({formSubmitFun: updateCar, inputFields: inputFields2, btnText: 'update'});
   sectionWithForm.append(updateCarForm);
   // Create list
