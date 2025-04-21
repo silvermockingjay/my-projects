@@ -1,8 +1,8 @@
 import type { AppState } from "../components/interfaces";
 import { removeCarFromList, updateCarList, updateCarListItem } from "../components/list";
 import { getCars } from "../requests/requests";
-import { renderGarage, updateTotalCars } from "../views/garage";
-import { renderWinners, updateTotalWinners } from "../views/winners";
+import { updateTotalCars, updateCurrPage } from "../views/garage";
+import { updateTotalWinners } from "../views/winners";
 
 const state: AppState = {
   view: 'garage',
@@ -72,10 +72,12 @@ const state: AppState = {
   },
   setGaragePage(page) {
     this.garagePage = page;
+    updateCurrPage('garagePage');
     getCars();
   },
   setWinnersPage(page) {
     this.winnersPage = page;
+    updateCurrPage('winnersPage');
     getCars();
   },
   setId(id, type) {
