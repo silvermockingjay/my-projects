@@ -1,0 +1,45 @@
+main {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul li {
+  list-style: none;
+}
+.carList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+}
+.liContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: dashed black 2px;
+}
+
+.upperPartContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.lowerPartContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.imgFlag {
+  align-self: flex-end;
+}
+
+
+
+
+
