@@ -173,3 +173,17 @@ function driveCar(id: number): void {
     })
     .catch((error: unknown) => alert(`Failed to start driving a car: ${error}`));
 }
+
+export function startRace(): void {
+  //const cars = getState('cars');
+  //const limit = getState('limitCars');
+  //if (cars.length > limit) {
+  //  cars.splice(limit + 1, cars.length - limit);
+  //}
+  //const promises: Promise<Response>[] = cars.map((car) => s)
+  console.log('Implement startRace');
+}
+
+export function resetCars(): void {
+  console.log('Implement resetCars');
+}

@@ -1,5 +1,5 @@
 import { button } from '../components/button';
-import { inputField, form } from '../components/form';
+import { cleanForm, inputField, form } from '../components/form';
 import { list } from '../components/list';
 import { createCar, generateCars, getCars, resetCars, startRace, updateCar } from '../requests/requests';
 import { nextPage, prevPage } from '../routing/navigation';
@@ -22,11 +22,11 @@ export function renderGarage(): void {
   divWithViewNavigation.append(garageBtn, winnersBtn);
   // Create form to create a car
   const inputFields1 = createCarInputs();
-  const createCarForm = form({ formSubmitFun: createCar, inputFields: inputFields1, btnText: 'create' });
+  const createCarForm = form({ formSubmitFun: createCar, cleanFormFun: () => cleanForm('createName', 'createColor'), inputFields: inputFields1, btnText: 'create' });
   sectionWithForm.append(createCarForm);
   // Create form to update a car
   const inputFields2 = updateCarInputs();
-  const updateCarForm = form({ formSubmitFun: updateCar, inputFields: inputFields2, btnText: 'update' });
+  const updateCarForm = form({ formSubmitFun: updateCar, cleanFormFun: () => cleanForm('updateName', 'updateColor'), inputFields: inputFields2, btnText: 'update' });
   sectionWithForm.append(updateCarForm);
   // Create race, reset, generate cars button
   const raceBtn = button({ type: 'button', text: 'race', onClick: startRace, className: 'raceBtn' });
@@ -57,8 +57,8 @@ export function updateTotalCars(): void {
 
 function createCarInputs(): HTMLInputElement[] {
   const inputFields: HTMLInputElement[] = [];
-  const textField: HTMLInputElement = inputField({ type: 'text' });
-  const colorField: HTMLInputElement = inputField({ type: 'color', value: '#ffffff' });
+  const textField: HTMLInputElement = inputField({ type: 'text', className: 'createName' });
+  const colorField: HTMLInputElement = inputField({ type: 'color', value: '#ffffff', className: 'createColor' });
   inputFields.push(textField, colorField);
   return inputFields;
 }

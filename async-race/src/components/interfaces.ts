@@ -58,6 +58,7 @@ export interface InputProps {
 }
 
 export interface FormProps {
+  cleanFormFun?: () => void;
   formSubmitFun: (...args: string[]) => void;
   inputFields: HTMLInputElement[];
   formClass?: string;

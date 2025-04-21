@@ -12,7 +12,14 @@ export const inputField = ({ type, value, id, placeholder, disabled, className }
   return input;
 };
 
-export const form = ({ formClass, formSubmitFun, inputFields, btnClass, btnText }: FormProps): HTMLFormElement => {
+export const form = ({
+  formClass,
+  formSubmitFun,
+  cleanFormFun,
+  inputFields,
+  btnClass,
+  btnText,
+}: FormProps): HTMLFormElement => {
   const formElem: HTMLFormElement = document.createElement('form');
   if (formClass) formElem.className = formClass;
 
@@ -28,6 +35,22 @@ export const form = ({ formClass, formSubmitFun, inputFields, btnClass, btnText 
     event.preventDefault();
     const inputValues: string[] = inputFields.map((input) => input.value);
     formSubmitFun(...inputValues);
+    if (cleanFormFun) cleanFormFun();
   });
   return formElem;
 };
+
+export function cleanForm(...classNames: string[]): void {
+  classNames.forEach((className) => {
+    const input: HTMLInputElement | null = document.querySelector(`.${className}`);
+    if (!input) return;
+
+    if (input.type === 'color') {
+      input.value = '#ffffff';
+    } else if (input.type === 'checkbox' || input.type === 'radio') {
+      input.checked = false;
+    } else {
+      input.value = '';
+    }
+  });
+}
