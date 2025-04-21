@@ -22,12 +22,9 @@ export function getCars(): void {
 export function generateCars(): void {
   const brands: string[] = ['BMW', 'Fiat', 'Ford', 'Hyundai', 'Kia', 'Lancia', 'Opel', 'Renault', 'Suzuki', 'Volvo'];
   const models: string[][] = [['iX2', 'i5', '5 Series G60', 'XM Label Red', 'X1 M35i xDrive', 'M2 G87', '3 Series Facelift (G20 LCI)', 'i7 M70 xDrive', 'X5 LCI', 'X6 LCI'], ['Topolino EV', 'Panda Hybrid', '600e', '500e Abarth', '500X Hybrid', 'Tipo Cross', 'Doblo', 'Ulysse', 'Scudo', '500 RED Edition'], ['Explorer EV', 'Mustang Mach-E Rally', 'Mustang (S650)', 'Ranger Raptor', 'F-150 Lightning', 'Transit Custom', 'Puma ST Powershift', 'Bronco', 'E-Tourneo Custom', 'Fiesta Final Edition'], [ 'Ioniq 6', 'Kona Electric', 'Santa Fe', 'Tucson Hybrid', 'Ioniq 5 N', 'Elantra N', 'Bayon', 'Staria', 'Venue', 'Grandeur'], ['EV9', 'EV6 GT', 'Sportage Hybrid', 'Niro EV', 'Sorento', 'K3', 'Picanto', 'Carnival Hi-Limousine', 'Seltos', 'Telluride'], ['Ypsilon Hybrid', 'Ypsilon Alberta Ferretti', 'Ypsilon EcoChic GPL', 'Ypsilon Unyca', 'Ypsilon Hybrid EcoChic', 'Ypsilon Monogram', 'Ypsilon Black & Noir', 'Ypsilon Elefantino', 'Ypsilon Mya', 'Ypsilon Platinum'], ['Astra Electric', 'Mokka Electric', 'Corsa Electric', 'Grandland GSe', 'Astra Sports Tourer', 'Combo Electric', 'Zafira-e Life', 'Rocks-e', 'Movano Electric', 'Vivaro-e Hydrogen'], ['Scenic E-Tech Electric', '5 Electric', 'Austral', 'Rafale', 'Kangoo E-Tech', 'Clio V Facelift', 'Megane E-Tech Electric', 'Arkana', 'Captur E-Tech', 'Twingo Electric'], ['Swift', 'Fronx', 'Jimny 5-Door', 'Grand Vitara', 'Baleno', 'S-Cross Hybrid', 'Vitara Strong Hybrid', 'Ignis Hybrid', 'Across Plug-in Hybrid', 'Swace'], ['EX30', 'EX90', 'XC40 Recharge Facelift', 'C40 Recharge', 'V60 Cross Country', 'S60', 'XC90 Plug-in Hybrid', 'V90', 'V60 Recharge', 'XC60']];
-  const total = 100;
-  const range = 10;
-  const base = 16;
+  const total = 100, range = 10, base = 16;
   const largestHexadecimal = 16777215;
   const promises: Promise<Response>[] = [];
-  let totalCreated = 0;
   for (let i = 0; i < total; i += 1) {
     const randomBrand: number = Math.floor(Math.random() * range);
     const randomModel: number = Math.floor(Math.random() * range);
@@ -36,28 +33,30 @@ export function generateCars(): void {
     const car = { name: name, color: randomColor };
     const promise = fetch('http://localhost:3000/garage', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(car),
     });
     promises.push(promise);
   }
-  Promise.allSettled(promises).then((results) => results.forEach((result, index) => {
-    if (result.status === 'fulfilled') {
-      result.value.json()
-      .then((data) => {
-        totalCreated += 1;
-        setCars(data)
-      })
-      .catch((error) => console.error(`Error parsing car ${index + 1}`, error));
-    } else {
-      console.error(`Failed to create a car ${index + 1}:`, result.reason);
-    }
-  }));
-  let currentTotal = getState('totalCars');
-  currentTotal += totalCreated;
-  setTotal(currentTotal, 'cars');
+  Promise.allSettled(promises).then((results) => {
+    const createdCars: Car[] = [];
+    let count = 0;
+    const jsonPromises = results.map((result, index) => {
+      if (result.status === 'fulfilled') {
+        return result.value.json().then((data) => {
+            createdCars.push(data);
+            count += 1;
+          }).catch((error) => console.error(`Error parsing car ${index + 1}`, error));
+        } else {
+          console.error(`Failed to create a car ${index + 1}:`, result.reason);
+        }
+    });
+    Promise.all(jsonPromises).then(() => {
+      const currentTotal = getState('totalCars');
+      setTotal(currentTotal + count, 'cars');
+      getCars();
+    });
+  });
 }
 
 export function createCar(name: string, color: string): void {
