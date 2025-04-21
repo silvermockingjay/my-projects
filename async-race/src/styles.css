@@ -31,12 +31,17 @@ ul li {
 .lowerPartContainer {
   display: flex;
   flex-direction: row;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
-  gap: 10px;
+  width: 90%;
 }
 
 .imgFlag {
-  align-self: flex-end;
+  width: 10%;
 }
 
 
