@@ -11,6 +11,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Async Race App',
+      template: './src/index.html',
     }),
   ],
   output: {
