@@ -38,6 +38,7 @@ ul li {
   flex-direction: row;
   justify-content: flex-start;
   width: 90%;
+  gap: 5px;
 }
 
 .imgFlag {
