@@ -22,6 +22,8 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
   carName.className = 'carName';
   carName.textContent = car.name;
   upperPart.append(selectCarBtn, removeCarBtn, carName);
+  const group = document.createElement('div');
+  group.className = 'group';
   const imgCar = document.createElement('div');
   imgCar.className = 'imgCar';
   imgCar.innerHTML = `
@@ -36,9 +38,10 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
     <path d="M4 24h-2v-24h2v24zm18-16l-16-6v12l16-6z" fill="#ff0000"/>
     </svg>
   `;
-  lowerPart.append(startEngineBtn, stopEngineBtn, imgCar, imgFlag);
+  group.append(startEngineBtn, stopEngineBtn, imgCar);
+  lowerPart.append(group, imgFlag);
   return li;
-}
+};
 
 export const list = ({ type, listItems, className }: ListProps): HTMLUListElement => {
   const list: HTMLUListElement = document.createElement(`${type}`);
