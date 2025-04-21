@@ -1,4 +1,5 @@
 import { getState, setGaragePage, setView, setWinnersPage } from "../state/states";
+import { renderView } from "../views/view-manager";
 
 export function prevPage(): void {
   const nextPageBtn = document.querySelector('.nextButton') as HTMLButtonElement;
@@ -41,8 +42,10 @@ export function nextPage(): void {
 
 export function goToGarage() {
   setView('garage');
+  renderView();
 }
 
 export function goToWinners() {
   setView('winners');
+  renderView();
 }

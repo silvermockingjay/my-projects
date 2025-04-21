@@ -3,13 +3,11 @@ import { nextPage, prevPage } from "../routing/navigation";
 import { goToGarage, goToWinners } from "../routing/navigation";
 import { getState } from "../state/states";
 
-export function renderWinners(): void {
-  const body = document.body;
+export function renderWinners(): HTMLElement {
   const main: HTMLElement = document.createElement('main');
   const divWithViewNavigation: HTMLDivElement = document.createElement('div');
   const sectionWithTable: HTMLElement = document.createElement('section');
   const divWithPageNavigation: HTMLDivElement = document.createElement('div');
-  body.append(main);
   main.append(divWithViewNavigation, sectionWithTable, divWithPageNavigation);
   // Create buttons to switch views
   const garageBtn = button({type: 'button', text: 'garage', onClick: goToGarage, className: 'garageBtn'});
@@ -26,7 +24,7 @@ export function renderWinners(): void {
   const nextButton = button({type: 'button', text: 'next', onClick: nextPage, className: 'nextButton'});
   divWithPageNavigation.append(prevButton, nextButton);
   // Fill the table
-
+  return main;
 }
 
 export function updateTotalWinners(): void {

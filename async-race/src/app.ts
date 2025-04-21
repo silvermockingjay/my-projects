@@ -1,2 +1,5 @@
-import { renderGarage } from './views/garage';
-renderGarage();
+import { renderView } from './views/view-manager';
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderView();
+});

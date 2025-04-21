@@ -6,15 +6,13 @@ import { nextPage, prevPage } from '../routing/navigation';
 import { goToGarage, goToWinners } from '../routing/navigation';
 import { getState } from '../state/states';
 
-export function renderGarage(): void {
-  const body = document.body;
+export function renderGarage(): HTMLElement {
   const main: HTMLElement = document.createElement('main');
   const divWithViewNavigation: HTMLDivElement = document.createElement('div');
   const divWithRaceAndGenerator: HTMLDivElement = document.createElement('div');
   const sectionWithForm: HTMLElement = document.createElement('section');
   const sectionWithList: HTMLElement = document.createElement('section');
   const divWithPageNavigation: HTMLDivElement = document.createElement('div');
-  body.append(main);
   main.append(divWithViewNavigation, sectionWithForm, sectionWithList, divWithPageNavigation);
   // Create buttons to switch views
   const garageBtn = button({ type: 'button', text: 'garage', onClick: goToGarage, className: 'garageBtn' });
@@ -48,6 +46,7 @@ export function renderGarage(): void {
   divWithPageNavigation.append(prevButton, nextButton);
   // Fill the car list
   getCars();
+  return main;
 }
 
 export function updateTotalCars(): void {

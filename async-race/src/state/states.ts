@@ -25,11 +25,6 @@ const state: AppState = {
   },
   setView(view) {
     this.view = view;
-    if (this.view === 'garage') {
-      renderGarage();
-    } else {
-      renderWinners();
-    }
   },
   setCars(car) {
     if (Array.isArray(car)) {
