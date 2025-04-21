@@ -16,9 +16,13 @@ export function renderWinners(): HTMLElement {
   // Create table
   const heading: HTMLHeadingElement = document.createElement('h1');
   heading.textContent = 'Winners';
-  const paragraph: HTMLParagraphElement = document.createElement('p');
-  paragraph.textContent = `Total winners: ${getState('totalWinners')}`;
-  paragraph.className = 'totalWinners';
+  const totalWinners: HTMLParagraphElement = document.createElement('p');
+  const currentPage: HTMLParagraphElement = document.createElement('p');
+  totalWinners.textContent = `Total winners: ${getState('totalWinners')}`;
+  totalWinners.className = 'totalWinners';
+  currentPage.textContent = `Current page: ${getState('winnersPage')}`;
+  currentPage.className = 'currentPage';
+  sectionWithTable.append(heading, totalWinners, currentPage);
   // Create buttons to navigate between list pages
   const prevButton = button({type: 'button', text: 'prev', onClick: prevPage, className: 'prevButton'});
   const nextButton = button({type: 'button', text: 'next', onClick: nextPage, className: 'nextButton'});

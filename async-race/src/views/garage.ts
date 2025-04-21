@@ -35,11 +35,14 @@ export function renderGarage(): HTMLElement {
   // Create list
   const heading: HTMLHeadingElement = document.createElement('h1');
   heading.textContent = 'Garage';
-  const paragraph: HTMLParagraphElement = document.createElement('p');
-  paragraph.textContent = `Total cars: ${getState('totalCars')}`;
-  paragraph.className = 'totalCars';
+  const totalCars: HTMLParagraphElement = document.createElement('p');
+  const currentPage: HTMLParagraphElement = document.createElement('p');
+  totalCars.textContent = `Total cars: ${getState('totalCars')}`;
+  totalCars.className = 'totalCars';
+  currentPage.textContent = `Current page: ${getState('garagePage')}`;
+  currentPage.className = 'currentPage';
   const myCarsList = list({ type: 'ul', className: 'carList' });
-  sectionWithList.append(heading, paragraph, myCarsList);
+  sectionWithList.append(heading, totalCars, currentPage, myCarsList);
   // Create buttons to navigate between list pages
   const prevButton = button({ type: 'button', text: 'prev', onClick: prevPage, className: 'prevButton' });
   const nextButton = button({ type: 'button', text: 'next', onClick: nextPage, className: 'nextButton' });
