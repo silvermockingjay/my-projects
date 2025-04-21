@@ -57,6 +57,11 @@ export function updateTotalCars(): void {
   if (totalCars) totalCars.textContent = `Total cars: ${getState('totalCars')}`;
 }
 
+export function updateCurrPage(viewPage: 'garagePage' | 'winnersPage'): void {
+  const currPage: HTMLParagraphElement | null = document.querySelector('.currentPage');
+  if (currPage) currPage.textContent = `Current page: ${getState(`${viewPage}`)}`;
+}
+
 function createCarInputs(): HTMLInputElement[] {
   const inputFields: HTMLInputElement[] = [];
   const textField: HTMLInputElement = inputField({ type: 'text', className: 'createName' });
