@@ -2,8 +2,8 @@ import type { Car } from '../components/interfaces';
 import { getState, setCars, setId, setTotal, setUpdatedCar } from '../state/states';
 
 export function getCars(): void {
-  const page = getState('garagePage');
-  const limit = getState('limitCars');
+  const page = String(getState('garagePage'));
+  const limit = String(getState('limitCars'));
   const url = `http://localhost:3000/garage?_page=${page}&_limit=${limit}`;
   fetch(url, { method: 'GET' })
     .then((response): Promise<Car> => {
@@ -15,7 +15,9 @@ export function getCars(): void {
       setCars(data);
     })
     .catch((error: unknown) => {
-      alert(`Failed to get cars: ${error}`);
+      if (error instanceof Error) {
+        console.error('Failed to get cars:', error);
+      }
     });
 }
 
