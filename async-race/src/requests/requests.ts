@@ -1,5 +1,6 @@
-import type { Car } from '../components/interfaces';
+import type { Car, DriveProps } from '../components/interfaces';
 import { getState, setCars, setId, setTotal, setUpdatedCar } from '../state/states';
+import { animateCar, stopCar, resetCar } from '../components/list';
 
 export function getCars(): void {
   const page = String(getState('garagePage'));
@@ -146,7 +147,14 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
   })
     .then((response) => {
       if (response.ok) {
-        driveCar(id);
+        return response.json().then((data: DriveProps) => {
+          if (status === 'started') {
+            animateCar(id, data.velocity, data.distance);
+            driveCar(id);
+          } else {
+            resetCar(id);
+          }
+        });
       } else if (response.status === 400) {
         throw new Error(`Wrong parameters: ${response.status}`);
       } else if (response.status === 404) {
@@ -169,10 +177,15 @@ function driveCar(id: number): void {
       } else if (response.status === 429) {
         throw new Error(`Drive in progress: ${response.status}`);
       } else if (response.status === 500) {
+        stopCar(id);
         throw new Error(`Car has been stopped suddenly. It's engine was broken down: ${response.status}`);
       }
     })
-    .catch((error: unknown) => alert(`Failed to start driving a car: ${error}`));
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Failed to start driving a car:', error);
+      }
+    });
 }
 
 export function startRace(): void {
