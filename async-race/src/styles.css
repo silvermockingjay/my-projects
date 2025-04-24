@@ -45,6 +45,20 @@ ul li {
   width: 10%;
 }
 
+.startEngine {
+  background-color: #2ecc71 ;
+  color: #ffffff;
+}
+.stopEngine {
+  background-color: #FF4433;
+  color: #ffffff;
+}
+
+button:disabled {
+  background-color: #D3D3D3;
+  color: #000000;
+  cursor: none;
+}
 
 
 
