@@ -1,8 +1,8 @@
-import type { AppState } from "../components/interfaces";
-import { removeCarFromList, updateCarList, updateCarListItem } from "../components/list";
-import { getCars } from "../requests/requests";
-import { updateTotalCars, updateCurrPage } from "../views/garage";
-import { updateTotalWinners } from "../views/winners";
+import type { AppState } from '../components/interfaces';
+import { removeCarFromList, updateCarList, updateCarListItem } from '../components/list';
+import { getCars } from '../requests/requests';
+import { updateTotalCars, updateCurrPage } from '../views/garage';
+import { updateTotalWinners } from '../views/winners';
 
 const state: AppState = {
   view: 'garage',
@@ -20,6 +20,7 @@ const state: AppState = {
   removeId: null,
   sortingOrder: 'asc',
   sortBy: 'time',
+  animations: new Map(),
   getState(prop) {
     return this[prop];
   },
@@ -96,13 +97,16 @@ const state: AppState = {
       }
     }
   },
+  setAnimations(id: number, animation: Animation) {
+    this.animations.set(id, animation);
+  },
   setSortingOrder(order) {
     this.sortingOrder = order;
   },
   setSortBy(type) {
     this.sortBy = type;
-  }
-}
+  },
+};
 
 export const getState = state.getState.bind(state);
 export const setView = state.setView.bind(state);
@@ -115,5 +119,6 @@ export const setTotalPagesWinners = state.setTotalPagesWinners.bind(state);
 export const setGaragePage = state.setGaragePage.bind(state);
 export const setWinnersPage = state.setWinnersPage.bind(state);
 export const setId = state.setId.bind(state);
+export const setAnimations = state.setAnimations.bind(state);
 export const setSortingOrder = state.setSortingOrder.bind(state);
 export const setSortBy = state.setSortBy.bind(state);

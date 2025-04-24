@@ -4,6 +4,11 @@ export interface Car {
   id: number;
 }
 
+export interface DriveProps {
+  velocity: number;
+  distance: number;
+}
+
 export interface Winner {
   id: number;
   wins: number;
@@ -26,6 +31,7 @@ export interface AppState {
   removeId: number | null;
   sortingOrder: 'asc' | 'desc';
   sortBy: 'wins' | 'time';
+  animations: Map<number, Animation>;
   getState: <K extends keyof Omit<AppState, 'getState'>>(prop: K) => AppState[K];
   setView: (view: string) => void;
   setCars: (car: Car | Car[]) => void;
@@ -37,6 +43,7 @@ export interface AppState {
   setGaragePage: (page: number) => void;
   setWinnersPage: (page: number) => void;
   setId: (id: number, type: 'select' | 'remove') => void;
+  setAnimations: (id: number, animation: Animation) => void;
   setSortingOrder: (order: 'asc' | 'desc') => void;
   setSortBy: (type: 'wins' | 'time') => void;
 }
