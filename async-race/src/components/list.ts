@@ -1,6 +1,7 @@
 import { button } from './button';
 import { selectCar, removeCar, startStopCarEngine } from '../requests/requests';
 import type { Car, ListProps } from './interfaces';
+import { setAnimations, getState } from '../state/states';
 
 export const listItem = (car: Car, className?: string): HTMLLIElement => {
   const li: HTMLLIElement = document.createElement('li');
@@ -84,4 +85,46 @@ export const removeCarFromList = (id: number): void => {
   const carList: HTMLUListElement | null = document.querySelector('.carList');
   const carItem: HTMLLIElement | null = document.querySelector(`[data-id='${id}']`);
   if (carList && carItem) carList.removeChild(carItem);
+};
+
+export const animateCar = (id: number, velocity: number, distance: number): void => {
+  const carItem: HTMLLIElement | null = document.querySelector(`[data-id='${id}']`);
+  if (carItem) {
+    const imgCar: HTMLLIElement | null = carItem.querySelector('.imgCar');
+    const imgFlag: HTMLLIElement | null = carItem.querySelector('.imgFlag');
+    if (imgCar && imgFlag) {
+      const time = distance / velocity;
+      console.log(time);
+      const rectFlag = imgFlag.getBoundingClientRect();
+      const rectCar = imgCar.getBoundingClientRect();
+      const distanceToFlag = rectFlag.left - rectCar.right;
+      const animation = imgCar.animate(
+        [
+          { transform: 'translateX(0px)' }, 
+          { transform: `translateX(${distanceToFlag}px)` }
+        ],
+        {
+          duration: time,
+          iterations: 1,
+          fill: 'forwards',
+          easing: 'linear',
+        }
+      );
+      setAnimations(id, animation);
+      animation.play();
+      console.log('Playing animation', animation.currentTime);
+    }
+  }
+};
+
+export const stopCar = (id: number): void => {
+  const animations = getState('animations');
+  const animation = animations.get(id);
+  if (animation) animation.pause();
+};
+
+export const resetCar = (id: number): void => {
+  const animations = getState('animations');
+  const animation = animations.get(id);
+  if (animation) animation.cancel();
 };
