@@ -17,8 +17,9 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
   div.append(upperPart, lowerPart);
   const selectCarBtn = button({ type: 'button', text: 'select', onClick: () => selectCar(car)});
   const removeCarBtn = button({ type: 'button', text: 'remove', onClick: () => removeCar(car.id) });
-  const startEngineBtn = button({ type: 'button', text: 'A', onClick: () => startStopCarEngine(car.id, 'started') });
-  const stopEngineBtn = button({ type: 'button', text: 'B', onClick: () => startStopCarEngine(car.id, 'stopped') });
+  const startEngineBtn = button({ type: 'button', text: 'A', onClick: () => startStopCarEngine(car.id, 'started'), className: 'startEngine' });
+  const stopEngineBtn = button({ type: 'button', text: 'B', onClick: () => startStopCarEngine(car.id, 'stopped'), className: 'stopEngine' });
+  stopEngineBtn.disabled = true;
   const carName: HTMLSpanElement = document.createElement('span');
   carName.className = 'carName';
   carName.textContent = car.name;
@@ -94,10 +95,9 @@ export const animateCar = (id: number, velocity: number, distance: number): void
     const imgFlag: HTMLLIElement | null = carItem.querySelector('.imgFlag');
     if (imgCar && imgFlag) {
       const time = distance / velocity;
-      console.log(time);
       const rectFlag = imgFlag.getBoundingClientRect();
       const rectCar = imgCar.getBoundingClientRect();
-      const distanceToFlag = rectFlag.left - rectCar.right;
+      const distanceToFlag = rectFlag.left - rectCar.left + rectCar.width;
       const animation = imgCar.animate(
         [
           { transform: 'translateX(0px)' }, 
@@ -112,7 +112,10 @@ export const animateCar = (id: number, velocity: number, distance: number): void
       );
       setAnimations(id, animation);
       animation.play();
-      console.log('Playing animation', animation.currentTime);
+      const startBtn: HTMLButtonElement | null = carItem.querySelector('.startEngine');
+      const stopBtn: HTMLButtonElement | null = carItem.querySelector('.stopEngine');
+      if (startBtn) startBtn.disabled = true;
+      if (stopBtn) stopBtn.disabled = false;
     }
   }
 };
@@ -127,4 +130,11 @@ export const resetCar = (id: number): void => {
   const animations = getState('animations');
   const animation = animations.get(id);
   if (animation) animation.cancel();
+  const carItem: HTMLLIElement | null = document.querySelector(`[data-id='${id}']`);
+  if (carItem) {
+    const startBtn: HTMLButtonElement | null = carItem.querySelector('.startEngine');
+    const stopBtn: HTMLButtonElement | null = carItem.querySelector('.stopEngine');
+    if (startBtn) startBtn.disabled = false;
+    if (stopBtn) stopBtn.disabled = true;
+  }
 };
