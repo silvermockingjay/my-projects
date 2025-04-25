@@ -189,15 +189,64 @@ function driveCar(id: number): void {
 }
 
 export function startRace(): void {
-  //const cars = getState('cars');
-  //const limit = getState('limitCars');
-  //if (cars.length > limit) {
-  //  cars.splice(limit + 1, cars.length - limit);
-  //}
-  //const promises: Promise<Response>[] = cars.map((car) => s)
-  console.log('Implement startRace');
+  getCars();
+  const cars = getState('cars');
+  const promises: Promise<Response>[] = cars.map((car) => {
+    const url = `http://localhost:3000/engine?id=${car.id}&status=started`;
+    return fetch(url, { method: 'PATCH' });
+  });
+  Promise.allSettled(promises)
+    .then((results) => {
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          result.value
+            .json()
+            .then((data: DriveProps) => {
+              const myCar = cars[index];
+              if (myCar) {
+                animateCar(myCar.id, data.velocity, data.distance);
+                driveCar(myCar.id);
+              }
+            })
+            .catch((error: unknown) => {
+              if (error instanceof Error) {
+                console.error('Failed to start race:', error);
+              }
+            });
+        } else {
+          console.error('Failed to start race', result.reason);
+        }
+      });
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Failed to start race:', error);
+      }
+    });
 }
 
 export function resetCars(): void {
-  console.log('Implement resetCars');
+  const cars = getState('cars');
+  const promises: Promise<Response>[] = cars.map((car) => {
+    const url = `http://localhost:3000/engine?id=${car.id}&status=stopped`;
+    return fetch(url, { method: 'PATCH' });
+  });
+  Promise.allSettled(promises)
+    .then((results) => {
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          const myCar = cars[index];
+          if (myCar) {
+            resetCar(myCar.id);
+          }
+        } else {
+          console.error('Failed to reset cars', result.reason);
+        }
+      });
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Failed to reset cars:', error);
+      }
+    });
 }
