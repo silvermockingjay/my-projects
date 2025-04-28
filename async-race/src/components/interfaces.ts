@@ -93,6 +93,17 @@ export interface ListProps {
   className?: string;
 }
 
+export interface TableRowProps {
+  car: Car;
+  winner: Winner;
+  className?: string;
+}
+
+export interface TableProps {
+  tableRows: HTMLTableRowElement | HTMLTableRowElement[];
+  className?: string;
+}
+
 export interface DivProps {
   className?: string;
   text?: string;
