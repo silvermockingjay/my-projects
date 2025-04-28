@@ -186,6 +186,13 @@ export function selectCar(car: Car): void {
   }
 }
 
+const errors = {
+  badRequest: 400,
+  notFound: 404,
+  manyRequests: 429,
+  serverError: 500,
+};
+
 export function startStopCarEngine(id: number, status: 'started' | 'stopped'): void {
   const url = `http://localhost:3000/engine?id=${id}&status=${status}`;
   fetch(url, {
@@ -205,13 +212,18 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
             resetCar(id);
           }
         });
-      } else if (response.status === 400) {
+      } else if (response.status === errors.badRequest) {
         throw new Error(`Wrong parameters: ${response.status}`);
-      } else if (response.status === 404) {
+      } else if (response.status === errors.notFound) {
         throw new Error(`Car is not found: ${response.status}`);
       }
     })
-    .catch((error: unknown) => alert(`Failed to start/stop car's engine: ${error}`));
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert("Failed to start/stop car's engine");
+      }
+    });
 }
 
 function driveCar(id: number): Promise<Response> {
@@ -219,13 +231,13 @@ function driveCar(id: number): Promise<Response> {
   return fetch(url, {
     method: 'PATCH',
   }).then((response) => {
-    if (response.status === 400) {
+    if (response.status === errors.badRequest) {
       throw new Error(`Wrong parameters: ${response.status}`);
-    } else if (response.status === 404) {
+    } else if (response.status === errors.notFound) {
       throw new Error(`Engine params are not found: ${response.status}`);
-    } else if (response.status === 429) {
+    } else if (response.status === errors.manyRequests) {
       throw new Error(`Drive in progress: ${response.status}`);
-    } else if (response.status === 500) {
+    } else if (response.status === errors.serverError) {
       stopCar(id);
       throw new Error(`Car has been stopped suddenly. It's engine was broken down: ${response.status}`);
     }
