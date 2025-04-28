@@ -1,7 +1,7 @@
-import { button } from "../components/button";
-import { nextPage, prevPage } from "../routing/navigation";
-import { goToGarage, goToWinners } from "../routing/navigation";
-import { getState } from "../state/states";
+import { button } from '../components/button';
+import { nextPage, prevPage } from '../routing/navigation';
+import { goToGarage, goToWinners } from '../routing/navigation';
+import { getState } from '../state/states';
 
 export function renderWinners(): HTMLElement {
   const main: HTMLElement = document.createElement('main');
@@ -10,8 +10,8 @@ export function renderWinners(): HTMLElement {
   const divWithPageNavigation: HTMLDivElement = document.createElement('div');
   main.append(divWithViewNavigation, sectionWithTable, divWithPageNavigation);
   // Create buttons to switch views
-  const garageBtn = button({type: 'button', text: 'garage', onClick: goToGarage, className: 'garageBtn'});
-  const winnersBtn = button({type: 'button', text: 'winners', onClick: goToWinners, className: 'winnersBtn'});
+  const garageBtn = button({ type: 'button', text: 'garage', onClick: goToGarage, className: 'garageBtn' });
+  const winnersBtn = button({ type: 'button', text: 'winners', onClick: goToWinners, className: 'winnersBtn' });
   divWithViewNavigation.append(garageBtn, winnersBtn);
   // Create table
   const heading: HTMLHeadingElement = document.createElement('h1');
@@ -24,14 +24,14 @@ export function renderWinners(): HTMLElement {
   currentPage.className = 'currentPage';
   sectionWithTable.append(heading, totalWinners, currentPage);
   // Create buttons to navigate between list pages
-  const prevButton = button({type: 'button', text: 'prev', onClick: prevPage, className: 'prevButton'});
-  const nextButton = button({type: 'button', text: 'next', onClick: nextPage, className: 'nextButton'});
+  const prevButton = button({ type: 'button', text: 'prev', onClick: prevPage, className: 'prevButton' });
+  const nextButton = button({ type: 'button', text: 'next', onClick: nextPage, className: 'nextButton' });
   divWithPageNavigation.append(prevButton, nextButton);
   // Fill the table
   return main;
 }
 
 export function updateTotalWinners(): void {
-    const totalWinners = document.querySelector('.totalWinners') as HTMLParagraphElement;
-    totalWinners.textContent = `Total winners: ${getState('totalWinners')}`;
-  }
+  const totalWinners: HTMLParagraphElement | null = document.querySelector('.totalWinners');
+  if (totalWinners) totalWinners.textContent = `Total winners: ${getState('totalWinners')}`;
+}
