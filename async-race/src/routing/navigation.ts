@@ -1,19 +1,23 @@
-import { getState, setGaragePage, setView, setWinnersPage } from "../state/states";
-import { renderView } from "../views/view-manager";
+import { getState, setGaragePage, setView, setWinnersPage } from '../state/states';
+import { renderView } from '../views/view-manager';
 
 export function prevPage(): void {
-  const nextPageBtn = document.querySelector('.nextButton') as HTMLButtonElement;
-  let currPage: number = 0;
+  const nextPageBtn: HTMLButtonElement | null = document.querySelector('.nextButton');
+  let currPage = 0;
   const currView = getState('view');
   if (currView === 'garage') {
     currPage = getState('garagePage');
   } else {
     currPage = getState('winnersPage');
   }
-  let prevPage: number = 0;
+  let prevPage = 0;
   if (currPage > 1) {
     prevPage = currPage - 1;
-    currView === 'garage' ? setGaragePage(prevPage): setWinnersPage(prevPage);
+    if (currView === 'garage') {
+      setGaragePage(prevPage);
+    } else {
+      setWinnersPage(prevPage);
+    }
     if (nextPageBtn?.classList.contains('inactive')) nextPageBtn.classList.remove('inactive');
   }
 }
