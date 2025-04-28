@@ -33,12 +33,12 @@ export default tseslint.config({
     },
     rules: {
       ...airbnbBase.rules,
-      'no-console': 'warn',
+      'no-console': 'off',
       '@typescript-eslint/no-explicit-any': 'error',
-      'no-magic-numbers': 'off',
       '@typescript-eslint/no-magic-numbers': ['error', { "ignoreTypeIndexes": true, 'ignore': [1] }],
       'max-lines-per-function': ['error', { max: 40, skipBlankLines: true, skipComments: true }],
       'prettier/prettier': 'error',
+      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }]
     },
     settings: {
       'import/resolver': {
