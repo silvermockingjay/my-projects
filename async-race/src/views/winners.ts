@@ -1,4 +1,5 @@
 import { button } from '../components/button';
+import { getWinners } from '../requests/requests';
 import { nextPage, prevPage } from '../routing/navigation';
 import { goToGarage, goToWinners } from '../routing/navigation';
 import { getState } from '../state/states';
@@ -28,6 +29,7 @@ export function renderWinners(): HTMLElement {
   const nextButton = button({ type: 'button', text: 'next', onClick: nextPage, className: 'nextButton' });
   divWithPageNavigation.append(prevButton, nextButton);
   // Fill the table
+  getWinners();
   return main;
 }
 
