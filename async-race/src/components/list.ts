@@ -75,9 +75,7 @@ export const list = ({ type, listItems, className }: ListProps): HTMLUListElemen
   const list: HTMLUListElement = document.createElement(type);
   if (className) list.className = className;
   if (Array.isArray(listItems)) {
-    listItems.forEach((item) => {
-      list.append(item);
-    });
+    list.append(...listItems);
   } else if (listItems) {
     list.append(listItems);
   }
