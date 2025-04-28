@@ -43,13 +43,11 @@ export const form = ({
 export function cleanForm(...classNames: string[]): void {
   classNames.forEach((className) => {
     const input: HTMLInputElement | null = document.querySelector(`.${className}`);
-    if (!input) return;
-
-    if (input.type === 'color') {
+    if (input?.type === 'color') {
       input.value = '#ffffff';
-    } else if (input.type === 'checkbox' || input.type === 'radio') {
+    } else if (input?.type === 'checkbox' || input?.type === 'radio') {
       input.checked = false;
-    } else {
+    } else if (input) {
       input.value = '';
     }
   });
