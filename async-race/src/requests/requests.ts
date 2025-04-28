@@ -313,7 +313,8 @@ function createRacerPromise(car: Car, velocity: number, distance: number): Promi
 function announceWinner(racers: Promise<Racer>[]): void {
   Promise.any(racers)
     .then((value) => {
-      alert(`${value.name} wins with time ${Math.round(value.time / 1000)}s`);
+      const ms = 1000;
+      alert(`${value.name} wins with time ${Math.round(value.time / ms)}s`);
     })
     .catch((error: unknown) => {
       if (error instanceof Error) {
