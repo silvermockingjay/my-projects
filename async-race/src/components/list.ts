@@ -46,7 +46,7 @@ export const listItem = (car: Car, className?: string): HTMLLIElement => {
 };
 
 export const list = ({ type, listItems, className }: ListProps): HTMLUListElement => {
-  const list: HTMLUListElement = document.createElement(`${type}`);
+  const list: HTMLUListElement = document.createElement(type);
   if (className) list.className = className;
   if (Array.isArray(listItems)) {
     listItems.forEach((item) => {
