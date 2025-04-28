@@ -1,6 +1,6 @@
 import { button } from './button';
 import { selectCar, removeCar, startStopCarEngine } from '../requests/requests';
-import type { Car, ListProps } from './interfaces';
+import type { AnimateProps, Car, ListProps } from './interfaces';
 import { setAnimations, getState } from '../state/states';
 import { divElem, spanElem } from './div_span';
 
@@ -114,7 +114,7 @@ export const removeCarFromList = (id: number): void => {
   if (carList && carItem) carList.removeChild(carItem);
 };
 
-export const animateCar = (id: number, velocity: number, distance: number): void => {
+export const animateCar = ({ id, velocity, distance }: AnimateProps): void => {
   const carItem: HTMLLIElement | null = document.querySelector(`[data-id='${id}']`);
   if (carItem) {
     const imgCar: HTMLLIElement | null = carItem.querySelector('.imgCar');

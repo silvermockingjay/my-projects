@@ -202,7 +202,7 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
       if (response.ok) {
         return response.json().then((data: DriveProps) => {
           if (status === 'started') {
-            animateCar(id, data.velocity, data.distance);
+            animateCar({ id: id, velocity: data.velocity, distance: data.distance });
             driveCar(id).catch((error: unknown) => {
               if (error instanceof Error) {
                 console.error('Failed to drive a car:', error);
@@ -294,7 +294,7 @@ function createRacerPromise(car: Car, velocity: number, distance: number): Promi
     const idTimeout = setTimeout(() => {
       resolve(racer);
     }, time);
-    animateCar(car.id, velocity, distance);
+    animateCar({ id: car.id, velocity: velocity, distance: distance });
     driveCar(car.id).catch((error: unknown) => {
       if (error instanceof Error) {
         clearTimeout(idTimeout);

@@ -9,6 +9,12 @@ export interface DriveProps {
   distance: number;
 }
 
+export interface AnimateProps {
+  id: number;
+  velocity: number;
+  distance: number;
+}
+
 export interface Racer {
   id: number;
   name: string;
