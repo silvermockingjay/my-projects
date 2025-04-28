@@ -70,7 +70,8 @@ function createGeneratedCarsPromises(): Promise<Response>[] {
     ['Astra Electric', 'Mokka Electric', 'Corsa Electric', 'Grandland GSe', 'Astra Sports Tourer', 'Combo Electric', 'Zafira-e Life', 'Rocks-e', 'Movano Electric', 'Vivaro-e Hydrogen'],
     ['Scenic E-Tech Electric', '5 Electric', 'Austral', 'Rafale', 'Kangoo E-Tech', 'Clio V Facelift', 'Megane E-Tech Electric', 'Arkana', 'Captur E-Tech', 'Twingo Electric'],
     ['Swift', 'Fronx', 'Jimny 5-Door', 'Grand Vitara', 'Baleno', 'S-Cross Hybrid', 'Vitara Strong Hybrid', 'Ignis Hybrid', 'Across Plug-in Hybrid', 'Swace'],
-    ['EX30', 'EX90', 'XC40 Recharge Facelift', 'C40 Recharge', 'V60 Cross Country', 'S60', 'XC90 Plug-in Hybrid', 'V90', 'V60 Recharge', 'XC60']];
+    ['EX30', 'EX90', 'XC40 Recharge Facelift', 'C40 Recharge', 'V60 Cross Country', 'S60', 'XC90 Plug-in Hybrid', 'V90', 'V60 Recharge', 'XC60']
+  ];
   const total = 100;
   const range = 10;
   const base = 16;
@@ -111,7 +112,9 @@ export function createCar(name: string, color: string): void {
       setTotal(total, 'cars');
       setCars(data);
     })
-    .catch((error: unknown) => alert(`Failed to create a car: ${error}`));
+    .catch((error: unknown) => {
+      if (error instanceof Error) console.error('Failed to create a car:', error);
+    });
 }
 
 export function updateCar(id: string, name: string, color: string): void {
