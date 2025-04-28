@@ -59,8 +59,8 @@ export interface AppState {
   setWinnersPage: (page: number) => void;
   setId: (id: number, type: 'select' | 'remove') => void;
   setAnimations: (id: number, animation: Animation) => void;
-  setSortingOrder: (order: 'asc' | 'desc') => void;
-  setSortBy: (type: 'wins' | 'time') => void;
+  setSortingOrder: (order: 'ASC' | 'DESC') => void;
+  setSortBy: (type: 'id' | 'wins' | 'time') => void;
 }
 
 export interface ButtonProps {
