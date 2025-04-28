@@ -33,6 +33,7 @@ export const table = ({ tableRows, className }: TableProps): HTMLTableElement =>
   if (className) tableElem.className = className;
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
+  tbody.className = 'tableBody';
   const headers: HTMLTableCellElement[] = [];
   const totalCol = 5;
   for (let i = 0; i < totalCol; i++) {
@@ -73,4 +74,10 @@ export const updateWinnerTable = (winner: Winner | Winner[], car: Car | Car[]): 
       tbody.append(tableRowElem);
     }
   }
+};
+
+export const removeWinnerFromTable = (id: number): void => {
+  const tbody = document.querySelector('.tableBody');
+  const trow = document.querySelector(`[data-id='${id}']`);
+  if (tbody && trow) tbody.removeChild(trow);
 };
