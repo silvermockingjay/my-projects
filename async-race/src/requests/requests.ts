@@ -439,3 +439,25 @@ function checkWinner(winner: Winner): void {
       }
     });
 }
+
+export function getWinners(): void {
+  const page = getState('winnersPage');
+  const limit = getState('limitWinners');
+  const sort = getState('sortingOrder');
+  const order = getState('sortBy');
+  const url = `http://localhost:3000/winners?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
+  fetch(url, { method: 'GET' })
+    .then((response): Promise<Winner> => {
+      const total = Number(response.headers.get('X-Total-Count'));
+      setTotal(total, 'winners');
+      return response.json();
+    })
+    .then((data) => {
+      setWinners(data);
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Failed to get cars:', error);
+      }
+    });
+}
