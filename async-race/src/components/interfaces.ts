@@ -42,8 +42,8 @@ export interface AppState {
   limitWinners: number;
   selectId: number | null;
   removeId: number | null;
-  sortingOrder: 'asc' | 'desc';
-  sortBy: 'wins' | 'time';
+  sortingOrder: 'ASC' | 'DESC';
+  sortBy: 'id' | 'wins' | 'time';
   animations: Map<number, Animation>;
   getState: <K extends keyof Omit<AppState, 'getState'>>(prop: K) => AppState[K];
   setView: (view: string) => void;

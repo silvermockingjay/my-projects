@@ -1,5 +1,6 @@
 import type { AppState } from '../components/interfaces';
 import { removeCarFromList, updateCarList, updateCarListItem } from '../components/list';
+import { updateWinnerTable } from '../components/table';
 import { getCars } from '../requests/requests';
 import { updateTotalCars, updateCurrPage } from '../views/garage';
 import { updateTotalWinners } from '../views/winners';
@@ -21,7 +22,7 @@ const state: AppState = {
   limitWinners: 10,
   selectId: null,
   removeId: null,
-  sortingOrder: 'asc',
+  sortingOrder: 'ASC',
   sortBy: 'time',
   animations: new Map(),
   getState(prop) {
@@ -62,6 +63,12 @@ const state: AppState = {
       this.winners = winner;
     } else {
       this.winners.push(winner);
+    }
+    if (this.winners.length <= this.limitWinners) {
+      updateWinnerTable(winner);
+    } else {
+      const nextPage = this.winnersPage + 1;
+      this.setWinnersPage(nextPage);
     }
   },
   setCurWinnerNum(num) {
