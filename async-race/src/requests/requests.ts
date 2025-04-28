@@ -113,7 +113,10 @@ export function createCar(name: string, color: string): void {
       setCars(data);
     })
     .catch((error: unknown) => {
-      if (error instanceof Error) console.error('Failed to create a car:', error);
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to create a car');
+      }
     });
 }
 
