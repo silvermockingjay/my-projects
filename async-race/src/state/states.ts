@@ -4,6 +4,8 @@ import { getCars } from '../requests/requests';
 import { updateTotalCars, updateCurrPage } from '../views/garage';
 import { updateTotalWinners } from '../views/winners';
 
+const notFoundIndex = -1;
+
 const state: AppState = {
   view: 'garage',
   cars: [],
@@ -42,7 +44,7 @@ const state: AppState = {
   },
   setUpdatedCar(updatedCar) {
     const index = this.cars.findIndex((car) => car.id === updatedCar.id);
-    if (index !== -1) {
+    if (index !== notFoundIndex) {
       this.cars[index] = updatedCar;
       updateCarListItem(updatedCar);
     }
@@ -87,11 +89,11 @@ const state: AppState = {
     } else {
       this.removeId = id;
       const index = this.cars.findIndex((car) => car.id === this.removeId);
-      if (index !== -1) {
+      if (index !== notFoundIndex) {
         this.cars.splice(index, 1);
         removeCarFromList(this.removeId);
       }
-      if (this.cars.length === 0 && this.garagePage > 1) {
+      if (!this.cars.length && this.garagePage > 1) {
         const prevPage = this.garagePage - 1;
         this.setGaragePage(prevPage);
       }
