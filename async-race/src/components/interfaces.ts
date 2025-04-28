@@ -50,6 +50,7 @@ export interface AppState {
   setCars: (car: Car | Car[]) => void;
   setUpdatedCar: (car: Car) => void;
   setWinners: (winners: Winner | Winner[]) => void;
+  setUpdatedWinner: (winner: Winner) => void;
   setCurWinnerNum: (num: number) => void;
   setTotal: (total: number, prop: 'cars' | 'winners') => void;
   setTotalPagesGarage: () => void;

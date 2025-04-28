@@ -1,6 +1,7 @@
-import type { Car, DriveProps, Racer } from '../components/interfaces';
-import { getState, setCars, setId, setTotal, setUpdatedCar } from '../state/states';
+import type { Car, DriveProps, Racer, Winner } from '../components/interfaces';
+import { getState, setCars, setId, setTotal, setUpdatedCar, setWinners, setUpdatedWinner } from '../state/states';
 import { animateCar, stopCar, resetCar } from '../components/list';
+
 
 export function getCars(): void {
   const page = getState('garagePage');
@@ -339,6 +340,60 @@ export function resetCars(): void {
     .catch((error: unknown) => {
       if (error instanceof Error) {
         console.error('Failed to reset cars:', error);
+      }
+    });
+}
+
+function createWinner(winner: Winner) {
+  fetch('http://localhost:3000/winners', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(winner),
+  })
+    .then((response): Promise<Winner> => response.json())
+    .then((data: Winner) => {
+      let total = getState('totalWinners');
+      total += 1;
+      setTotal(total, 'winners');
+      setWinners(data);
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to create a winner');
+      }
+    });
+}
+
+function updateWinner(id: string, wins: number, time: number): void {
+  const url = `http://localhost:3000/winners/${id}`;
+  const data = {
+    wins: wins,
+    time: time,
+  };
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Winner is not found: ${response.status}`);
+      }
+    })
+    .then((data: Winner) => {
+      setUpdatedWinner(data);
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to update a car');
       }
     });
 }
