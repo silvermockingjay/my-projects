@@ -14,6 +14,7 @@ const state: AppState = {
   winnersPage: 1,
   totalCars: 0,
   totalWinners: 0,
+  currWinnerNum: 1,
   totalPagesGarage: 0,
   totalPagesWinners: 0,
   limitCars: 7,
@@ -55,6 +56,9 @@ const state: AppState = {
     } else {
       this.winners.push(winner);
     }
+  },
+  setCurWinnerNum(num) {
+    this.currWinnerNum = num;
   },
   setTotal(total, prop) {
     if (prop === 'cars') {
@@ -115,6 +119,7 @@ export const setView = state.setView.bind(state);
 export const setCars = state.setCars.bind(state);
 export const setUpdatedCar = state.setUpdatedCar.bind(state);
 export const setWinners = state.setWinners.bind(state);
+export const setCurWinnerNum = state.setCurWinnerNum.bind(state);
 export const setTotal = state.setTotal.bind(state);
 export const setTotalPagesGarage = state.setTotalPagesGarage.bind(state);
 export const setTotalPagesWinners = state.setTotalPagesWinners.bind(state);
