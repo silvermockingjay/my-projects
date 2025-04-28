@@ -28,17 +28,17 @@ export const table = ({ tableRows, className }: TableProps): HTMLTableElement =>
   if (className) tableElem.className = className;
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
-  const th1 = document.createElement('th');
-  const th2 = document.createElement('th');
-  const th3 = document.createElement('th');
-  const th4 = document.createElement('th');
-  const th5 = document.createElement('th');
-  th1.textContent = 'Number';
-  th2.textContent = 'Car';
-  th3.textContent = 'Name';
-  th4.textContent = 'Wins';
-  th5.textContent = 'Best Time, s';
-  thead.append(th1, th2, th3, th4, th5);
+  const headers: HTMLTableCellElement[] = [];
+  const totalCol = 5;
+  for (let i = 0; i < totalCol; i++) {
+    const th = document.createElement('th');
+    headers.push(th);
+  }
+  const headerNames = ['Number', 'Car', 'Name', 'Wins', 'Best time, s'];
+  headers.forEach((item, index) => {
+    item.textContent = headerNames[index] ?? '';
+  });
+  thead.append(...headers);
   if (Array.isArray(tableRows)) {
     tbody.append(...tableRows);
   } else {
