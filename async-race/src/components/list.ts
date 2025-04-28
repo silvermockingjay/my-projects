@@ -99,10 +99,7 @@ export const animateCar = (id: number, velocity: number, distance: number): void
       const rectCar = imgCar.getBoundingClientRect();
       const distanceToFlag = rectFlag.left - rectCar.left + rectCar.width;
       const animation = imgCar.animate(
-        [
-          { transform: 'translateX(0px)' }, 
-          { transform: `translateX(${distanceToFlag}px)` }
-        ],
+        [{ transform: 'translateX(0px)' }, { transform: `translateX(${distanceToFlag}px)` }],
         {
           duration: time,
           iterations: 1,
