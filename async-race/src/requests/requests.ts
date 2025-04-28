@@ -166,7 +166,12 @@ export function removeCar(id: number): void {
         setId(id, 'remove');
       }
     })
-    .catch((error: unknown) => alert(`Failed to delete a car: ${error}`));
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to delete a car');
+      }
+    });
 }
 
 export function selectCar(car: Car): void {
