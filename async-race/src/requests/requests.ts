@@ -3,8 +3,8 @@ import { getState, setCars, setId, setTotal, setUpdatedCar } from '../state/stat
 import { animateCar, stopCar, resetCar } from '../components/list';
 
 export function getCars(): void {
-  const page = String(getState('garagePage'));
-  const limit = String(getState('limitCars'));
+  const page = getState('garagePage');
+  const limit = getState('limitCars');
   const url = `http://localhost:3000/garage?_page=${page}&_limit=${limit}`;
   fetch(url, { method: 'GET' })
     .then((response): Promise<Car> => {
