@@ -92,7 +92,7 @@ const state: AppState = {
   setWinnersPage(page) {
     this.winnersPage = page;
     updateCurrPage('winnersPage');
-    getCars();
+    getWinners();
   },
   setId(id, type) {
     if (type === 'select') {
