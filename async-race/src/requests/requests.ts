@@ -140,7 +140,12 @@ export function updateCar(id: string, name: string, color: string): void {
     .then((data: Car) => {
       setUpdatedCar(data);
     })
-    .catch((error: unknown) => alert(`Failed to update a car: ${error}`));
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to update a car');
+      }
+    });
 }
 
 export function removeCar(id: number): void {
