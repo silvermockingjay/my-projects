@@ -268,14 +268,10 @@ export function startRace(): void {
               }
             })
             .catch((error: unknown) => {
-              if (error instanceof Error) {
-                console.error('Failed to start race:', error);
-              }
+              if (error instanceof Error) console.error('Failed to start race:', error);
             });
           racerPromises.push(racerPromise);
-        } else {
-          console.error('Failed to start race', result.reason);
-        }
+        } else console.error('Failed to start race', result.reason);
       });
       return Promise.all(racerPromises);
     })
@@ -283,9 +279,7 @@ export function startRace(): void {
       announceWinner(racers);
     })
     .catch((error: unknown) => {
-      if (error instanceof Error) {
-        console.error('Failed to start race:', error);
-      }
+      if (error instanceof Error) console.error('Failed to start race:', error);
     });
 }
 
