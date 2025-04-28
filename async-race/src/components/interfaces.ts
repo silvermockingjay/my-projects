@@ -9,6 +9,12 @@ export interface DriveProps {
   distance: number;
 }
 
+export interface Racer {
+  id: number;
+  name: string;
+  time: number;
+}
+
 export interface Winner {
   id: number;
   wins: number;
