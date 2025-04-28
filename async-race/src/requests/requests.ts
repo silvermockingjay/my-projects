@@ -1,4 +1,4 @@
-import type { Car, DriveProps } from '../components/interfaces';
+import type { Car, DriveProps, Racer } from '../components/interfaces';
 import { getState, setCars, setId, setTotal, setUpdatedCar } from '../state/states';
 import { animateCar, stopCar, resetCar } from '../components/list';
 
@@ -150,7 +150,11 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
         return response.json().then((data: DriveProps) => {
           if (status === 'started') {
             animateCar(id, data.velocity, data.distance);
-            driveCar(id);
+            driveCar(id).catch((error: unknown) => {
+              if (error instanceof Error) {
+                console.error('Failed to drive a car:', error);
+              }
+            });
           } else {
             resetCar(id);
           }
@@ -164,28 +168,23 @@ export function startStopCarEngine(id: number, status: 'started' | 'stopped'): v
     .catch((error: unknown) => alert(`Failed to start/stop car's engine: ${error}`));
 }
 
-function driveCar(id: number): void {
+function driveCar(id: number): Promise<Response> {
   const url = `http://localhost:3000/engine?id=${id}&status=drive`;
-  fetch(url, {
+  return fetch(url, {
     method: 'PATCH',
-  })
-    .then((response) => {
-      if (response.status === 400) {
-        throw new Error(`Wrong parameters: ${response.status}`);
-      } else if (response.status === 404) {
-        throw new Error(`Engine params are not found: ${response.status}`);
-      } else if (response.status === 429) {
-        throw new Error(`Drive in progress: ${response.status}`);
-      } else if (response.status === 500) {
-        stopCar(id);
-        throw new Error(`Car has been stopped suddenly. It's engine was broken down: ${response.status}`);
-      }
-    })
-    .catch((error: unknown) => {
-      if (error instanceof Error) {
-        console.error('Failed to start driving a car:', error);
-      }
-    });
+  }).then((response) => {
+    if (response.status === 400) {
+      throw new Error(`Wrong parameters: ${response.status}`);
+    } else if (response.status === 404) {
+      throw new Error(`Engine params are not found: ${response.status}`);
+    } else if (response.status === 429) {
+      throw new Error(`Drive in progress: ${response.status}`);
+    } else if (response.status === 500) {
+      stopCar(id);
+      throw new Error(`Car has been stopped suddenly. It's engine was broken down: ${response.status}`);
+    }
+    return response;
+  });
 }
 
 export function startRace(): void {
@@ -195,17 +194,19 @@ export function startRace(): void {
     const url = `http://localhost:3000/engine?id=${car.id}&status=started`;
     return fetch(url, { method: 'PATCH' });
   });
+  const racers: Promise<Racer>[] = [];
   Promise.allSettled(promises)
     .then((results) => {
+      const racerPromises: Promise<void>[] = [];
       results.forEach((result, index) => {
         if (result.status === 'fulfilled') {
-          result.value
+          const racerPromise = result.value
             .json()
             .then((data: DriveProps) => {
               const myCar = cars[index];
               if (myCar) {
-                animateCar(myCar.id, data.velocity, data.distance);
-                driveCar(myCar.id);
+                const racer = createRacerPromise(myCar, data.velocity, data.distance);
+                racers.push(racer);
               }
             })
             .catch((error: unknown) => {
@@ -213,10 +214,48 @@ export function startRace(): void {
                 console.error('Failed to start race:', error);
               }
             });
+          racerPromises.push(racerPromise);
         } else {
           console.error('Failed to start race', result.reason);
         }
       });
+      return Promise.all(racerPromises);
+    })
+    .then(() => {
+      announceWinner(racers);
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Failed to start race:', error);
+      }
+    });
+}
+
+function createRacerPromise(car: Car, velocity: number, distance: number): Promise<Racer> {
+  return new Promise((resolve, reject) => {
+    const time = distance / velocity;
+    const racer: Racer = {
+      id: car.id,
+      name: car.name,
+      time: time,
+    };
+    const idTimeout = setTimeout(() => {
+      resolve(racer);
+    }, time);
+    animateCar(car.id, velocity, distance);
+    driveCar(car.id).catch((error: unknown) => {
+      if (error instanceof Error) {
+        clearTimeout(idTimeout);
+        reject(error);
+      }
+    });
+  });
+}
+
+function announceWinner(racers: Promise<Racer>[]): void {
+  Promise.any(racers)
+    .then((value) => {
+      alert(`${value.name} wins with time ${Math.round(value.time / 1000)}s`);
     })
     .catch((error: unknown) => {
       if (error instanceof Error) {
