@@ -23,10 +23,10 @@ export function prevPage(): void {
 }
 
 export function nextPage(): void {
-  const prevPageBtn = document.querySelector('.prevButton') as HTMLButtonElement;
-  const nextPageBtn = document.querySelector('.nextButton') as HTMLButtonElement;
-  let currPage: number = 0;
-  let totalPagesView: number = 0;
+  const prevPageBtn: HTMLButtonElement | null = document.querySelector('.prevButton');
+  const nextPageBtn: HTMLButtonElement | null = document.querySelector('.nextButton');
+  let currPage = 0;
+  let totalPagesView = 0;
   const currView = getState('view');
   if (currView === 'garage') {
     currPage = getState('garagePage');
@@ -35,12 +35,16 @@ export function nextPage(): void {
     currPage = getState('winnersPage');
     totalPagesView = getState('totalPagesWinners');
   }
-  let nextPage: number = 0;
+  let nextPage = 0;
   if (currPage < totalPagesView) {
     nextPage = currPage + 1;
-    currView === 'garage' ? setGaragePage(nextPage): setWinnersPage(nextPage);
+    if (currView === 'garage') {
+      setGaragePage(nextPage);
+    } else {
+      setWinnersPage(nextPage);
+    }
     if (prevPageBtn?.classList.contains('inactive')) prevPageBtn.classList.remove('inactive');
-    if (nextPage === totalPagesView) nextPageBtn.classList.add('inactive');
+    if (nextPage === totalPagesView) nextPageBtn?.classList.add('inactive');
   }
 }
 
