@@ -2,7 +2,6 @@ import type { Car, DriveProps, Racer, Winner } from '../components/interfaces';
 import { getState, setCars, setId, setTotal, setUpdatedCar, setWinners, setUpdatedWinner } from '../state/states';
 import { animateCar, stopCar, resetCar } from '../components/list';
 
-
 export function getCars(): void {
   const page = getState('garagePage');
   const limit = getState('limitCars');
@@ -309,7 +308,15 @@ function announceWinner(racers: Promise<Racer>[]): void {
   Promise.any(racers)
     .then((value) => {
       const ms = 1000;
-      alert(`${value.name} wins with time ${Math.round(value.time / ms)}s`);
+      const fixedNum = 2;
+      const time = Number((value.time / ms).toFixed(fixedNum));
+      const winner = {
+        id: value.id,
+        wins: 1,
+        time: time,
+      };
+      alert(`${value.name} wins with time ${time}s`);
+      checkWinner(winner);
     })
     .catch((error: unknown) => {
       if (error instanceof Error) {
@@ -367,11 +374,11 @@ function createWinner(winner: Winner) {
     });
 }
 
-function updateWinner(id: string, wins: number, time: number): void {
-  const url = `http://localhost:3000/winners/${id}`;
+function updateWinner(winner: Winner): void {
+  const url = `http://localhost:3000/winners/${winner.id}`;
   const data = {
-    wins: wins,
-    time: time,
+    wins: winner.wins,
+    time: winner.time,
   };
   fetch(url, {
     method: 'PUT',
@@ -394,6 +401,41 @@ function updateWinner(id: string, wins: number, time: number): void {
       if (error instanceof Error) {
         console.error('Error', error);
         alert('Failed to update a car');
+      }
+    });
+}
+
+function checkWinner(winner: Winner): void {
+  const url = `http://localhost:3000/winners/${winner.id}`;
+  fetch(url, { method: 'GET' })
+    .then((response) => {
+      if (response.ok) {
+        response
+          .json()
+          .then((data: Winner) => {
+            const totalWins = data.wins++;
+            const bestTime = Math.max(winner.time, data.time);
+            const updatedWinner = {
+              id: data.id,
+              wins: totalWins,
+              time: bestTime,
+            };
+            updateWinner(updatedWinner);
+          })
+          .catch((error: unknown) => {
+            if (error instanceof Error) {
+              console.error('Error', error);
+              alert('Failed to update a winner');
+            }
+          });
+      } else {
+        createWinner(winner);
+      }
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to create/update a winner');
       }
     });
 }
