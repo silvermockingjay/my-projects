@@ -96,6 +96,11 @@ export interface DivProps {
   text?: string;
 }
 
+export interface ParagraphProps {
+  className?: string;
+  text?: string;
+}
+
 export interface SpanProps {
   className?: string;
   text?: string;
