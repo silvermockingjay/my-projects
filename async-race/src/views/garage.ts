@@ -59,7 +59,7 @@ export function updateTotalCars(): void {
 
 export function updateCurrPage(viewPage: 'garagePage' | 'winnersPage'): void {
   const currPage: HTMLParagraphElement | null = document.querySelector('.currentPage');
-  if (currPage) currPage.textContent = `Current page: ${getState(`${viewPage}`)}`;
+  if (currPage) currPage.textContent = `Current page: ${getState(viewPage)}`;
 }
 
 function createCarInputs(): HTMLInputElement[] {
