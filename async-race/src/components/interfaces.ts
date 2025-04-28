@@ -84,3 +84,13 @@ export interface ListProps {
   listItems?: HTMLLIElement[] | HTMLLIElement;
   className?: string;
 }
+
+export interface DivProps {
+  className?: string;
+  text?: string;
+}
+
+export interface SpanProps {
+  className?: string;
+  text?: string;
+}
