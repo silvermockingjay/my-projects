@@ -1,6 +1,7 @@
 import type { Car, DriveProps, Racer, Winner } from '../components/interfaces';
 import { getState, setCars, setId, setTotal, setUpdatedCar, setWinners, setUpdatedWinner } from '../state/states';
 import { animateCar, stopCar, resetCar } from '../components/list';
+import { removeWinnerFromTable } from '../components/table';
 
 export function getCars(): void {
   const page = getState('garagePage');
@@ -164,6 +165,7 @@ export function removeCar(id: number): void {
         total -= 1;
         setTotal(total, 'cars');
         setId(id, 'remove');
+        removeWinner(id);
       }
     })
     .catch((error: unknown) => {
@@ -458,6 +460,29 @@ export function getWinners(): void {
     .catch((error: unknown) => {
       if (error instanceof Error) {
         console.error('Failed to get cars:', error);
+      }
+    });
+}
+
+export function removeWinner(id: number): void {
+  const url = `http://localhost:3000/winners/${id}`;
+  fetch(url, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to delete a winner: ${response.status}`);
+      } else {
+        let total = getState('totalWinners');
+        total -= 1;
+        setTotal(total, 'winners');
+        removeWinnerFromTable(id);
+      }
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Error', error);
+        alert('Failed to delete a winner');
       }
     });
 }
