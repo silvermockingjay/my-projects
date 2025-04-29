@@ -422,7 +422,7 @@ function checkWinner(winner: Winner): void {
         response
           .json()
           .then((data: Winner) => {
-            const totalWins = data.wins++;
+            const totalWins = data.wins + 1;
             const bestTime = Math.min(winner.time, data.time);
             const updatedWinner = {
               id: data.id,
