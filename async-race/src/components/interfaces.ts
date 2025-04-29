@@ -49,7 +49,7 @@ export interface AppState {
   setView: (view: string) => void;
   setCars: (car: Car | Car[]) => void;
   setUpdatedCar: (car: Car) => void;
-  setWinners: (winners: Winner | Winner[]) => void;
+  setWinners: (winners: Winner | Winner[], car: Car | Car[]) => void;
   setUpdatedWinner: (winner: Winner) => void;
   setCurWinnerNum: (num: number) => void;
   setTotal: (total: number, prop: 'cars' | 'winners') => void;

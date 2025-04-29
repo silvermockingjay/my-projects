@@ -58,14 +58,14 @@ const state: AppState = {
       updateWinnerRow(updatedWinner);
     }
   },
-  setWinners(winner) {
+  setWinners(winner, car) {
     if (Array.isArray(winner)) {
       this.winners = winner;
     } else {
       this.winners.push(winner);
     }
     if (this.winners.length <= this.limitWinners) {
-      updateWinnerTable(winner);
+      updateWinnerTable(winner, car);
     } else {
       const nextPage = this.winnersPage + 1;
       this.setWinnersPage(nextPage);
