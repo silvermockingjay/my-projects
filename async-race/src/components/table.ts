@@ -47,7 +47,7 @@ export const table = ({ tableRows, className }: TableProps): HTMLTableElement =>
   thead.append(...headers);
   if (Array.isArray(tableRows)) {
     tbody.append(...tableRows);
-  } else {
+  } else if (tableRows) {
     tbody.append(tableRows);
   }
   tableElem.append(thead, tbody);

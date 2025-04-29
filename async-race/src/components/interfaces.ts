@@ -101,7 +101,7 @@ export interface TableRowProps {
 }
 
 export interface TableProps {
-  tableRows: HTMLTableRowElement | HTMLTableRowElement[];
+  tableRows?: HTMLTableRowElement | HTMLTableRowElement[];
   className?: string;
 }
 
