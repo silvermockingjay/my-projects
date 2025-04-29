@@ -1,7 +1,7 @@
 import type { AppState } from '../components/interfaces';
 import { removeCarFromList, updateCarList, updateCarListItem } from '../components/list';
 import { updateWinnerTable } from '../components/table';
-import { getCars } from '../requests/requests';
+import { getCars, getWinners } from '../requests/requests';
 import { updateTotalCars, updateCurrPage } from '../views/garage';
 import { updateTotalWinners } from '../views/winners';
 
