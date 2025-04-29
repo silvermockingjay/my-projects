@@ -76,6 +76,16 @@ export const updateWinnerTable = (winner: Winner | Winner[], car: Car | Car[]): 
   }
 };
 
+export const updateWinnerRow = (winner: Winner): void => {
+  const tableRow: HTMLTableRowElement | null = document.querySelector(`[data-id='${winner.id}']`);
+  if (tableRow) {
+    const wins: HTMLTableCellElement | null = tableRow.querySelector('.carWins');
+    if (wins) wins.textContent = `${winner.wins}`;
+    const time: HTMLTableCellElement | null = tableRow.querySelector('.carTime');
+    if (time) time.textContent = `${winner.time}`;
+  }
+};
+
 export const removeWinnerFromTable = (id: number): void => {
   const tbody = document.querySelector('.tableBody');
   const trow = document.querySelector(`[data-id='${id}']`);
