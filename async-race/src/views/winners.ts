@@ -1,4 +1,5 @@
 import { button } from '../components/button';
+import { table } from '../components/table';
 import { getWinners } from '../requests/requests';
 import { nextPage, prevPage } from '../routing/navigation';
 import { goToGarage, goToWinners } from '../routing/navigation';
@@ -23,7 +24,8 @@ export function renderWinners(): HTMLElement {
   totalWinners.className = 'totalWinners';
   currentPage.textContent = `Current page: ${getState('winnersPage')}`;
   currentPage.className = 'currentPage';
-  sectionWithTable.append(heading, totalWinners, currentPage);
+  const tableWinners = table({});
+  sectionWithTable.append(heading, totalWinners, currentPage, tableWinners);
   // Create buttons to navigate between list pages
   const prevButton = button({ type: 'button', text: 'prev', onClick: prevPage, className: 'prevButton' });
   const nextButton = button({ type: 'button', text: 'next', onClick: nextPage, className: 'nextButton' });
