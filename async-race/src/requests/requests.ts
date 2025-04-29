@@ -8,7 +8,7 @@ export function getCars(): void {
   const limit = getState('limitCars');
   const url = `http://localhost:3000/garage?_page=${page}&_limit=${limit}`;
   fetch(url, { method: 'GET' })
-    .then((response): Promise<Car> => {
+    .then((response): Promise<Car[]> => {
       const total = Number(response.headers.get('X-Total-Count'));
       setTotal(total, 'cars');
       return response.json();
@@ -366,7 +366,14 @@ function createWinner(winner: Winner) {
       let total = getState('totalWinners');
       total += 1;
       setTotal(total, 'winners');
-      setWinners(data);
+      getCar(data.id)
+        .then((value) => value.json())
+        .then((car: Car) => {
+          setWinners(winner, car);
+        })
+        .catch((error: unknown) => {
+          if (error instanceof Error) console.error('Failed to get winner car data', error);
+        });
     })
     .catch((error: unknown) => {
       if (error instanceof Error) {
@@ -442,6 +449,16 @@ function checkWinner(winner: Winner): void {
     });
 }
 
+function getCar(id: number): Promise<Response> {
+  const url = `http://localhost:3000/garage/${id}`;
+  return fetch(url, { method: 'GET' }).then((response) => {
+    if (response.status === errors.notFound) {
+      throw new Error(`Car params are not found: ${response.status}`);
+    }
+    return response;
+  });
+}
+
 export function getWinners(): void {
   const page = getState('winnersPage');
   const limit = getState('limitWinners');
@@ -449,17 +466,31 @@ export function getWinners(): void {
   const order = getState('sortBy');
   const url = `http://localhost:3000/winners?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
   fetch(url, { method: 'GET' })
-    .then((response): Promise<Winner> => {
+    .then((response): Promise<Winner[]> => {
       const total = Number(response.headers.get('X-Total-Count'));
       setTotal(total, 'winners');
       return response.json();
     })
-    .then((data) => {
-      setWinners(data);
+    .then((winners) => {
+      const promises: Promise<Car | undefined>[] = winners.map((winner) => {
+        return getCar(winner.id)
+          .then((res) => (res.ok ? (res.json() as Promise<Car>) : undefined))
+          .catch(() => undefined);
+      });
+      Promise.all(promises)
+        .then((carsRaw) => {
+          const cars: Car[] = carsRaw.filter((car): car is Car => car !== undefined);
+          setWinners(winners, cars);
+        })
+        .catch((error: unknown) => {
+          if (error instanceof Error) {
+            console.error('Failed to get cars:', error);
+          }
+        });
     })
     .catch((error: unknown) => {
       if (error instanceof Error) {
-        console.error('Failed to get cars:', error);
+        console.error('Failed to get winners:', error);
       }
     });
 }
