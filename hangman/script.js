@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
     container.classList.add('container');
     gallows.appendChild(container);
     const gallowsImage = document.createElement('img');
-    gallowsImage.setAttribute('src', '../hangman/gallows.png');
+    gallowsImage.setAttribute('src', '../hangman/assets/gallows.png');
     gallowsImage.setAttribute('alt', 'Gallows image');
     gallowsImage.classList.add('gallowsImg');
     container.appendChild(gallowsImage);
@@ -33,7 +33,7 @@ window.addEventListener('load', function() {
         const div = document.createElement('div');
         div.classList.add(bodyPartsName[i]);
         const part = document.createElement('img');
-        const link = '../hangman/' + bodyPartsName[i] + '.png';
+        const link = '../hangman/assets/' + bodyPartsName[i] + '.png';
         part.setAttribute('src', link);
         part.setAttribute('alt', bodyPartsName[i]);
         part.classList.add('child');
