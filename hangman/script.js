@@ -218,7 +218,14 @@ window.addEventListener('load', function() {
     }
 
     //Implement play again
-    play.addEventListener('click', function() {
+    play.addEventListener('click', playAgain);
+    document.addEventListener('keyup', function(event) {
+        if (!modal.classList.contains('hidden') && event.key === 'Enter') {
+            playAgain();
+        }
+    })
+
+    function playAgain() {
         while(index === indexesUsed) {
             index = Math.floor(Math.random() * questions.length);
         }
@@ -240,5 +247,5 @@ window.addEventListener('load', function() {
         })
         usedLetters.clear();
         modal.classList.add('hidden');
-    })
+    }
 })
