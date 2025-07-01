@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
     container.classList.add('container');
     gallows.appendChild(container);
     const gallowsImage = document.createElement('img');
-    gallowsImage.setAttribute('src', '../hangman/gallows.png');
+    gallowsImage.setAttribute('src', '../hangman/assets/gallows.png');
     gallowsImage.setAttribute('alt', 'Gallows image');
     gallowsImage.classList.add('gallowsImg');
     container.appendChild(gallowsImage);
@@ -33,7 +33,7 @@ window.addEventListener('load', function() {
         const div = document.createElement('div');
         div.classList.add(bodyPartsName[i]);
         const part = document.createElement('img');
-        const link = '../hangman/' + bodyPartsName[i] + '.png';
+        const link = '../hangman/assets/' + bodyPartsName[i] + '.png';
         part.setAttribute('src', link);
         part.setAttribute('alt', bodyPartsName[i]);
         part.classList.add('child');
@@ -62,6 +62,22 @@ window.addEventListener('load', function() {
     score.textContent = '0/6';
     guesses.appendChild(score);
 
+    //Implement modal window
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.classList.add('hidden');
+    parent.appendChild(modal);
+    const modalWindow = document.createElement('div');
+    modalWindow.classList.add('modalWindow');
+    modal.appendChild(modalWindow);
+    const message = document.createElement('p');
+    modalWindow.appendChild(message);
+    const answer = document.createElement('p');
+    modalWindow.appendChild(answer);
+    const play = document.createElement('button');
+    modalWindow.appendChild(play);
+    play.textContent = 'Play again!';
+
     //Implement keyboard
     const usedLetters = new Set();
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -82,7 +98,7 @@ window.addEventListener('load', function() {
     }
 
     document.addEventListener('keyup', function(event) {
-        if (event.code.startsWith('Key')) {
+        if (modal.classList.contains('hidden') && event.code.startsWith('Key')) {
             if (!usedLetters.has(event.key.toUpperCase())) {
                 usedLetters.add(event.key.toUpperCase());
                 checkLetter(event);
@@ -94,22 +110,6 @@ window.addEventListener('load', function() {
             }
         }
     })
-
-    //Implement modal window
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.classList.add('hidden');
-    parent.appendChild(modal);
-    const modalWindow = document.createElement('div');
-    modalWindow.classList.add('modalWindow');
-    modal.appendChild(modalWindow);
-    const message = document.createElement('p');
-    modalWindow.appendChild(message);
-    const answer = document.createElement('p');
-    modalWindow.appendChild(answer);
-    const play = document.createElement('button');
-    modalWindow.appendChild(play);
-    play.textContent = 'Play again!';
     
     //Implement quiz
     const questions = [
@@ -218,7 +218,14 @@ window.addEventListener('load', function() {
     }
 
     //Implement play again
-    play.addEventListener('click', function() {
+    play.addEventListener('click', playAgain);
+    document.addEventListener('keyup', function(event) {
+        if (!modal.classList.contains('hidden') && event.key === 'Enter') {
+            playAgain();
+        }
+    })
+
+    function playAgain() {
         while(index === indexesUsed) {
             index = Math.floor(Math.random() * questions.length);
         }
@@ -240,5 +247,5 @@ window.addEventListener('load', function() {
         })
         usedLetters.clear();
         modal.classList.add('hidden');
-    })
+    }
 })
