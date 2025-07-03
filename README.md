@@ -7,7 +7,7 @@ It represents a fictional Christmas shop and includes the following sections:
 - 🌟 Best Sellers
 - 📞 Contacts
 
-The design follows a Figma template provided by [**RS School**](https://rs.school/).
+The design follows a [Figma template](https://www.figma.com/design/zTB01BwWZVoXYK5atH3eZT/Christmas-Shop?node-id=0-1&p=f&t=jptx4DbMJ9Fk8xwe-0) provided by [**RS School**](https://rs.school/).
 
 ## 🖼️ Deploy
 [Christmas Shop project](https://silvermockingjay.github.io/my-projects/christmas-shop/)
