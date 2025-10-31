@@ -270,8 +270,7 @@
             const divHours = document.querySelector("#hours");
             const divMinutes = document.querySelector("#minutes");
             const divSeconds = document.querySelector("#seconds");
-            const currYear = new Date().getFullYear();
-            const newYear = new Date(Date.UTC(currYear + 1, 0, 1, 0, 0, 0));
+            const newYear = new Date(Date.UTC(2026, 0, 1, 0, 0, 0));
             let id = setTimeout(function countdownTimer() {
                 const now = Date.now();
                 const delta = newYear.getTime() - now;
