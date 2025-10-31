@@ -1,42 +1,29 @@
-# Christmas Shop project
-
-This is a simple responsive landing page built with HTML, CSS, and JavaScript.
-It represents a fictional Christmas shop and includes the following sections:
-- 🎁 Gifts
-- ℹ️ About
-- 🌟 Best Sellers
-- 📞 Contacts
-
-The design follows a [Figma template](https://www.figma.com/design/zTB01BwWZVoXYK5atH3eZT/Christmas-Shop?node-id=0-1&p=f&t=jptx4DbMJ9Fk8xwe-0) provided by [**RS School**](https://rs.school/).
+# Hangman game project
+A classic word game in which you must find the correct answer by guessing letters one at a time
 
 ## 🖼️ Deploy
-[Christmas Shop project](https://silvermockingjay.github.io/my-projects/christmas-shop/)
+[Hangman game project](https://silvermockingjay.github.io/my-projects/hangman/)
 
 ## 🖼️ Preview
-
-![Main page](./christmas-shop/img/screencapture-silvermockingjay-github-io-my-projects-christmas-shop-2025-07-01-12_49_53.png
-)
-![Gifts](./christmas-shop/img/screencapture-silvermockingjay-github-io-my-projects-christmas-shop-gifts-html-2025-07-01-12_54_27.png)
-![Modal](./christmas-shop/img/Снимок%20экрана%202025-07-01%20125355.jpg)
+![Hangman game initial state](./hangman/assets/hangman1.png)
+![Hangman game in process](./hangman/assets/hangman2.png)
+![Hangman game loss](./hangman/assets/hangman_loss.png)
+![Hangman game win](./hangman/assets/hangman_win.png)
 
 ## ✨ Features
 
-- Dynamic product card generation from data
-- Filtering of product cards
-- Modal window for product details
-- Live countdown timer to the New Year
-- Carousel with new year wishes
-- Page navigation
-- Burger menu for mobile devices
-- "Back to Top" button on the Gifts page (mobile only)
-- Reponsive design
+- Random question–answer generation for each game round
+- Visual gallows with hangman parts appearing on wrong guesses
+- Playable via both virtual and physical keyboard input
+- Modal window showing game outcome (win/lose)
+- Dynamic DOM updates during gameplay
+- Responsive page layout for desktop and mobile devices
+- All elements generated dynamically with JavaScript
 
 ## 🛠️ Technologies Used
-
 - HTML5
 - CSS3
 - JavaScript
 
 ## 📦 Installation
-
-Clone the repo and open `index.html` in your browser.
+Clone the repo and open index.html in your browser.
